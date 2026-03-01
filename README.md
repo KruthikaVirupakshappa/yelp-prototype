@@ -4,6 +4,12 @@ Prototype of Yelp with multiple functionalities and chatbot.
 ## Description:
 
 
+### Execute backend
+
+To run the backend application and load it in Swagger UI, follow [backend/README.md](backend/README.md).
+
+---
+
 ## Team Git sync Workflow
 
 **Repo**: `yelp-prototype`  
