@@ -54,10 +54,16 @@ git pull origin backend-kv                                              # Get la
 #### BEFORE STARTING ANY NEW WORK (always sync from main)
 
 ```bash
-git checkout main               # Switch to main branch
-git pull origin main            # Pull latest changes from remote main
-git checkout backend-kv         # IMPORTANT: Switch back to backend branch
-git rebase main                 # sync both main code and branch code by moving backend branch on top of latest main
+git fetch origin                        # Fetch latest changes from remote without modifying local branches
+git checkout backend-kv                 # Switch to your feature branch
+git rebase origin/main                  # Move backend-kv commits on top of latest remote main branch
+
+# If there are conflicts:
+#   - Fix the conflicted files manually
+#   - Run: git add <resolved-files>
+git rebase --continue                   # Continue the rebase after resolving conflicts
+
+git push --force-with-lease origin backend-kv   # Safely update remote branch after rebase (required because history changed)
 ```
 
 #### COMMIT AND PUSH CHANGES 
