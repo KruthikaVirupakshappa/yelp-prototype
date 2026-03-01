@@ -93,15 +93,6 @@ You can click it to create PR.
 click contribute button to create PR.
 4. Once PR is created, if there is no merge conflict, we can merge it directly
 to main since we both have merge permission.
-```
-
-#### AFTER MERGING TO MAIN (keep backend branch clean)
-
-```bash
-git checkout backend-kv         # Switch to backend branch
-git rebase main                 # Sync backend branch with updated main
-git push --force-with-lease origin backend-kv   # Update remote backend branch
-```
 
 ------------------------------------------------------------
 ## FRONTEND WORKFLOW (branch: frontend-sadaf)
@@ -120,19 +111,25 @@ git pull origin frontend-sadaf                                          # Get la
 #### BEFORE STARTING ANY NEW WORK (always sync from main)
 
 ```bash
-git checkout main               # Switch to main branch
-git pull origin main            # Pull latest changes from remote main
-git checkout frontend-sadaf     # Switch back to frontend branch
-git rebase main                 # Move frontend branch on top of latest main
+git fetch origin                        # Fetch latest changes from remote without modifying local branches
+git checkout frontend-sadaf                # Switch to your feature branch
+git rebase origin/main                  # Move frontend-sadaf commits on top of latest remote main branch
+
+# If there are conflicts:
+#   - Fix the conflicted files manually
+#   - Run: git add <resolved-files>
+git rebase --continue                   # Continue the rebase after resolving conflicts
+
+git push --force-with-lease origin frontend-sadaf   # Safely update remote branch after rebase (required because history changed)
 ```
 
-#### BEFORE OR AFTER COMMITTING
+#### COMMIT AND PUSH CHANGES 
 
 ```bash
 
 git add .                       # Stage all changes
 git commit -m "frontend: message"   # Commit frontend changes
-git push origin frontend-sadaf      # Push backend branch to GitHub
+git push origin frontend-sadaf      # Push frontend branch to GitHub
 
 # Optional safety step before pushing or if push fails::
 git checkout main               # Go to main
@@ -155,10 +152,3 @@ click contribute button to create PR.
 4. Once PR is created, if there is no merge conflict, we can merge it directly
 to main since we both have merge permission.
 
-#### AFTER MERGING TO MAIN (keep frontend branch clean)
-
-```bash
-git checkout frontend-sadaf     # Switch to frontend branch
-git rebase main                 # Sync frontend branch with updated main
-git push --force-with-lease origin frontend-sadaf   # Update remote frontend branch
-```
