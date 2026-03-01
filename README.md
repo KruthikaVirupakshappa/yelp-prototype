@@ -78,12 +78,15 @@ git push --force-with-lease origin backend-kv   # Safely force push after rebase
 #### MERGE BACKEND INTO MAIN (no PR)
 
 We can discuss and sync before pushing your branch changes to main branch.
+To simplify the workflow and avoid confusion, we can create a PR by following below workflow.
 
-```bash
-git checkout main               # Switch to main
-git pull origin main            # Ensure main is latest
-git merge --no-ff backend-kv    # Merge backend branch into main
-git push origin main            # Push updated main to GitHub
+1. Go to GitHub UI after pushing your local changes by following previous steps.
+2. It will usually indicate in yellow bar on top to create PR with your latest changes.
+You can click it to create PR.
+3. If you don't see that option, you can select your branch in dropdown and 
+click contribute button to create PR.
+4. Once PR is created, if there is no merge conflict, we can merge it directly
+to main since we both have merge permission.
 ```
 
 #### AFTER MERGING TO MAIN (keep backend branch clean)
@@ -134,15 +137,17 @@ git push --force-with-lease origin frontend-sadaf   # Safely force push after re
 ```
 
 
-#### MERGE FRONTEND INTO MAIN (no PR)
+#### MERGE FRONTEND INTO MAIN - PR
 We can discuss and sync before pushing your branch changes to main branch.
+To simplify the workflow and avoid confusion, we can create a PR by following below workflow.
 
-```bash
-git checkout main               # Switch to main
-git pull origin main            # Ensure main is latest
-git merge --no-ff frontend-sadaf   # Merge frontend branch into main
-git push origin main            # Push updated main to GitHub
-```
+1. Go to GitHub UI after pushing your local changes by following previous steps.
+2. It will usually indicate in yellow bar on top to create PR with your latest changes.
+You can click it to create PR.
+3. If you don't see that option, you can select your branch in dropdown and 
+click contribute button to create PR.
+4. Once PR is created, if there is no merge conflict, we can merge it directly
+to main since we both have merge permission.
 
 #### AFTER MERGING TO MAIN (keep frontend branch clean)
 
