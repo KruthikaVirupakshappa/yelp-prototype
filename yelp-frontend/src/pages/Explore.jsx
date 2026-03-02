@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AIAssistant from "../components/chat/AIAssistant";
 
 export default function Explore() {
   const navigate = useNavigate();
@@ -47,10 +48,13 @@ export default function Explore() {
 
     const method = shouldSave ? "POST" : "DELETE";
 
-    const res = await fetch(`http://127.0.0.1:8000/api/favorites/${restId}`, {
-      method,
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await fetch(
+      `http://127.0.0.1:8000/api/favorites/${restId}`,
+      {
+        method,
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
 
     if (res.ok) return;
 
@@ -118,13 +122,19 @@ export default function Explore() {
                 View Details
               </button>
 
-              <button className="btn2 ghost" onClick={() => toggleSave(r.id)}>
+              <button
+                className="btn2 ghost"
+                onClick={() => toggleSave(r.id)}
+              >
                 {isSaved ? "❤️ Saved" : "♡ Save"}
               </button>
             </article>
           );
         })}
       </div>
+
+      {/* AI Assistant restored */}
+      <AIAssistant />
     </div>
   );
 }

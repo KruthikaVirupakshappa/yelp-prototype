@@ -1,26 +1,26 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: "http://127.0.0.1:8000/api",
 });
 
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
-
     config.headers = config.headers || {};
 
     if (token) {
-      
       config.headers.Authorization = `Bearer ${token}`;
     } else {
-      delete config.headers.Authorization;
+      delete config.headers.Authorization; // ✅ important
     }
 
-    
-    console.log("[API REQUEST]", (config.method || "").toUpperCase(), config.url, {
-      auth: config.headers.Authorization ? "set" : "missing",
-    });
+    console.log(
+      "[API REQUEST]",
+      (config.method || "").toUpperCase(),
+      config.url,
+      { auth: token ? "set" : "missing" }
+    );
 
     return config;
   },
@@ -28,16 +28,21 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (res) => res,
-  (err) => {
-    
-    console.log("[API ERROR]", err?.response?.status, err?.config?.url, err?.response?.data);
+  (response) => response,
+  (error) => {
+    console.log(
+      "[API ERROR]",
+      error?.response?.status,
+      error?.config?.url,
+      error?.response?.data
+    );
 
-    if (err?.response?.status === 401) {
+    if (error?.response?.status === 401) {
       localStorage.removeItem("token");
       localStorage.removeItem("token_type");
       localStorage.removeItem("user");
     }
-    return Promise.reject(err);
+
+    return Promise.reject(error);
   }
 );

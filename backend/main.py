@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 import os
 
 from app.database import engine, Base
-from app.routes import auth, users, restaurants, reviews, favorites, preferences, owner  # ai_assistant
+from app.routes import auth, users, restaurants, reviews, favorites, preferences, owner, ai_assistant
 from app.config import get_settings
 
 settings = get_settings()
@@ -39,7 +39,7 @@ app.include_router(restaurants.router)
 app.include_router(reviews.router)
 app.include_router(favorites.router)
 app.include_router(preferences.router)
-# app.include_router(ai_assistant.router)
+app.include_router(ai_assistant.router)
 app.include_router(owner.router)
 
 @app.get("/")
