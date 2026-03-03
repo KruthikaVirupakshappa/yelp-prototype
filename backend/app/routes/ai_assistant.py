@@ -4,7 +4,7 @@ from typing import List, Literal, Optional
 
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.models import Restaurant  # <-- assumes you have Restaurant model here
+from app.models import Restaurant  
 
 router = APIRouter(prefix="/api/ai-assistant", tags=["AI Assistant"])
 
@@ -40,8 +40,7 @@ def chat(req: ChatRequest, db: Session = Depends(get_db)):
     q = (req.message or "").strip()
     q_lower = q.lower()
 
-    # Super simple keyword search: name OR cuisine_type contains query
-    # (Good enough for now; we can improve later)
+   
     query = db.query(Restaurant)
     if q_lower:
         query = query.filter(
