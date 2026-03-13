@@ -1,16 +1,97 @@
-# React + Vite
+# Yelp Prototype
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack Yelp-style restaurant discovery and review platform built using FastAPI (backend) and React with Vite (frontend).
 
-Currently, two official plugins are available:
+This project includes authentication, profile management, restaurant search, reviews, favorites, and an AI-based recommendation assistant.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+TECH STACK
 
-## React Compiler
+Backend:
+- FastAPI
+- SQLAlchemy
+- SQLite
+- JWT Authentication
+- Uvicorn
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Frontend:
+- React (Vite)
+- Axios
+- React Router
+- LocalStorage for token handling
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+RUNNING THE BACKEND
+
+From the project root:
+
+source .venv/bin/activate
+cd backend
+uvicorn main:app --reload --port 8000
+
+Backend URL:
+http://127.0.0.1:8000
+
+Swagger Docs:
+http://127.0.0.1:8000/docs
+
+RUNNING THE FRONTEND
+
+cd yelp-frontend
+npm install
+npm run dev
+
+Frontend URL:
+http://localhost:5173
+
+FEATURES IMPLEMENTED
+
+Authentication:
+- User signup
+- User login
+- JWT token validation
+- Protected routes
+
+Profile:
+- View profile
+- Update user information
+- Update AI preferences
+
+Restaurants:
+- Create restaurant
+- Search restaurants
+- View restaurant details
+
+Reviews:
+- Create review
+- Update review
+- Delete review
+- View review history
+
+Favorites:
+- Add to favorites
+- Remove from favorites
+- View saved restaurants
+
+AI Assistant:
+- Connected to /api/ai-assistant/chat
+- Returns assistant reply
+- Returns restaurant recommendations
+- Recommendations navigate to restaurant details
+
+AUTHENTICATION NOTES
+
+- Login returns a JWT token.
+- Token is stored in localStorage.
+- If token expires, log in again.
+- The SQLite database (yelp.db) is local and not pushed to GitHub.
+
+STATUS
+
+Frontend and backend are fully integrated and tested locally.
+
+Core functionality confirmed working:
+- Authentication
+- Favorites
+- Reviews
+- Profile updates
+- AI assistant integration
