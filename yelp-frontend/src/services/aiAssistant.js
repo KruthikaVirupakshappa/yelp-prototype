@@ -7,7 +7,7 @@ export async function chatWithAssistant(message, conversation_history = []) {
       conversation_history,
     });
 
-    return response.data; // { reply, conversation_history }
+    return response.data; 
   } catch (error) {
     console.error("AI Assistant error:", error?.response?.data || error.message);
     throw error;

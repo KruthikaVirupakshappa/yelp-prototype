@@ -4,8 +4,8 @@ from typing import Optional
 
 
 class Settings(BaseSettings):
-    DATABASE_URL: str  # Required - must come from .env
-    SECRET_KEY: str  # Required - must come from .env
+    DATABASE_URL: str  
+    SECRET_KEY: str  
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
     OPENAI_API_KEY: Optional[str] = None

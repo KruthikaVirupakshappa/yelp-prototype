@@ -31,8 +31,8 @@ export default function Profile() {
         setLoading(true);
         setError("");
 
-        const userRes = await api.get("/api/users/me");
-        const prefRes = await api.get("/api/preferences");
+        const userRes = await api.get("/users/me");
+        const prefRes = await api.get("/preferences");
 
         const u = userRes.data;
         const p = prefRes.data;
@@ -76,7 +76,13 @@ export default function Profile() {
     setError("");
 
     try {
-      await api.put("/api/users/me", {
+      const allowedGenders = ["male", "female", "other", "prefer_not_to_say"];
+      const normalizedGender = (form.gender || "").trim().toLowerCase();
+      const genderToSend = allowedGenders.includes(normalizedGender)
+        ? normalizedGender
+        : null;
+
+      await api.put("/users/me", {
         name: form.name,
         phone: form.phone,
         about_me: form.about,
@@ -84,10 +90,10 @@ export default function Profile() {
         state: form.state,
         country: form.country,
         languages: form.languages,
-        gender: form.gender,
+        gender: genderToSend,
       });
 
-      await api.put("/api/preferences", {
+      await api.put("/preferences", {
         cuisine_preferences: form.cuisine,
         price_range: form.price,
         dietary_needs: form.dietary,
@@ -96,6 +102,11 @@ export default function Profile() {
 
       alert("Profile updated successfully!");
     } catch (err) {
+      if (err?.response?.status === 401) {
+        setError("Session expired. Please log in again.");
+        navigate("/login");
+        return;
+      }
       setError(err?.response?.data?.detail || "Update failed.");
     } finally {
       setSaving(false);
@@ -121,24 +132,103 @@ export default function Profile() {
           <div className="profile-section">
             <h3>Basic Information</h3>
 
-            <input className="profile-input" name="name" value={form.name} onChange={handleChange} placeholder="Name" />
-            <input className="profile-input" name="email" value={form.email} disabled placeholder="Email" />
-            <input className="profile-input" name="phone" value={form.phone} onChange={handleChange} placeholder="Phone" />
-            <textarea className="profile-textarea" name="about" value={form.about} onChange={handleChange} placeholder="About me" />
-            <input className="profile-input" name="city" value={form.city} onChange={handleChange} placeholder="City" />
-            <input className="profile-input" name="state" value={form.state} onChange={handleChange} maxLength={2} placeholder="State (CA)" />
-            <input className="profile-input" name="country" value={form.country} onChange={handleChange} placeholder="Country" />
-            <input className="profile-input" name="languages" value={form.languages} onChange={handleChange} placeholder="Languages" />
-            <input className="profile-input" name="gender" value={form.gender} onChange={handleChange} placeholder="Gender" />
+            <input
+              className="profile-input"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="Name"
+            />
+            <input
+              className="profile-input"
+              name="email"
+              value={form.email}
+              disabled
+              placeholder="Email"
+            />
+            <input
+              className="profile-input"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              placeholder="Phone"
+            />
+            <textarea
+              className="profile-textarea"
+              name="about"
+              value={form.about}
+              onChange={handleChange}
+              placeholder="About me"
+            />
+            <input
+              className="profile-input"
+              name="city"
+              value={form.city}
+              onChange={handleChange}
+              placeholder="City"
+            />
+            <input
+              className="profile-input"
+              name="state"
+              value={form.state}
+              onChange={handleChange}
+              maxLength={2}
+              placeholder="State (CA)"
+            />
+            <input
+              className="profile-input"
+              name="country"
+              value={form.country}
+              onChange={handleChange}
+              placeholder="Country"
+            />
+            <input
+              className="profile-input"
+              name="languages"
+              value={form.languages}
+              onChange={handleChange}
+              placeholder="Languages"
+            />
+            <input
+              className="profile-input"
+              name="gender"
+              value={form.gender}
+              onChange={handleChange}
+              placeholder="Gender"
+            />
           </div>
 
           <div className="profile-section">
             <h3>AI Preferences</h3>
 
-            <input className="profile-input" name="cuisine" value={form.cuisine} onChange={handleChange} placeholder="Cuisine" />
-            <input className="profile-input" name="price" value={form.price} onChange={handleChange} placeholder="Price range" />
-            <input className="profile-input" name="dietary" value={form.dietary} onChange={handleChange} placeholder="Dietary needs" />
-            <input className="profile-input" name="ambiance" value={form.ambiance} onChange={handleChange} placeholder="Ambiance" />
+            <input
+              className="profile-input"
+              name="cuisine"
+              value={form.cuisine}
+              onChange={handleChange}
+              placeholder="Cuisine"
+            />
+            <input
+              className="profile-input"
+              name="price"
+              value={form.price}
+              onChange={handleChange}
+              placeholder="Price range"
+            />
+            <input
+              className="profile-input"
+              name="dietary"
+              value={form.dietary}
+              onChange={handleChange}
+              placeholder="Dietary needs"
+            />
+            <input
+              className="profile-input"
+              name="ambiance"
+              value={form.ambiance}
+              onChange={handleChange}
+              placeholder="Ambiance"
+            />
           </div>
 
           <button className="profile-save" type="submit" disabled={saving}>

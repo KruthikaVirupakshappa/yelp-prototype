@@ -15,7 +15,7 @@ export default function AddRestaurant() {
   tags: "",
   chips: "",
   rating: 4.5,
-  photos: [],   // ← ADD THIS LINE
+  photos: [],   
 });
 
   function handleChange(e) {
@@ -42,11 +42,11 @@ export default function AddRestaurant() {
 
     const nameLower = form.name.trim().toLowerCase();
 
-    // Get existing custom restaurants
+ 
     const existingRaw = localStorage.getItem("customRestaurants");
     const existing = existingRaw ? JSON.parse(existingRaw) : [];
 
-    // Check duplicate against BOTH default + custom restaurants
+   
     const alreadyExists =
       existing.some((r) => r.name.trim().toLowerCase() === nameLower) ||
       restaurants.some((r) => r.name.trim().toLowerCase() === nameLower);

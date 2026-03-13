@@ -14,7 +14,7 @@ from app.config import get_settings
 settings = get_settings()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# ✅ Swagger will now show a single "Value" box for a Bearer token
+
 bearer_scheme = HTTPBearer(auto_error=False)
 
 
@@ -29,7 +29,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     to_encode = data.copy()
 
-    # ✅ always store sub as string in JWT
+    
     if "sub" in to_encode and to_encode["sub"] is not None:
         to_encode["sub"] = str(to_encode["sub"])
 

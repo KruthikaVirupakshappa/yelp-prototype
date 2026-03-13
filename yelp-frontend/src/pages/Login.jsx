@@ -44,8 +44,8 @@ export default function Login() {
     try {
       setLoading(true);
 
-      // ✅ Send JSON because your /api/auth/login accepts JSON (per Swagger curl example)
-      const res = await api.post("/api/auth/login", { email, password });
+      // baseURL already includes /api, so use /auth/login (NOT /api/auth/login)
+      const res = await api.post("/auth/login", { email, password });
 
       const token = res?.data?.access_token;
       const tokenType = res?.data?.token_type || "bearer";
@@ -54,16 +54,21 @@ export default function Login() {
 
       localStorage.setItem("token", token);
       localStorage.setItem("token_type", tokenType);
-      if (res?.data?.user) localStorage.setItem("user", JSON.stringify(res.data.user));
+      if (res?.data?.user) {
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+      }
 
       navigate("/explore");
     } catch (err) {
-      // ✅ Make sure we never try to render an object as an error message
       let msg = "Login failed. Please try again.";
 
       const data = err?.response?.data;
       if (typeof data === "string") msg = data;
-      else if (data?.detail) msg = typeof data.detail === "string" ? data.detail : JSON.stringify(data.detail);
+      else if (data?.detail)
+        msg =
+          typeof data.detail === "string"
+            ? data.detail
+            : JSON.stringify(data.detail);
       else if (data?.message) msg = data.message;
       else if (err?.message) msg = err.message;
 
@@ -78,13 +83,17 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-card">
         <h1 className="auth-title">Welcome back</h1>
-        <p className="auth-subtitle">Log in to write reviews and use the assistant.</p>
+        <p className="auth-subtitle">
+          Log in to write reviews and use the assistant.
+        </p>
 
         {submitError ? <div className="auth-alert">{submitError}</div> : null}
 
         <form onSubmit={onSubmit} className="auth-form">
           <div className="auth-field">
-            <label className="auth-label" htmlFor="login-email">Email</label>
+            <label className="auth-label" htmlFor="login-email">
+              Email
+            </label>
             <input
               id="login-email"
               className="auth-input"
@@ -95,11 +104,15 @@ export default function Login() {
               placeholder="you@example.com"
               autoComplete="email"
             />
-            {showErr("email") ? <div className="auth-error">{errors.email}</div> : null}
+            {showErr("email") ? (
+              <div className="auth-error">{errors.email}</div>
+            ) : null}
           </div>
 
           <div className="auth-field">
-            <label className="auth-label" htmlFor="login-password">Password</label>
+            <label className="auth-label" htmlFor="login-password">
+              Password
+            </label>
             <input
               id="login-password"
               className="auth-input"
@@ -111,10 +124,16 @@ export default function Login() {
               placeholder="••••••••"
               autoComplete="current-password"
             />
-            {showErr("password") ? <div className="auth-error">{errors.password}</div> : null}
+            {showErr("password") ? (
+              <div className="auth-error">{errors.password}</div>
+            ) : null}
           </div>
 
-          <button className="auth-primary" type="submit" disabled={!isValid || loading}>
+          <button
+            className="auth-primary"
+            type="submit"
+            disabled={!isValid || loading}
+          >
             {loading ? "Logging in..." : "Log In"}
           </button>
 

@@ -82,11 +82,11 @@ export default function RestaurantDetails() {
 
       localStorage.setItem("savedRestaurants", JSON.stringify(updated));
     } catch {
-      // ignore
+      
     }
   }
 
-  // ✅ refined: no random picsum; use consistent food placeholders
+
   const photos =
     Array.isArray(restaurant.photos) && restaurant.photos.length > 0
       ? restaurant.photos

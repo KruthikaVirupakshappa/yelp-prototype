@@ -1,4 +1,4 @@
-// src/components/ImageCarousel.jsx
+
 import { useEffect, useState } from "react";
 
 export default function ImageCarousel({ images = [], interval = 3000 }) {

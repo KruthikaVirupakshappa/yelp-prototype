@@ -17,20 +17,20 @@ export default function AIAssistant() {
     const text = input.trim();
     const userMessage = { role: "user", content: text };
 
-    // Clear input right away for better UX
+  
     setInput("");
 
-    // Build the history we will send (avoid stale state issues)
+  
     const historyToSend = [...messages, userMessage];
 
-    // Show user message immediately
+  
     setMessages(historyToSend);
     setLoading(true);
 
     try {
       const data = await chatWithAssistant(text, historyToSend);
 
-      // Add assistant reply
+     
       const assistantMessage = {
         role: "assistant",
         content: data?.reply ?? "No reply received.",
@@ -38,7 +38,7 @@ export default function AIAssistant() {
 
       setMessages((prev) => [...prev, assistantMessage]);
 
-      // Store recommendations (if any)
+     
       setRecs(Array.isArray(data?.recommendations) ? data.recommendations : []);
     } catch (err) {
       console.error("AI error:", err);
