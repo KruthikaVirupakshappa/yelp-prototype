@@ -1,24 +1,21 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import AIAssistant from "../components/chat/AIAssistant";
+import { api } from "../services/api";
 
 export default function Explore() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [restaurants, setRestaurants] = useState([]);
   const [query, setQuery] = useState("");
   const [savedIds, setSavedIds] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      const res = await fetch(
-        "http://127.0.0.1:8000/api/restaurants/?page=1&limit=50"
-      );
-      if (!res.ok) return;
-      const data = await res.json();
-      setRestaurants(Array.isArray(data) ? data : []);
-    })();
-  }, []);
+  async function loadRestaurants() {
+    const res = await api.get("/restaurants", { params: { page: 1, limit: 50 } });
+    const data = res.data;
+    setRestaurants(Array.isArray(data) ? data : (data?.items || []));
+  }
 
   async function loadFavorites() {
     const token = localStorage.getItem("token");
@@ -26,60 +23,41 @@ export default function Explore() {
       setSavedIds([]);
       return;
     }
-
-    const res = await fetch("http://127.0.0.1:8000/api/favorites/", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    if (!res.ok) return;
-
-    const favs = await res.json();
+    const res = await api.get("/favorites");
+    const favs = res.data;
     const ids = Array.isArray(favs) ? favs.map((r) => r.id) : [];
     setSavedIds(ids);
   }
 
   useEffect(() => {
-    loadFavorites();
-  }, []);
-
-  async function toggleFavoriteBackend(restId, shouldSave) {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("NO_TOKEN");
-
-    const method = shouldSave ? "POST" : "DELETE";
-
-    const res = await fetch(
-      `http://127.0.0.1:8000/api/favorites/${restId}`,
-      {
-        method,
-        headers: { Authorization: `Bearer ${token}` },
+    (async () => {
+      try {
+        await loadRestaurants();
+        await loadFavorites();
+      } catch (e) {
+        console.error(e);
       }
-    );
-
-    if (res.ok) return;
-
-    if (method === "DELETE" && res.status === 404) return;
-
-    const text = await res.text().catch(() => "");
-    throw new Error(`Favorites ${method} failed: ${res.status} ${text}`);
-  }
+    })();
+  }, [location.key]);
 
   async function toggleSave(restId) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please log in first.");
+      return;
+    }
+
     const isSaved = savedIds.includes(restId);
 
     try {
-      await toggleFavoriteBackend(restId, !isSaved);
-
-      setSavedIds((prev) => {
-        if (isSaved) return prev.filter((x) => x !== restId);
-        if (prev.includes(restId)) return prev;
-        return [...prev, restId];
-      });
-    } catch (err) {
-      if (String(err?.message) === "NO_TOKEN") {
-        alert("Please log in first.");
-        return;
+      if (isSaved) {
+        await api.delete(`/favorites/${restId}`);
+        setSavedIds((prev) => prev.filter((x) => x !== restId));
+      } else {
+        await api.post(`/favorites/${restId}`);
+        setSavedIds((prev) => (prev.includes(restId) ? prev : [...prev, restId]));
       }
+    } catch (err) {
       console.error(err);
       await loadFavorites();
       alert("Could not update favorites.");
@@ -87,7 +65,8 @@ export default function Explore() {
   }
 
   const filtered = useMemo(() => {
-    const q = query.toLowerCase();
+    const q = query.toLowerCase().trim();
+    if (!q) return restaurants;
     return restaurants.filter(
       (r) =>
         (r.name || "").toLowerCase().includes(q) ||
@@ -115,17 +94,11 @@ export default function Explore() {
               <div className="rest-name2">{r.name}</div>
               <div>★ {Number(r.average_rating || 0).toFixed(1)}</div>
 
-              <button
-                className="btn2 primary"
-                onClick={() => navigate(`/restaurants/${r.id}`)}
-              >
+              <button className="btn2 primary" onClick={() => navigate(`/restaurants/${r.id}`)}>
                 View Details
               </button>
 
-              <button
-                className="btn2 ghost"
-                onClick={() => toggleSave(r.id)}
-              >
+              <button className="btn2 ghost" onClick={() => toggleSave(r.id)}>
                 {isSaved ? "❤️ Saved" : "♡ Save"}
               </button>
             </article>
@@ -133,7 +106,6 @@ export default function Explore() {
         })}
       </div>
 
-      {/* AI Assistant restored */}
       <AIAssistant />
     </div>
   );

@@ -1,38 +1,35 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import restaurants from "../data/restaurants";
+import { api } from "../services/api";
 
 export default function AddRestaurant() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-  name: "",
-  cuisine: "",
-  price: "$$",
-  location: "",
-  address: "",
-  phone: "",
-  tags: "",
-  chips: "",
-  rating: 4.5,
-  photos: [],   
-});
+    name: "",
+    cuisine: "",
+    price: "$$",
+    location: "",
+    address: "",
+    phone: "",
+    tags: "",
+    chips: "",
+    rating: 4.5,
+    photos: [],
+  });
 
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
+
   function handlePhotoChange(e) {
-  const files = Array.from(e.target.files || []);
-  const urls = files.map((file) => URL.createObjectURL(file));
+    const files = Array.from(e.target.files || []);
+    const urls = files.map((file) => URL.createObjectURL(file));
+    setForm((prev) => ({ ...prev, photos: urls }));
+  }
 
-  setForm((prev) => ({
-    ...prev,
-    photos: urls,
-  }));
-}
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (!form.name.trim() || !form.cuisine.trim() || !form.location.trim()) {
@@ -40,53 +37,38 @@ export default function AddRestaurant() {
       return;
     }
 
-    const nameLower = form.name.trim().toLowerCase();
+    try {
+      await api.post("/restaurants/", {
+        name: form.name.trim(),
+        cuisine_type: form.cuisine.trim(),
+        city: form.location.trim(),
+        pricing_tier: form.price,
+        address: form.address.trim() || null,
+        phone: form.phone.trim() || null,
+        amenities: form.tags.trim() || null,
+        hours_of_operation: null,
+        website: null,
+        email: null,
+        zip_code: null,
+        state: null,
+        country: null,
+      });
 
- 
-    const existingRaw = localStorage.getItem("customRestaurants");
-    const existing = existingRaw ? JSON.parse(existingRaw) : [];
-
-   
-    const alreadyExists =
-      existing.some((r) => r.name.trim().toLowerCase() === nameLower) ||
-      restaurants.some((r) => r.name.trim().toLowerCase() === nameLower);
-
-    if (alreadyExists) {
-      alert("Restaurant with this name already exists.");
-      return;
+      alert("Restaurant added!");
+      navigate("/explore");
+    } catch (err) {
+      const msg =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message ||
+        "Failed to add restaurant.";
+      alert(msg);
+      console.error(err);
     }
-
-    const newRestaurant = {
-      id: Date.now(),
-      name: form.name.trim(),
-      cuisine: form.cuisine.trim(),
-      rating: Number(form.rating) || 4.5,
-      reviewsCount: 0,
-      price: form.price,
-      location: form.location.trim(),
-      address: form.address.trim(),
-      phone: form.phone.trim(),
-      tags: form.tags.split(",").map((x) => x.trim()).filter(Boolean),
-      chips: form.chips.split(",").map((x) => x.trim()).filter(Boolean),
-      photos: form.photos,
-    };
-
-    const next = Array.isArray(existing)
-      ? [newRestaurant, ...existing]
-      : [newRestaurant];
-
-    localStorage.setItem("customRestaurants", JSON.stringify(next));
-
-    alert("Restaurant added!");
-    navigate("/explore");
   }
 
   return (
     <div className="page" style={{ maxWidth: 900, margin: "0 auto" }}>
       <h1 style={{ marginBottom: 8 }}>Add a Restaurant</h1>
-      <p style={{ opacity: 0.7, marginBottom: 20 }}>
-        Create a new restaurant listing (frontend/localStorage for now).
-      </p>
 
       <form onSubmit={handleSubmit} style={{ display: "grid", gap: 14 }}>
         <div style={{ display: "grid", gap: 6 }}>
@@ -181,40 +163,24 @@ export default function AddRestaurant() {
             onChange={handleChange}
           />
         </div>
-        <div style={{ display: "grid", gap: 6 }}>
-  <label>Photos</label>
-  <input
-    type="file"
-    accept="image/*"
-    multiple
-    onChange={handlePhotoChange}
-  />
 
-  {form.photos.length > 0 && (
-    <div
-      style={{
-        display: "flex",
-        gap: 10,
-        flexWrap: "wrap",
-        marginTop: 8,
-      }}
-    >
-      {form.photos.map((src, index) => (
-        <img
-          key={index}
-          src={src}
-          alt={`Preview ${index + 1}`}
-          style={{
-            width: 90,
-            height: 70,
-            objectFit: "cover",
-            borderRadius: 10,
-          }}
-        />
-      ))}
-    </div>
-  )}
-</div>
+        <div style={{ display: "grid", gap: 6 }}>
+          <label>Photos</label>
+          <input type="file" accept="image/*" multiple onChange={handlePhotoChange} />
+
+          {form.photos.length > 0 && (
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
+              {form.photos.map((src, index) => (
+                <img
+                  key={index}
+                  src={src}
+                  alt={`Preview ${index + 1}`}
+                  style={{ width: 90, height: 70, objectFit: "cover", borderRadius: 10 }}
+                />
+              ))}
+            </div>
+          )}
+        </div>
 
         <button type="submit" style={{ padding: 12, borderRadius: 10 }}>
           Add Restaurant
