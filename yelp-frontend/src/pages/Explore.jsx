@@ -12,9 +12,11 @@ export default function Explore() {
   const [savedIds, setSavedIds] = useState([]);
 
   async function loadRestaurants() {
-    const res = await api.get("/restaurants", { params: { page: 1, limit: 50 } });
+    const res = await api.get("/restaurants", {
+      params: { page: 1, limit: 50 },
+    });
     const data = res.data;
-    setRestaurants(Array.isArray(data) ? data : (data?.items || []));
+    setRestaurants(Array.isArray(data) ? data : data?.items || []);
   }
 
   async function loadFavorites() {
@@ -23,6 +25,7 @@ export default function Explore() {
       setSavedIds([]);
       return;
     }
+
     const res = await api.get("/favorites");
     const favs = res.data;
     const ids = Array.isArray(favs) ? favs.map((r) => r.id) : [];
@@ -55,7 +58,9 @@ export default function Explore() {
         setSavedIds((prev) => prev.filter((x) => x !== restId));
       } else {
         await api.post(`/favorites/${restId}`);
-        setSavedIds((prev) => (prev.includes(restId) ? prev : [...prev, restId]));
+        setSavedIds((prev) =>
+          prev.includes(restId) ? prev : [...prev, restId]
+        );
       }
     } catch (err) {
       console.error(err);
@@ -67,6 +72,7 @@ export default function Explore() {
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
     if (!q) return restaurants;
+
     return restaurants.filter(
       (r) =>
         (r.name || "").toLowerCase().includes(q) ||
@@ -94,11 +100,17 @@ export default function Explore() {
               <div className="rest-name2">{r.name}</div>
               <div>★ {Number(r.average_rating || 0).toFixed(1)}</div>
 
-              <button className="btn2 primary" onClick={() => navigate(`/restaurants/${r.id}`)}>
+              <button
+                className="btn2 primary"
+                onClick={() => navigate(`/restaurants/${r.id}`)}
+              >
                 View Details
               </button>
 
-              <button className="btn2 ghost" onClick={() => toggleSave(r.id)}>
+              <button
+                className="btn2 ghost"
+                onClick={() => toggleSave(r.id)}
+              >
                 {isSaved ? "❤️ Saved" : "♡ Save"}
               </button>
             </article>

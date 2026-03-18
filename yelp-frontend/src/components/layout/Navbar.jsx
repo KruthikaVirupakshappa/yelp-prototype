@@ -64,7 +64,15 @@ export default function Navbar() {
             Profile
           </NavLink>
 
-          {/* NEW LINKS */}
+          <NavLink
+            to="/owner"
+            className={({ isActive }) =>
+              isActive ? "nav-link active" : "nav-link"
+            }
+          >
+            Owner
+          </NavLink>
+
           <NavLink
             to="/signup"
             className={({ isActive }) =>
@@ -82,7 +90,6 @@ export default function Navbar() {
           >
             Log In
           </NavLink>
-
         </nav>
       </div>
     </header>

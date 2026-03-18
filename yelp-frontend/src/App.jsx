@@ -12,6 +12,7 @@ import Login from "./pages/Login.jsx";
 import Profile from "./pages/Profile.jsx";
 import Saved from "./pages/Saved.jsx";
 import MyReviews from "./pages/MyReviews.jsx";
+import OwnerDashboard from "./pages/OwnerDashboard.jsx";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/owner" element={<OwnerDashboard />} />
       </Routes>
 
       <Footer />
