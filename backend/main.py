@@ -4,12 +4,11 @@ from fastapi.staticfiles import StaticFiles
 import os
 
 from app.database import engine, Base
-from app.routes import auth, users, restaurants, reviews, favorites, preferences, owner #ai_assistant
+from app.routes import auth, users, restaurants, reviews, favorites, preferences, owner, ai_assistant
 from app.config import get_settings
 
 settings = get_settings()
 
-# Create tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -18,29 +17,30 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000", "*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Static files for uploads
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
 
-# Include routers
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(restaurants.router)
 app.include_router(reviews.router)
 app.include_router(favorites.router)
 app.include_router(preferences.router)
-# app.include_router(ai_assistant.router)
+app.include_router(ai_assistant.router)
 app.include_router(owner.router)
-
 
 @app.get("/")
 def root():
