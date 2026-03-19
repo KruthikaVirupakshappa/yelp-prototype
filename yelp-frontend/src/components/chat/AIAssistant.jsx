@@ -17,34 +17,25 @@ export default function AIAssistant() {
     const text = input.trim();
     const userMessage = { role: "user", content: text };
 
-  
     setInput("");
-
-  
     const historyToSend = [...messages, userMessage];
-
-  
     setMessages(historyToSend);
     setLoading(true);
 
     try {
       const data = await chatWithAssistant(text, historyToSend);
 
-     
       const assistantMessage = {
         role: "assistant",
-        content: data?.reply ?? "No reply received.",
+        content: data?.reply || "No reply",
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
-
-     
       setRecs(Array.isArray(data?.recommendations) ? data.recommendations : []);
     } catch (err) {
-      console.error("AI error:", err);
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Sorry — AI request failed." },
+        { role: "assistant", content: "Something went wrong." },
       ]);
       setRecs([]);
     } finally {
@@ -52,88 +43,73 @@ export default function AIAssistant() {
     }
   }
 
-  function handleClear() {
-    setInput("");
-    setMessages([]);
-    setRecs([]);
-  }
-
   return (
-    <div style={{ marginTop: 30 }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h2>Ask Assistant</h2>
-        <button type="button" onClick={handleClear}>
-          Clear
-        </button>
-      </div>
+    <div
+      style={{
+        marginTop: 30,
+        maxWidth: 500,
+        border: "1px solid #ddd",
+        borderRadius: 12,
+        padding: 12,
+        background: "#fff",
+      }}
+    >
+      <h3 style={{ marginBottom: 10 }}>Ask Assistant</h3>
 
       <div
         style={{
-          minHeight: 150,
-          border: "1px solid #ddd",
-          borderRadius: 10,
-          padding: 10,
+          maxHeight: 150,
+          overflowY: "auto",
+          fontSize: 14,
           marginBottom: 10,
-          background: "#fafafa",
         }}
       >
         {messages.length === 0 && (
           <div style={{ opacity: 0.6 }}>
-            Try: "romantic dinner near San Jose"
+            Try: "best Italian in San Jose"
           </div>
         )}
 
-        {messages.map((msg, index) => (
-          <div key={index} style={{ marginBottom: 8 }}>
-            <strong>{msg.role}:</strong> {msg.content}
+        {messages.map((m, i) => (
+          <div key={i}>
+            <strong>{m.role}:</strong> {m.content}
           </div>
         ))}
       </div>
 
-      {/* Recommendations */}
       {recs.length > 0 && (
-        <div style={{ marginBottom: 12 }}>
-          <h3 style={{ marginBottom: 8 }}>Recommendations</h3>
-
-          <div style={{ display: "grid", gap: 10 }}>
-            {recs.map((r) => (
-              <div
-                key={r.id}
-                onClick={() => navigate(`/restaurants/${r.id}`)}
-                style={{
-                  cursor: "pointer",
-                  border: "1px solid #eee",
-                  borderRadius: 10,
-                  padding: 10,
-                  background: "white",
-                }}
-              >
-                <div style={{ fontWeight: 700 }}>{r.name}</div>
-                <div style={{ opacity: 0.8 }}>
-                  {(r.cuisine_type || r.cuisine || "Cuisine") + " · "}
-                  ★ {Number(r.average_rating ?? r.rating ?? 0).toFixed(1)}
-                </div>
-              </div>
-            ))}
-          </div>
+        <div style={{ marginBottom: 10 }}>
+          {recs.map((r) => (
+            <div
+              key={r.id}
+              onClick={() => navigate(`/restaurants/${r.id}`)}
+              style={{
+                cursor: "pointer",
+                fontSize: 13,
+                padding: "4px 0",
+              }}
+            >
+              {r.name} — ★ {Number(r.average_rating || 0).toFixed(1)}
+            </div>
+          ))}
         </div>
       )}
 
-      <form onSubmit={handleSend} style={{ display: "flex", gap: 10 }}>
+      <form onSubmit={handleSend} style={{ display: "flex", gap: 6 }}>
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask for recommendations..."
-          style={{ flex: 1, padding: 10, borderRadius: 8 }}
+          placeholder="Ask..."
+          style={{
+            flex: 1,
+            padding: 6,
+            fontSize: 14,
+            borderRadius: 6,
+            border: "1px solid #ccc",
+          }}
         />
         <button type="submit" disabled={loading}>
-          {loading ? "Sending..." : "Send"}
+          {loading ? "..." : "Send"}
         </button>
       </form>
     </div>

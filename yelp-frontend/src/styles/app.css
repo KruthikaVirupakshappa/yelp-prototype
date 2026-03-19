@@ -978,3 +978,39 @@ html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto
   font-weight: 600;
   font-size: 15px;
 }
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.auth-card {
+  width: 350px;
+  padding: 30px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.auth-primary {
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #ff4d4d, #ff944d);
+  color: white;
+  border: none;
+  cursor: pointer;
+}

@@ -38,14 +38,13 @@ export default function Login() {
     setSubmitError("");
     if (!isValid) return;
 
-    const email = form.email.trim();
-    const password = form.password;
-
     try {
       setLoading(true);
 
-      // baseURL already includes /api, so use /auth/login (NOT /api/auth/login)
-      const res = await api.post("/auth/login", { email, password });
+      const res = await api.post("/auth/login", {
+        email: form.email.trim(),
+        password: form.password,
+      });
 
       const token = res?.data?.access_token;
       const tokenType = res?.data?.token_type || "bearer";
@@ -54,6 +53,7 @@ export default function Login() {
 
       localStorage.setItem("token", token);
       localStorage.setItem("token_type", tokenType);
+
       if (res?.data?.user) {
         localStorage.setItem("user", JSON.stringify(res.data.user));
       }
@@ -73,48 +73,38 @@ export default function Login() {
       else if (err?.message) msg = err.message;
 
       setSubmitError(msg);
-      console.error("LOGIN ERROR:", err?.response || err);
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="auth-page">
+    <div className="auth-page" style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
       <div className="auth-card">
         <h1 className="auth-title">Welcome back</h1>
         <p className="auth-subtitle">
           Log in to write reviews and use the assistant.
         </p>
 
-        {submitError ? <div className="auth-alert">{submitError}</div> : null}
+        {submitError && <div className="auth-alert">{submitError}</div>}
 
         <form onSubmit={onSubmit} className="auth-form">
           <div className="auth-field">
-            <label className="auth-label" htmlFor="login-email">
-              Email
-            </label>
+            <label className="auth-label">Email</label>
             <input
-              id="login-email"
               className="auth-input"
               name="email"
               value={form.email}
               onChange={onChange}
               onBlur={onBlur}
               placeholder="you@example.com"
-              autoComplete="email"
             />
-            {showErr("email") ? (
-              <div className="auth-error">{errors.email}</div>
-            ) : null}
+            {showErr("email") && <div className="auth-error">{errors.email}</div>}
           </div>
 
           <div className="auth-field">
-            <label className="auth-label" htmlFor="login-password">
-              Password
-            </label>
+            <label className="auth-label">Password</label>
             <input
-              id="login-password"
               className="auth-input"
               type="password"
               name="password"
@@ -122,18 +112,11 @@ export default function Login() {
               onChange={onChange}
               onBlur={onBlur}
               placeholder="••••••••"
-              autoComplete="current-password"
             />
-            {showErr("password") ? (
-              <div className="auth-error">{errors.password}</div>
-            ) : null}
+            {showErr("password") && <div className="auth-error">{errors.password}</div>}
           </div>
 
-          <button
-            className="auth-primary"
-            type="submit"
-            disabled={!isValid || loading}
-          >
+          <button className="auth-primary" type="submit" disabled={!isValid || loading}>
             {loading ? "Logging in..." : "Log In"}
           </button>
 

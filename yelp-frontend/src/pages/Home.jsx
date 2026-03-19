@@ -5,9 +5,15 @@ export default function Home() {
   const navigate = useNavigate();
 
   const images = useMemo(() => {
-    const modules = import.meta.glob("../assets/*.avif", { eager: true, import: "default" });
+    const modules = import.meta.glob("../assets/*.avif", {
+      eager: true,
+      import: "default",
+    });
+
     return Object.entries(modules)
-      .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+      .sort(([a], [b]) =>
+        a.localeCompare(b, undefined, { numeric: true })
+      )
       .map(([, src]) => src);
   }, []);
 
@@ -15,7 +21,11 @@ export default function Home() {
 
   useEffect(() => {
     if (!images.length) return;
-    const id = setInterval(() => setIndex((p) => (p + 1) % images.length), 3500);
+
+    const id = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 3500);
+
     return () => clearInterval(id);
   }, [images.length]);
 
@@ -37,13 +47,24 @@ export default function Home() {
             Favorite <span className="hero-accent2">Bite</span>
           </h1>
 
-          <p className="hero-subtitle">Exceptional dining experiences, curated for you.</p>
+          <p className="hero-subtitle">
+            Exceptional dining experiences, curated for you.
+          </p>
 
           <div className="hero-actions">
-            <button className="hero-cta" type="button" onClick={() => navigate("/explore")}>
+            <button
+              className="hero-cta"
+              type="button"
+              onClick={() => navigate("/explore")}
+            >
               Explore Now
             </button>
-            <button className="hero-cta-alt" type="button" onClick={() => navigate("/explore")}>
+
+            <button
+              className="hero-cta-alt"
+              type="button"
+              onClick={() => navigate("/explore?filter=top")}
+            >
               Top Rated
             </button>
           </div>

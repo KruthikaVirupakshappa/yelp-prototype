@@ -1,6 +1,6 @@
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import restaurants from "../data/restaurants";
+import { api } from "../services/api";
 
 function starsText(rating) {
   const full = Math.max(0, Math.min(5, Math.floor(rating)));
@@ -12,48 +12,22 @@ export default function RestaurantDetails() {
   const navigate = useNavigate();
   const rid = Number(id);
 
-  const customRestaurants = useMemo(() => {
-    try {
-      const raw = localStorage.getItem("customRestaurants");
-      const arr = raw ? JSON.parse(raw) : [];
-      return Array.isArray(arr) ? arr : [];
-    } catch {
-      return [];
-    }
-  }, []);
-
-  const allRestaurants = useMemo(() => {
-    return [...restaurants, ...customRestaurants];
-  }, [customRestaurants]);
-
-  const restaurant = useMemo(() => {
-    return allRestaurants.find((r) => Number(r.id) === rid);
-  }, [allRestaurants, rid]);
-
-  if (!restaurant) {
-    return (
-      <div className="page">
-        <h2>Restaurant not found.</h2>
-        <button type="button" onClick={() => navigate("/explore")}>
-          Back to Explore
-        </button>
-      </div>
-    );
-  }
-
-  const savedReviews = useMemo(() => {
-    try {
-      const raw = localStorage.getItem("reviewsByRestaurant");
-      const store = raw ? JSON.parse(raw) : {};
-      return Array.isArray(store[String(rid)]) ? store[String(rid)] : [];
-    } catch {
-      return [];
-    }
-  }, [rid]);
-
-  const totalReviewsCount = (restaurant.reviewsCount || 0) + savedReviews.length;
-
+  const [restaurant, setRestaurant] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
+
+  useEffect(() => {
+    async function loadRestaurant() {
+      try {
+        const res = await api.get(`/restaurants/${rid}`);
+        setRestaurant(res.data);
+      } catch (err) {
+        console.error(err);
+        setRestaurant(null);
+      }
+    }
+
+    loadRestaurant();
+  }, [rid]);
 
   useEffect(() => {
     try {
@@ -81,19 +55,31 @@ export default function RestaurantDetails() {
       }
 
       localStorage.setItem("savedRestaurants", JSON.stringify(updated));
-    } catch {
-      
-    }
+    } catch {}
   }
 
+  if (!restaurant) {
+    return (
+      <div className="page">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+
+  const rating =
+    restaurant.average_rating ??
+    restaurant.rating ??
+    0;
 
   const photos =
-    Array.isArray(restaurant.photos) && restaurant.photos.length > 0
+    Array.isArray(restaurant.photos) &&
+    restaurant.photos.length > 0 &&
+    restaurant.photos.some((p) => p)
       ? restaurant.photos
       : [
-          "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=60",
-          "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1200&q=60",
-          "https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=60",
+          "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+          "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+          "https://images.unsplash.com/photo-1551218808-94e220e084d2",
         ];
 
   return (
@@ -106,24 +92,34 @@ export default function RestaurantDetails() {
 
               <div className="details-line">
                 <span className="details-star">
-                  ★ {Number(restaurant.rating || 0).toFixed(1)}
+                  ★ {Number(rating).toFixed(1)}
                 </span>
                 <span className="details-dot">•</span>
-                <span className="details-muted">{totalReviewsCount} reviews</span>
+                <span className="details-muted">
+                  {restaurant.review_count || 0} reviews
+                </span>
                 <span className="details-dot">•</span>
-                <span className="details-muted">{restaurant.price}</span>
+                <span className="details-muted">
+                  {restaurant.pricing_tier}
+                </span>
                 <span className="details-dot">•</span>
-                <span className="details-muted">{restaurant.cuisine}</span>
+                <span className="details-muted">
+                  {restaurant.cuisine_type}
+                </span>
               </div>
 
               <div className="details-line2">
-                <span className="details-muted">📍 {restaurant.address}</span>
+                <span className="details-muted">
+                  📍 {restaurant.address}
+                </span>
                 <span className="details-dot">•</span>
-                <span className="details-muted">{restaurant.phone}</span>
+                <span className="details-muted">
+                  {restaurant.phone}
+                </span>
               </div>
             </div>
 
-            <button className="details-save" type="button" onClick={toggleSave}>
+            <button className="details-save" onClick={toggleSave}>
               {isSaved ? "❤️ Saved" : "♡ Save"}
             </button>
           </div>
@@ -131,43 +127,42 @@ export default function RestaurantDetails() {
           <div className="details-actions">
             <button
               className="details-primary"
-              type="button"
-              onClick={() => navigate(`/restaurants/${rid}/review`)}
+              onClick={() =>
+                navigate(`/restaurants/${rid}/review`)
+              }
             >
               Write a Review
             </button>
           </div>
 
-          <div className="details-chips">
-            {(Array.isArray(restaurant.chips) ? restaurant.chips : []).map((c) => (
-              <span key={c} className="details-chip">
-                {c}
-              </span>
-            ))}
-          </div>
-
           <div style={{ marginTop: 16 }}>
-            <div style={{ fontWeight: 800, marginBottom: 10 }}>Photos</div>
+            <div style={{ fontWeight: 800, marginBottom: 10 }}>
+              Photos
+            </div>
 
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+                gridTemplateColumns:
+                  "repeat(auto-fit, minmax(160px, 1fr))",
                 gap: 12,
               }}
             >
               {photos.map((src, idx) => (
                 <img
-                  key={`${src}-${idx}`}
+                  key={idx}
                   src={src}
-                  alt={`${restaurant.name} photo ${idx + 1}`}
+                  alt="restaurant"
+                  onError={(e) => {
+                    e.target.src =
+                      "https://images.unsplash.com/photo-1504674900247-0877df9cc836";
+                  }}
                   style={{
                     width: "100%",
                     height: 140,
                     objectFit: "cover",
                     borderRadius: 14,
                   }}
-                  loading="lazy"
                 />
               ))}
             </div>
@@ -175,75 +170,19 @@ export default function RestaurantDetails() {
         </header>
 
         <main className="details-content">
-          <div className="details-left">
-            <div className="details-section">
-              <div className="details-sectionTitle">Reviews</div>
-
-              <div className="details-card">
-                {savedReviews.length === 0 ? (
-                  <div style={{ opacity: 0.7, marginBottom: 12 }}>
-                    No reviews yet. Be the first!
-                  </div>
-                ) : (
-                  savedReviews.map((rev) => {
-                    let profile = null;
-                    try {
-                      const raw = localStorage.getItem("userProfile");
-                      profile = raw ? JSON.parse(raw) : null;
-                    } catch {
-                      profile = null;
-                    }
-
-                    return (
-                      <div className="reviewItem" key={rev.id}>
-                        <div className="reviewHead">
-                          <strong>{profile?.name || "You"}</strong>
-                          <span className="reviewStars">{starsText(rev.rating)}</span>
-                        </div>
-
-                        {rev.title && (
-                          <div className="reviewText">
-                            <strong>{rev.title}</strong>
-                          </div>
-                        )}
-
-                        <div className="reviewText">{rev.text}</div>
-                      </div>
-                    );
-                  })
-                )}
-
-                <button
-                  className="details-linkBtn"
-                  type="button"
-                  onClick={() => navigate(`/restaurants/${rid}/review`)}
-                >
-                  Add your review →
-                </button>
-              </div>
-            </div>
-          </div>
-
           <aside className="details-right">
             <div className="sideBox">
               <div className="sideTitle">Quick info</div>
 
-              <div className="sideRow">
-                <span className="sideKey">Address</span>
-                <span className="sideVal">{restaurant.address}</span>
+              <div>
+                Address: {restaurant.address}
               </div>
-
-              <div className="sideRow">
-                <span className="sideKey">Phone</span>
-                <span className="sideVal">{restaurant.phone}</span>
+              <div>
+                Phone: {restaurant.phone}
               </div>
             </div>
 
-            <button
-              className="details-back"
-              type="button"
-              onClick={() => navigate("/explore")}
-            >
+            <button onClick={() => navigate("/explore")}>
               Back to results
             </button>
           </aside>

@@ -1,6 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+
+  function handleLogout() {
+    localStorage.clear();
+    navigate("/login");
+  }
+
   return (
     <header className="nav">
       <div className="nav-inner">
@@ -10,86 +20,35 @@ export default function Navbar() {
         </NavLink>
 
         <nav className="nav-links">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Home
-          </NavLink>
+          <NavLink to="/" className="nav-link">Home</NavLink>
 
-          <NavLink
-            to="/explore"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Explore
-          </NavLink>
+          {token && (
+            <>
+              <NavLink to="/explore" className="nav-link">Explore</NavLink>
+              <NavLink to="/add-restaurant" className="nav-link">Add Restaurant</NavLink>
+              <NavLink to="/saved" className="nav-link">Saved</NavLink>
+              <NavLink to="/my-reviews" className="nav-link">My Reviews</NavLink>
+              <NavLink to="/profile" className="nav-link">Profile</NavLink>
 
-          <NavLink
-            to="/add-restaurant"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Add Restaurant
-          </NavLink>
+              
+              {user?.role === "owner" && (
+                <NavLink to="/owner" className="nav-link">
+                  Owner
+                </NavLink>
+              )}
 
-          <NavLink
-            to="/saved"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Saved
-          </NavLink>
+              <button onClick={handleLogout} className="nav-link">
+                Log Out
+              </button>
+            </>
+          )}
 
-          <NavLink
-            to="/my-reviews"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            My Reviews
-          </NavLink>
-
-          <NavLink
-            to="/profile"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Profile
-          </NavLink>
-
-          <NavLink
-            to="/owner"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Owner
-          </NavLink>
-
-          <NavLink
-            to="/signup"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Sign Up
-          </NavLink>
-
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            Log In
-          </NavLink>
+          {!token && (
+            <>
+              <NavLink to="/signup" className="nav-link">Sign Up</NavLink>
+              <NavLink to="/login" className="nav-link">Log In</NavLink>
+            </>
+          )}
         </nav>
       </div>
     </header>

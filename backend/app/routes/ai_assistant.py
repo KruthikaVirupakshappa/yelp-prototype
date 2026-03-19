@@ -40,15 +40,19 @@ def chat(req: ChatRequest, db: Session = Depends(get_db)):
     q = (req.message or "").strip()
     q_lower = q.lower()
 
-   
     query = db.query(Restaurant)
+
     if q_lower:
         query = query.filter(
-            (Restaurant.name.ilike(f"%{q_lower}%"))
-            | (Restaurant.cuisine_type.ilike(f"%{q_lower}%"))
+            (Restaurant.name.ilike(f"%{q_lower}%")) |
+            (Restaurant.cuisine_type.ilike(f"%{q_lower}%")) |
+            (Restaurant.city.ilike(f"%{q_lower}%"))
         )
 
     matches = query.limit(5).all()
+
+    if not matches:
+        matches = db.query(Restaurant).limit(5).all()
 
     recommendations = [
         RestaurantRec(
