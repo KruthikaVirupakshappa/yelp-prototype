@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import AIAssistant from "../components/chat/AIAssistant";
 import { api } from "../services/api";
+import React from "react";
 
 export default function Explore() {
   const navigate = useNavigate();

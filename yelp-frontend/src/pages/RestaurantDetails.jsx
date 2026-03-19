@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../services/api";
-
+import React from "react";
 function starsText(rating) {
   const full = Math.max(0, Math.min(5, Math.floor(rating)));
   return "★★★★★".slice(0, full) + "☆☆☆☆☆".slice(0, 5 - full);
