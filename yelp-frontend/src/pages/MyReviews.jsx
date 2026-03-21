@@ -1,139 +1,144 @@
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import restaurants from "../data/restaurants";
+import { api } from "../services/api";
 
-function starsText(rating) {
-  const full = Math.max(0, Math.min(5, Math.floor(rating)));
-  return "★★★★★".slice(0, full) + "☆☆☆☆☆".slice(0, 5 - full);
-}
+const RATING_LABELS = ["", "Poor", "Fair", "Good", "Great", "Excellent"];
 
 export default function MyReviews() {
   const navigate = useNavigate();
+  const [reviews, setReviews] = useState([]);
+  const [restaurantNames, setRestaurantNames] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [deletingId, setDeletingId] = useState(null);
 
-  const [refresh, setRefresh] = useState(0);
-
-  
-  const allRestaurants = useMemo(() => {
-    let custom = [];
+  async function loadReviews() {
+    if (!localStorage.getItem("token")) { navigate("/login"); return; }
     try {
-      const raw = localStorage.getItem("customRestaurants");
-      const parsed = raw ? JSON.parse(raw) : [];
-      custom = Array.isArray(parsed) ? parsed : [];
-    } catch {
-      custom = [];
-    }
-    return [...custom, ...restaurants];
-  }, [refresh]);
+      setLoading(true);
+      setError("");
+      const res = await api.get("/reviews/user/history");
+      const data = Array.isArray(res.data) ? res.data : [];
+      setReviews(data);
 
-  const reviews = useMemo(() => {
-    try {
-      const raw = localStorage.getItem("reviewsByRestaurant");
-      const store = raw ? JSON.parse(raw) : {};
-
-      const flat = [];
-      Object.keys(store || {}).forEach((rid) => {
-        const list = Array.isArray(store[rid]) ? store[rid] : [];
-        list.forEach((rev) => {
-          flat.push({
-            restaurantId: Number(rid),
-            id: rev.id ?? `${rid}-${Math.random()}`,
-            rating: rev.rating ?? 0,
-            title: rev.title ?? "",
-            text: rev.text ?? "",
-            createdAt: rev.createdAt ?? rev.id ?? 0,
-          });
-        });
-      });
-
-      flat.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-      return flat;
-    } catch {
-      return [];
-    }
-  }, [refresh]);
-
-  function removeReview(restaurantId, reviewId) {
-    try {
-      const raw = localStorage.getItem("reviewsByRestaurant");
-      const store = raw ? JSON.parse(raw) : {};
-      const key = String(restaurantId);
-      const list = Array.isArray(store[key]) ? store[key] : [];
-      store[key] = list.filter((r) => r.id !== reviewId);
-      localStorage.setItem("reviewsByRestaurant", JSON.stringify(store));
-      setRefresh((x) => x + 1);
-    } catch {
-      setRefresh((x) => x + 1);
+      const uniqueIds = [...new Set(data.map((r) => r.restaurant_id))];
+      const nameMap = {};
+      await Promise.all(
+        uniqueIds.map(async (rid) => {
+          try {
+            const r = await api.get(`/restaurants/${rid}`);
+            nameMap[rid] = r.data?.name || `Restaurant #${rid}`;
+          } catch {
+            nameMap[rid] = `Restaurant #${rid}`;
+          }
+        })
+      );
+      setRestaurantNames(nameMap);
+    } catch (err) {
+      if (err?.response?.status === 401) { navigate("/login"); return; }
+      setError("Failed to load reviews.");
+    } finally {
+      setLoading(false);
     }
   }
 
+  useEffect(() => { loadReviews(); }, []);
+
+  async function removeReview(reviewId) {
+    setDeletingId(reviewId);
+    try {
+      await api.delete(`/reviews/${reviewId}`);
+      setReviews((prev) => prev.filter((r) => r.id !== reviewId));
+    } catch (err) {
+      const msg = err?.response?.data?.detail || "Failed to delete review.";
+      alert(typeof msg === "string" ? msg : JSON.stringify(msg));
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="mr-page">
+        <div className="mr-header">
+          <h1 className="mr-title">My Reviews</h1>
+        </div>
+        <div className="mr-empty">Loading your reviews…</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="page">
-      <h1 style={{ marginBottom: 12 }}>My Reviews</h1>
+    <div className="mr-page">
+      <div className="mr-header">
+        <div>
+          <h1 className="mr-title">My Reviews</h1>
+          {reviews.length > 0 && (
+            <p className="mr-subtitle">{reviews.length} review{reviews.length !== 1 ? "s" : ""} posted</p>
+          )}
+        </div>
+      </div>
+
+      {error && <div className="auth-alert" style={{ maxWidth: 720, margin: "0 auto 20px" }}>{error}</div>}
 
       {reviews.length === 0 ? (
-        <p style={{ opacity: 0.7 }}>
-          You haven’t posted any reviews yet. Go to Explore → View Details → Write
-          a Review.
-        </p>
+        <div className="mr-empty">
+          <div className="mr-empty-icon">✍️</div>
+          <div className="mr-empty-title">No reviews yet</div>
+          <p className="mr-empty-sub">Head to Explore → View Details → Write a Review to share your experience.</p>
+          <button className="mr-cta" onClick={() => navigate("/explore")}>Explore restaurants</button>
+        </div>
       ) : (
-        <div style={{ display: "grid", gap: 12 }}>
+        <div className="mr-grid">
           {reviews.map((rev) => {
-            const restaurant = allRestaurants.find(
-              (r) => Number(r.id) === Number(rev.restaurantId)
-            );
+            const name = restaurantNames[rev.restaurant_id] || `Restaurant #${rev.restaurant_id}`;
+            const date = rev.created_at
+              ? new Date(rev.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+              : null;
+            const label = RATING_LABELS[Math.round(rev.rating)] || "";
 
             return (
-              <div
-                key={`${rev.restaurantId}-${rev.id}`}
-                style={{
-                  padding: 14,
-                  borderRadius: 12,
-                  background: "#f5f5f5",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: 12,
-                  }}
-                >
-                  <div style={{ fontWeight: 800 }}>
-                    {restaurant ? restaurant.name : "Unknown Restaurant"}
+              <div key={rev.id} className="mr-card">
+                {/* Top row */}
+                <div className="mr-card-top">
+                  <div className="mr-restaurant-name"
+                    onClick={() => navigate(`/restaurants/${rev.restaurant_id}`)}
+                  >
+                    {name}
                   </div>
-
-                  <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                    <div style={{ fontWeight: 700 }}>{starsText(rev.rating)}</div>
-
-                    <button
-                      type="button"
-                      style={{
-                        background: "transparent",
-                        border: "none",
-                        color: "#ff2d55",
-                        fontWeight: 800,
-                        cursor: "pointer",
-                      }}
-                      onClick={() => removeReview(rev.restaurantId, rev.id)}
-                    >
-                      Remove
-                    </button>
-                  </div>
+                  <button
+                    className="mr-delete"
+                    onClick={() => removeReview(rev.id)}
+                    disabled={deletingId === rev.id}
+                    aria-label="Delete review"
+                  >
+                    {deletingId === rev.id ? "…" : "✕"}
+                  </button>
                 </div>
 
-                {rev.title ? (
-                  <div style={{ marginTop: 8, fontWeight: 700 }}>{rev.title}</div>
-                ) : null}
+                {/* Stars + label */}
+                <div className="mr-stars-row">
+                  <span className="mr-stars">
+                    {[1,2,3,4,5].map((v) => (
+                      <span key={v} style={{ color: v <= rev.rating ? "#ff2d55" : "rgba(0,0,0,0.13)" }}>★</span>
+                    ))}
+                  </span>
+                  {label && <span className="mr-rating-label">{label}</span>}
+                  {date && <span className="mr-date">{date}</span>}
+                </div>
 
-                <div style={{ marginTop: 6, opacity: 0.9 }}>{rev.text}</div>
+                {/* Comment */}
+                {rev.comment && (
+                  <p className="mr-comment">{rev.comment}</p>
+                )}
 
-                <div style={{ marginTop: 12 }}>
+                {/* Footer */}
+                <div className="mr-card-footer">
                   <button
-                    type="button"
-                    className="btn2 primary"
-                    onClick={() => navigate(`/restaurants/${rev.restaurantId}`)}
+                    className="mr-view-btn"
+                    onClick={() => navigate(`/restaurants/${rev.restaurant_id}`)}
                   >
-                    View Restaurant
+                    View restaurant →
                   </button>
                 </div>
               </div>

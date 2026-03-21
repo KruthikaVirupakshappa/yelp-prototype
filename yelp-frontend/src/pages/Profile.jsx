@@ -2,6 +2,28 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
+const US_STATES = [
+  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
+  "HI","ID","IL","IN","IA","KS","KY","LA","ME","MD",
+  "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
+  "NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
+  "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY","DC",
+];
+
+const COUNTRIES = [
+  "United States","Canada","United Kingdom","Australia",
+  "India","Germany","France","Japan","China","Brazil",
+  "Mexico","South Korea","Singapore","UAE","Other",
+];
+
+const CUISINES = [
+  "American","BBQ","Breakfast","Burgers","Chinese","Ethiopian",
+  "Filipino","French","Greek","Indian","Italian","Japanese",
+  "Korean","Mediterranean","Mexican","Middle Eastern","Pakistani",
+  "Pizza","Seafood","Spanish","Sushi","Thai","Turkish",
+  "Vegan / Vegetarian","Vietnamese","Other",
+];
+
 export default function Profile() {
   const navigate = useNavigate();
 
@@ -19,6 +41,7 @@ export default function Profile() {
     price: "",
     dietary: "",
     ambiance: "",
+    sort_preference: "",
   });
 
   const [loading, setLoading] = useState(true);
@@ -32,7 +55,7 @@ export default function Profile() {
         setError("");
 
         const userRes = await api.get("/users/me");
-        const prefRes = await api.get("/preferences");
+        const prefRes = await api.get("/preferences/");
 
         const u = userRes.data;
         const p = prefRes.data;
@@ -51,6 +74,7 @@ export default function Profile() {
           price: p.price_range || "",
           dietary: p.dietary_needs || "",
           ambiance: p.ambiance_preferences || "",
+          sort_preference: p.sort_preference || "",
         });
       } catch (err) {
         if (err?.response?.status === 401) {
@@ -76,28 +100,23 @@ export default function Profile() {
     setError("");
 
     try {
-      const allowedGenders = ["male", "female", "other", "prefer_not_to_say"];
-      const normalizedGender = (form.gender || "").trim().toLowerCase();
-      const genderToSend = allowedGenders.includes(normalizedGender)
-        ? normalizedGender
-        : null;
-
       await api.put("/users/me", {
         name: form.name,
         phone: form.phone,
         about_me: form.about,
         city: form.city,
-        state: form.state,
-        country: form.country,
+        state: form.state || null,
+        country: form.country || null,
         languages: form.languages,
-        gender: genderToSend,
+        gender: form.gender || null,
       });
 
-      await api.put("/preferences", {
+      await api.put("/preferences/", {
         cuisine_preferences: form.cuisine,
         price_range: form.price,
         dietary_needs: form.dietary,
         ambiance_preferences: form.ambiance,
+        sort_preference: form.sort_preference || null,
       });
 
       alert("Profile updated successfully!");
@@ -132,103 +151,112 @@ export default function Profile() {
           <div className="profile-section">
             <h3>Basic Information</h3>
 
-            <input
-              className="profile-input"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Name"
-            />
-            <input
-              className="profile-input"
-              name="email"
-              value={form.email}
-              disabled
-              placeholder="Email"
-            />
-            <input
-              className="profile-input"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Phone"
-            />
-            <textarea
-              className="profile-textarea"
-              name="about"
-              value={form.about}
-              onChange={handleChange}
-              placeholder="About me"
-            />
-            <input
-              className="profile-input"
-              name="city"
-              value={form.city}
-              onChange={handleChange}
-              placeholder="City"
-            />
-            <input
-              className="profile-input"
-              name="state"
-              value={form.state}
-              onChange={handleChange}
-              maxLength={2}
-              placeholder="State (CA)"
-            />
-            <input
-              className="profile-input"
-              name="country"
-              value={form.country}
-              onChange={handleChange}
-              placeholder="Country"
-            />
-            <input
-              className="profile-input"
-              name="languages"
-              value={form.languages}
-              onChange={handleChange}
-              placeholder="Languages"
-            />
-            <input
-              className="profile-input"
-              name="gender"
-              value={form.gender}
-              onChange={handleChange}
-              placeholder="Gender"
-            />
+            <div className="profile-row">
+              <div className="profile-field">
+                <label>Name</label>
+                <input className="profile-input" name="name" value={form.name} onChange={handleChange} placeholder="Your name" />
+              </div>
+              <div className="profile-field">
+                <label>Email</label>
+                <input className="profile-input" name="email" value={form.email} disabled placeholder="Email" />
+              </div>
+            </div>
+
+            <div className="profile-row">
+              <div className="profile-field">
+                <label>Phone</label>
+                <input className="profile-input" name="phone" value={form.phone} onChange={handleChange} placeholder="(408) 555-0000" />
+              </div>
+              <div className="profile-field">
+                <label>Gender</label>
+                <select className="profile-input" name="gender" value={form.gender} onChange={handleChange}>
+                  <option value="">-- Select --</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                  <option value="prefer_not_to_say">Prefer not to say</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="profile-field">
+              <label>About me</label>
+              <textarea className="profile-textarea" name="about" value={form.about} onChange={handleChange} placeholder="Tell others a bit about yourself…" />
+            </div>
+
+            <div className="profile-row">
+              <div className="profile-field" style={{ flex: 2 }}>
+                <label>City</label>
+                <input className="profile-input" name="city" value={form.city} onChange={handleChange} placeholder="e.g. San Jose" />
+              </div>
+              <div className="profile-field">
+                <label>State</label>
+                <select className="profile-input" name="state" value={form.state} onChange={handleChange}>
+                  <option value="">-- State --</option>
+                  {US_STATES.map((s) => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
+            </div>
+
+            <div className="profile-row">
+              <div className="profile-field">
+                <label>Country</label>
+                <select className="profile-input" name="country" value={form.country} onChange={handleChange}>
+                  <option value="">-- Country --</option>
+                  {COUNTRIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <div className="profile-field">
+                <label>Languages</label>
+                <input className="profile-input" name="languages" value={form.languages} onChange={handleChange} placeholder="e.g. English, Spanish" />
+              </div>
+            </div>
           </div>
 
           <div className="profile-section">
             <h3>AI Preferences</h3>
 
-            <input
-              className="profile-input"
-              name="cuisine"
-              value={form.cuisine}
-              onChange={handleChange}
-              placeholder="Cuisine"
-            />
-            <input
-              className="profile-input"
-              name="price"
-              value={form.price}
-              onChange={handleChange}
-              placeholder="Price range"
-            />
-            <input
-              className="profile-input"
-              name="dietary"
-              value={form.dietary}
-              onChange={handleChange}
-              placeholder="Dietary needs"
-            />
-            <input
-              className="profile-input"
-              name="ambiance"
-              value={form.ambiance}
-              onChange={handleChange}
-              placeholder="Ambiance"
-            />
+            <div className="profile-row">
+              <div className="profile-field">
+                <label>Preferred cuisine</label>
+                <select className="profile-input" name="cuisine" value={form.cuisine} onChange={handleChange}>
+                  <option value="">-- Select --</option>
+                  {CUISINES.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <div className="profile-field">
+                <label>Price range</label>
+                <select className="profile-input" name="price" value={form.price} onChange={handleChange}>
+                  <option value="">-- Select --</option>
+                  <option value="$">$ — Budget</option>
+                  <option value="$$">$$ — Moderate</option>
+                  <option value="$$$">$$$ — Upscale</option>
+                  <option value="$$$$">$$$$ — Fine Dining</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="profile-row">
+              <div className="profile-field">
+                <label>Dietary needs</label>
+                <input className="profile-input" name="dietary" value={form.dietary} onChange={handleChange} placeholder="e.g. Vegetarian, Gluten-free" />
+              </div>
+              <div className="profile-field">
+                <label>Ambiance</label>
+                <input className="profile-input" name="ambiance" value={form.ambiance} onChange={handleChange} placeholder="e.g. Casual, Romantic" />
+              </div>
+            </div>
+
+            <div className="profile-field">
+              <label>Sort preference</label>
+              <select className="profile-input" name="sort_preference" value={form.sort_preference} onChange={handleChange}>
+                <option value="">Default</option>
+                <option value="rating">Rating</option>
+                <option value="distance">Distance</option>
+                <option value="popularity">Popularity</option>
+                <option value="price">Price</option>
+              </select>
+            </div>
           </div>
 
           <button className="profile-save" type="submit" disabled={saving}>

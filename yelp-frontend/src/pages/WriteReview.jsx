@@ -1,215 +1,169 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { api } from "../services/api";
+
+const LABELS = ["", "Poor", "Fair", "Good", "Great", "Excellent"];
 
 export default function WriteReview() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login", { state: { message: "Please log in to write a review." } });
+    }
+  }, [navigate]);
+
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-  const [title, setTitle] = useState("");
   const [comment, setComment] = useState("");
-  const [photos, setPhotos] = useState([]);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const canSubmit = useMemo(() => {
-    return rating > 0 && comment.trim().length >= 10 && !submitting;
-  }, [rating, comment, submitting]);
-
-  const onPickPhotos = (e) => {
-    const files = Array.from(e.target.files || []);
-    setPhotos(files.slice(0, 6));
-  };
+  const active = hover || rating;
+  const charCount = comment.trim().length;
+  const canSubmit = useMemo(
+    () => rating > 0 && charCount >= 10 && !submitting,
+    [rating, charCount, submitting]
+  );
 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!canSubmit) return;
 
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
     setSubmitting(true);
+    setError("");
 
     try {
-      const newReview = {
-        id: Date.now(),
+      await api.post("/reviews/", {
+        restaurant_id: Number(id),
         rating,
-        title,
-        text: comment,
-        photos,
-      };
-
-      const raw = localStorage.getItem("reviewsByRestaurant");
-      const store = raw ? JSON.parse(raw) : {};
-
-      if (!store[id]) {
-        store[id] = [];
-      }
-
-      store[id].unshift(newReview);
-
-      localStorage.setItem("reviewsByRestaurant", JSON.stringify(store));
-
-      await new Promise((r) => setTimeout(r, 500));
+        comment: comment.trim(),
+      });
       navigate(`/restaurants/${id}`);
+    } catch (err) {
+      const msg =
+        err?.response?.data?.detail ||
+        err?.response?.data?.message ||
+        "Failed to submit review.";
+      setError(typeof msg === "string" ? msg : JSON.stringify(msg));
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <div className="page">
-      <div className="write-wrap">
-        <div className="write-card">
-          <div className="write-top">
-            <div>
-              <div className="write-eyebrow">Review</div>
-              <h1 className="write-title">Write a Review</h1>
-              <div className="write-meta">Restaurant ID: {id}</div>
-            </div>
+    <div className="wr-page">
+      <div className="wr-wrap">
 
-            <button
-              className="write-back"
-              type="button"
-              onClick={() => navigate(-1)}
-            >
-              Back
+        {/* ── Main form card ── */}
+        <div className="wr-card">
+          <div className="wr-top">
+            <div>
+              <div className="wr-eyebrow">Restaurant Review</div>
+              <h1 className="wr-title">Write a Review</h1>
+            </div>
+            <button className="wr-back" type="button" onClick={() => navigate(-1)}>
+              ← Back
             </button>
           </div>
 
-          <form className="write-form" onSubmit={onSubmit}>
-            <div className="field">
-              <label className="label">Your rating</label>
+          {error && <div className="auth-alert" style={{ marginBottom: 24 }}>{error}</div>}
 
-              <div className="stars">
-                {Array.from({ length: 5 }).map((_, i) => {
-                  const v = i + 1;
-                  const active = (hover || rating) >= v;
-
-                  return (
-                    <button
-                      key={v}
-                      type="button"
-                      className={`star ${active ? "is-on" : ""}`}
-                      onMouseEnter={() => setHover(v)}
-                      onMouseLeave={() => setHover(0)}
-                      onClick={() => setRating(v)}
-                    >
-                      ★
-                    </button>
-                  );
-                })}
-
-                <span className="stars-text">
-                  {rating ? `${rating}/5` : "Select"}
-                </span>
+          <form onSubmit={onSubmit}>
+            {/* Star rating */}
+            <div className="wr-field">
+              <label className="wr-label">Your rating</label>
+              <div className="wr-stars">
+                {[1, 2, 3, 4, 5].map((v) => (
+                  <button
+                    key={v}
+                    type="button"
+                    className={`wr-star${active >= v ? " on" : ""}`}
+                    onMouseEnter={() => setHover(v)}
+                    onMouseLeave={() => setHover(0)}
+                    onClick={() => setRating(v)}
+                    aria-label={`${v} star${v > 1 ? "s" : ""}`}
+                  >
+                    ★
+                  </button>
+                ))}
+                {active > 0 && (
+                  <span className="wr-rating-label">{LABELS[active]}</span>
+                )}
               </div>
             </div>
 
-            <div className="field">
-              <label className="label">Title (optional)</label>
-              <input
-                className="input"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g., Amazing food!"
-              />
-            </div>
-
-            <div className="field">
-              <label className="label">Your review</label>
+            {/* Text */}
+            <div className="wr-field">
+              <label className="wr-label">Your experience</label>
               <textarea
-                className="textarea"
+                className="wr-textarea"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                placeholder="Share your experience..."
+                placeholder="What did you love (or not love)? Mention the food, service, ambiance…"
+                rows={5}
               />
-              <div className="hint">
-                {comment.trim().length < 10
-                  ? "Minimum 10 characters."
-                  : "Looks good."}
+              <div className={`wr-hint${charCount >= 10 ? " ok" : ""}`}>
+                {charCount < 10
+                  ? `${10 - charCount} more character${10 - charCount !== 1 ? "s" : ""} needed`
+                  : `${charCount} characters — looks good`}
               </div>
             </div>
 
-            <div className="field">
-              <label className="label">Photos (optional)</label>
-              <div className="upload">
-                <input
-                  className="file"
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={onPickPhotos}
-                />
-                <div className="upload-right">
-                  <div className="upload-title">Add up to 6 photos</div>
-                  <div className="upload-sub">JPG/PNG/HEIC supported</div>
-                </div>
-              </div>
-
-              {photos.length > 0 && (
-                <div className="photo-grid">
-                  {photos.map((f) => (
-                    <div className="photo-pill" key={f.name}>
-                      <span className="dot" />
-                      <span className="name">{f.name}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="write-actions">
+            <div className="wr-actions">
               <button
                 type="button"
-                className="btn-secondary"
+                className="wr-cancel"
                 onClick={() => navigate(`/restaurants/${id}`)}
               >
                 Cancel
               </button>
-
-              <button
-                type="submit"
-                className="btn-primary"
-                disabled={!canSubmit}
-              >
-                {submitting ? "Posting..." : "Post Review"}
+              <button type="submit" className="wr-submit" disabled={!canSubmit}>
+                {submitting ? "Posting…" : "Post Review"}
               </button>
             </div>
           </form>
         </div>
 
-        <div className="write-side">
-          <div className="side-card">
-            <div className="side-title">Quick tips</div>
-            <ul className="side-list">
-              <li>Talk about the dish you ordered</li>
-              <li>Mention service & wait time</li>
-              <li>Describe the ambiance</li>
+        {/* ── Sidebar ── */}
+        <aside className="wr-side">
+          {/* Tips */}
+          <div className="wr-side-card">
+            <div className="wr-side-title">Writing tips</div>
+            <ul className="wr-tips">
+              <li>Mention specific dishes you tried</li>
+              <li>Describe the service and wait time</li>
+              <li>Share the vibe — cozy, loud, romantic?</li>
+              <li>Would you go back? Why or why not?</li>
             </ul>
           </div>
 
-          <div className="side-card">
-            <div className="side-title">Preview</div>
-            <div className="preview">
-              <div className="preview-stars">
-                {"★★★★★".slice(0, rating || 0)}
-                <span className="preview-muted">
-                  {"★★★★★".slice(0, 5 - (rating || 0))}
+          {/* Live preview */}
+          <div className="wr-side-card">
+            <div className="wr-side-title">Live preview</div>
+            <div className="wr-preview-stars">
+              {[1,2,3,4,5].map((v) => (
+                <span key={v} style={{ color: v <= rating ? "#ff2d55" : "rgba(0,0,0,0.12)" }}>
+                  ★
                 </span>
-              </div>
-
-              <div className="preview-h">
-                {title.trim()
-                  ? title
-                  : "Your title will appear here"}
-              </div>
-
-              <div className="preview-p">
-                {comment.trim()
-                  ? comment
-                  : "Your review text will appear here once you start typing."}
-              </div>
+              ))}
+              {rating > 0 && (
+                <span className="wr-preview-rating">{LABELS[rating]}</span>
+              )}
             </div>
+            <p className="wr-preview-text">
+              {comment.trim() || <span className="wr-preview-placeholder">Your review will appear here as you type…</span>}
+            </p>
           </div>
-        </div>
+        </aside>
+
       </div>
     </div>
   );
