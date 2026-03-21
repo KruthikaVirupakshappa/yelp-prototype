@@ -34,7 +34,6 @@ Leave this tab open.
 cd yelp-prototype/backend
 
 source ../env/bin/activate          # activate the Python venv
-                                    # Windows: ..\env\Scripts\activate
 
 uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```

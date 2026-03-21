@@ -43,7 +43,7 @@ Create a fresh virtual environment so packages don't conflict with anything else
 cd backend
 
 python3 -m venv ../env          # creates the venv one level up
-source ../env/bin/activate      # activate it (on Windows: ..\env\Scripts\activate)
+source ../env/bin/activate    
 ```
 
 Now install everything:
@@ -112,10 +112,6 @@ brew install ollama
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ```
-
-**Windows:** Download the installer from https://ollama.com
-
-Once installed, pull the model the app uses:
 
 ```bash
 ollama pull llama3.2:3b
