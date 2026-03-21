@@ -1,11 +1,12 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 from typing import Optional
+from pathlib import Path
 
 
 class Settings(BaseSettings):
-    DATABASE_URL: str  # Required - must come from .env
-    SECRET_KEY: str  # Required - must come from .env
+    DATABASE_URL: str
+    SECRET_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
     OPENAI_API_KEY: Optional[str] = None
@@ -17,6 +18,15 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
 
+
 @lru_cache()
 def get_settings():
-    return Settings()
+    s = Settings()
+
+   
+    if s.DATABASE_URL.startswith("sqlite:///./"):
+        backend_dir = Path(__file__).resolve().parents[1]  
+        db_path = backend_dir / s.DATABASE_URL.replace("sqlite:///./", "")
+        s.DATABASE_URL = f"sqlite:///{db_path}"
+
+    return s
