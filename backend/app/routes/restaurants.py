@@ -58,9 +58,11 @@ def search_restaurants(
         kw = f"%{keywords}%"
         query = query.filter(
             or_(
+                Restaurant.name.ilike(kw),
+                Restaurant.cuisine_type.ilike(kw),
+                Restaurant.city.ilike(kw),
                 Restaurant.description.ilike(kw),
                 Restaurant.amenities.ilike(kw),
-                Restaurant.name.ilike(kw),
             )
         )
 

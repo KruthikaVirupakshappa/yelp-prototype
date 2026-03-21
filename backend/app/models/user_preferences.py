@@ -14,6 +14,7 @@ class UserPreferences(Base):
     dietary_needs = Column(Text, nullable=True)  # e.g., "vegan, gluten-free"
     preferred_location = Column(String(255), nullable=True)
     ambiance_preferences = Column(Text, nullable=True)  # e.g., "romantic, casual"
+    sort_preference = Column(String(50), nullable=True)  # e.g., "rating", "distance", "popularity", "price"
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 

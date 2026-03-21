@@ -8,6 +8,7 @@ class PreferencesUpdate(BaseModel):
     dietary_needs: Optional[str] = None
     preferred_location: Optional[str] = None
     ambiance_preferences: Optional[str] = None
+    sort_preference: Optional[str] = None
 
 
 class PreferencesResponse(BaseModel):
@@ -18,6 +19,7 @@ class PreferencesResponse(BaseModel):
     dietary_needs: Optional[str] = None
     preferred_location: Optional[str] = None
     ambiance_preferences: Optional[str] = None
+    sort_preference: Optional[str] = None
 
     class Config:
         from_attributes = True

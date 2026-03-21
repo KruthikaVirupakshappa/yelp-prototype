@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: Optional[str] = None
     TAVILY_API_KEY: Optional[str] = None
     UPLOAD_DIR: str = "uploads"
+    OLLAMA_MODEL: str = "llama3.2:3b"
+    OLLAMA_BASE_URL: str = "http://localhost:11434"
 
     class Config:
         env_file = ".env"
