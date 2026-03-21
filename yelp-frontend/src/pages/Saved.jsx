@@ -1,92 +1,115 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../services/api";
 
 export default function Saved() {
   const navigate = useNavigate();
   const [favs, setFavs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [removingId, setRemovingId] = useState(null);
 
   async function loadFavorites() {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setFavs([]);
+    if (!localStorage.getItem("token")) {
       setLoading(false);
       return;
     }
-
-    const res = await fetch("http://127.0.0.1:8000/api/favorites/", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    if (!res.ok) {
-      setFavs([]);
+    try {
+      const res = await api.get("/favorites/");
+      setFavs(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      if (err?.response?.status === 401) { navigate("/login"); return; }
+      setError("Failed to load saved restaurants.");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const data = await res.json();
-    setFavs(Array.isArray(data) ? data : []);
-    setLoading(false);
   }
 
-  useEffect(() => {
-    loadFavorites();
-  }, []);
+  useEffect(() => { loadFavorites(); }, []);
 
   async function removeFavorite(restId) {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-
-    const res = await fetch(`http://127.0.0.1:8000/api/favorites/${restId}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    if (!res.ok && res.status !== 404) {
-      const text = await res.text();
-      alert(`Remove failed: ${res.status} ${text}`);
-      return;
+    setRemovingId(restId);
+    try {
+      await api.delete(`/favorites/${restId}`);
+      setFavs((prev) => prev.filter((r) => r.id !== restId));
+    } catch (err) {
+      const msg = err?.response?.data?.detail || "Remove failed.";
+      alert(typeof msg === "string" ? msg : JSON.stringify(msg));
+    } finally {
+      setRemovingId(null);
     }
+  }
 
-    setFavs((prev) => prev.filter((r) => r.id !== restId));
+  if (loading) {
+    return (
+      <div className="sv-page">
+        <div className="sv-header">
+          <h1 className="sv-title">Saved</h1>
+        </div>
+        <div className="sv-empty">Loading your saved restaurants…</div>
+      </div>
+    );
   }
 
   return (
-    <div className="page" style={{ maxWidth: 900, margin: "0 auto" }}>
-      <h1 style={{ marginBottom: 16 }}>Saved Restaurants</h1>
+    <div className="sv-page">
+      <div className="sv-header">
+        <div>
+          <h1 className="sv-title">Saved</h1>
+          {favs.length > 0 && (
+            <p className="sv-subtitle">{favs.length} restaurant{favs.length !== 1 ? "s" : ""} saved</p>
+          )}
+        </div>
+      </div>
 
-      {loading ? (
-        <p style={{ opacity: 0.7 }}>Loading...</p>
-      ) : favs.length === 0 ? (
-        <p style={{ opacity: 0.7 }}>You haven’t saved any restaurants yet.</p>
+      {error && <div className="auth-alert" style={{ maxWidth: 760, margin: "0 auto 20px" }}>{error}</div>}
+
+      {favs.length === 0 ? (
+        <div className="sv-empty">
+          <div className="sv-empty-icon">🔖</div>
+          <div className="sv-empty-title">Nothing saved yet</div>
+          <p className="sv-empty-sub">Tap the heart on any restaurant in Explore to save it here for later.</p>
+          <button className="sv-cta" onClick={() => navigate("/explore")}>Explore restaurants</button>
+        </div>
       ) : (
-        <div style={{ display: "grid", gap: 12 }}>
+        <div className="sv-grid">
           {favs.map((r) => (
-            <div
-              key={r.id}
-              style={{
-                padding: 14,
-                borderRadius: 12,
-                background: "#f5f5f5",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                fontWeight: 600,
-              }}
-            >
-              <span>{r.name}</span>
-
-              <div style={{ display: "flex", gap: 10 }}>
-                <button type="button" onClick={() => navigate(`/restaurants/${r.id}`)}>
-                  View
-                </button>
-
+            <div key={r.id} className="sv-card">
+              <div className="sv-card-top">
+                <div className="sv-name" onClick={() => navigate(`/restaurants/${r.id}`)}>
+                  {r.name}
+                </div>
                 <button
-                  type="button"
-                  style={{ color: "#ff2d55" }}
+                  className="sv-remove"
                   onClick={() => removeFavorite(r.id)}
+                  disabled={removingId === r.id}
+                  aria-label="Remove from saved"
                 >
-                  Remove
+                  {removingId === r.id ? "…" : "✕"}
+                </button>
+              </div>
+
+              <div className="sv-meta">
+                {r.cuisine_type && (
+                  <span className="sv-pill">{r.cuisine_type}</span>
+                )}
+                {r.pricing_tier && (
+                  <span className="sv-pill">{r.pricing_tier}</span>
+                )}
+                {r.average_rating > 0 && (
+                  <span className="sv-pill sv-pill-rating">
+                    ★ {Number(r.average_rating).toFixed(1)}
+                  </span>
+                )}
+              </div>
+
+              {r.city && (
+                <div className="sv-location">📍 {r.city}{r.state ? `, ${r.state}` : ""}</div>
+              )}
+
+              <div className="sv-card-footer">
+                <button className="sv-view-btn" onClick={() => navigate(`/restaurants/${r.id}`)}>
+                  View details →
                 </button>
               </div>
             </div>

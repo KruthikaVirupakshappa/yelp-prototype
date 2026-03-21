@@ -7,7 +7,7 @@ export default function Footer() {
       background: "#f5f5f5",
       fontWeight: 600
     }}>
-      Fork & Fire by SK 
+      Fork & Fire
     </footer>
   );
 }

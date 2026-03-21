@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS user_preferences (
     dietary_needs TEXT,
     preferred_location VARCHAR(255),
     ambiance_preferences TEXT,
+    sort_preference VARCHAR(50),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE

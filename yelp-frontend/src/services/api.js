@@ -41,6 +41,11 @@ api.interceptors.response.use(
       localStorage.removeItem("token");
       localStorage.removeItem("token_type");
       localStorage.removeItem("user");
+      // Redirect to login only when on a protected page (not already on auth pages)
+      const path = window.location.pathname;
+      if (path !== "/login" && path !== "/signup") {
+        window.location.href = "/login";
+      }
     }
 
     return Promise.reject(error);
