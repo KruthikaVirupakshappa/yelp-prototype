@@ -18,13 +18,11 @@ from app.models.restaurant import Restaurant
 from app.models.review import Review
 from app.models.favorite import Favorite
 from app.models.user_preferences import UserPreferences
-from passlib.context import CryptContext
+import bcrypt as _bcrypt
 from sqlalchemy import func
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 def hash_pw(password: str) -> str:
-    return pwd_context.hash(password)
+    return _bcrypt.hashpw(password.encode("utf-8"), _bcrypt.gensalt()).decode("utf-8")
 
 def seed():
     db = SessionLocal()
@@ -463,9 +461,6 @@ def seed():
     print("  priya@example.com        — regular user")
     print("  owner.james@example.com  — owner (Golden Chopsticks)")
     print("  owner.sofia@example.com  — owner (Bella Italia)")
-    print()
-    print("  Tip: Spice Garden and The Smoke Pit are unclaimed —")
-    print("       log in as an owner and try the Claim tab!")
     print()
 
 if __name__ == "__main__":

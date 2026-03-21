@@ -61,18 +61,16 @@ class ChatResponse(BaseModel):
     source: str = "template"  # "llm" or "template"
 
 
-def _build_filters_from_query(q_lower: str) -> dict:
-    """Extract intent filters from query text."""
+def _build_filters_from_query(db: Session, q_lower: str) -> dict:
+    """Extract intent filters from query text using DB values where possible."""
     filters = {}
 
-    # Cuisine detection
-    cuisines = [
-        "italian", "chinese", "mexican", "indian", "japanese", "american",
-        "thai", "french", "greek", "mediterranean", "korean", "vietnamese",
-        "spanish", "middle eastern", "vegan", "vegetarian", "seafood",
-        "sushi", "pizza", "burger", "bbq", "californian",
+    # Cuisine detection — fetch distinct values from DB
+    db_cuisines = [
+        row[0].lower() for row in db.query(Restaurant.cuisine_type).distinct().all()
+        if row[0]
     ]
-    for c in cuisines:
+    for c in db_cuisines:
         if c in q_lower:
             filters["cuisine"] = c
             break
@@ -84,6 +82,16 @@ def _build_filters_from_query(q_lower: str) -> dict:
         filters["price"] = "$$"
     elif any(w in q_lower for w in ["upscale", "fine dining", "fancy", "expensive", "high-end"]):
         filters["price"] = "$$$"
+
+    # City detection — fetch distinct values from DB
+    db_cities = [
+        row[0].lower() for row in db.query(Restaurant.city).distinct().all()
+        if row[0]
+    ]
+    for city in db_cities:
+        if city in q_lower:
+            filters["city"] = city
+            break
 
     # Ambiance / occasion keywords
     ambiance_keywords = ["romantic", "casual", "family", "outdoor", "cozy", "quiet",
@@ -109,7 +117,6 @@ def _query_restaurants(db: Session, q_lower: str, prefs: Optional[UserPreference
     cuisine = filters.get("cuisine")
     if not cuisine and prefs and prefs.cuisine_preferences:
         cuisine = prefs.cuisine_preferences.split(",")[0].strip().lower()
-
     if cuisine:
         query = query.filter(Restaurant.cuisine_type.ilike(f"%{cuisine}%"))
 
@@ -117,9 +124,13 @@ def _query_restaurants(db: Session, q_lower: str, prefs: Optional[UserPreference
     price = filters.get("price")
     if not price and prefs and prefs.price_range:
         price = prefs.price_range
-
     if price:
         query = query.filter(Restaurant.pricing_tier == price)
+
+    # Apply city filter from query
+    city = filters.get("city")
+    if city:
+        query = query.filter(Restaurant.city.ilike(f"%{city}%"))
 
     # Apply keyword search across description and amenities
     dietary = filters.get("dietary", [])
@@ -132,42 +143,24 @@ def _query_restaurants(db: Session, q_lower: str, prefs: Optional[UserPreference
             kw_filters.append(Restaurant.amenities.ilike(f"%{kw}%"))
         query = query.filter(or_(*kw_filters))
 
-    # Apply location from preferences if no explicit city in query
-    if prefs and prefs.preferred_location:
-        loc = prefs.preferred_location.split(",")[0].strip()
-        if loc.lower() not in q_lower:
-            # Only apply if location not mentioned in query
-            pass 
-
-    # Sort
-    sort_pref = prefs.sort_preference if prefs else None
-    if sort_pref == "price":
-        # Cheapest first by counting $ signs
-        pass
-    else:
-        # Default: sort by average_rating descending
-        query = query.order_by(Restaurant.average_rating.desc())
-
+    # Sort by rating descending
+    query = query.order_by(Restaurant.average_rating.desc())
     results = query.limit(limit).all()
 
-    # if no results with filters, broaden to keyword search
-    if not results:
-        fallback_query = db.query(Restaurant)
-        if q_lower:
-            fallback_query = fallback_query.filter(
-                or_(
-                    Restaurant.name.ilike(f"%{q_lower}%"),
-                    Restaurant.cuisine_type.ilike(f"%{q_lower}%"),
-                    Restaurant.city.ilike(f"%{q_lower}%"),
-                    Restaurant.description.ilike(f"%{q_lower}%"),
-                )
-            )
-        fallback_query = fallback_query.order_by(Restaurant.average_rating.desc())
-        results = fallback_query.limit(limit).all()
-
-    # Return top-rated restaurants
-    if not results:
-        results = db.query(Restaurant).order_by(Restaurant.average_rating.desc()).limit(limit).all()
+    # Fallback: broad keyword search (no city/cuisine relaxation — stay relevant)
+    if not results and q_lower:
+        results = (
+            db.query(Restaurant)
+            .filter(or_(
+                Restaurant.name.ilike(f"%{q_lower}%"),
+                Restaurant.cuisine_type.ilike(f"%{q_lower}%"),
+                Restaurant.city.ilike(f"%{q_lower}%"),
+                Restaurant.description.ilike(f"%{q_lower}%"),
+            ))
+            .order_by(Restaurant.average_rating.desc())
+            .limit(limit)
+            .all()
+        )
 
     return results
 
@@ -192,8 +185,6 @@ def _build_reply_with_llm(
     filters: dict,
 ) -> tuple[str, str]:
     """Use LangChain with local Ollama. Returns (reply, source) where source is 'llm' or 'template'."""
-    web_context = _tavily_search(message)
-
     try:
         from langchain_ollama import ChatOllama
         from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
@@ -223,32 +214,45 @@ def _build_reply_with_llm(
 
         rec_summary = ""
         if recommendations:
-            rec_lines = []
+            rec_blocks = []
             for i, r in enumerate(recommendations[:5], 1):
                 rating = float(r.average_rating or 0)
-                price = r.pricing_tier or ""
-                city = r.city or ""
-                desc = (r.description or "")[:80]
-                rec_lines.append(
-                    f"{i}. {r.name} ({r.cuisine_type}, {price}, ★{rating:.1f}"
-                    + (f", {city}" if city else "")
-                    + (f") - {desc}" if desc else ")")
-                )
-            rec_summary = "\n".join(rec_lines)
+                lines = [
+                    f"{i}. {r.name} | Link: /restaurants/{r.id}",
+                    f"   Cuisine: {r.cuisine_type or 'N/A'} | Price: {r.pricing_tier or 'N/A'} | Rating: ★{rating:.1f} ({r.review_count} reviews) | City: {r.city or 'N/A'}",
+                ]
+                if r.description:
+                    lines.append(f"   Description: {r.description}")
+                if r.amenities:
+                    lines.append(f"   Amenities: {r.amenities}")
+                if r.hours_of_operation:
+                    lines.append(f"   Hours: {r.hours_of_operation}")
+                if r.reviews:
+                    lines.append(f"   Customer Reviews ({len(r.reviews)}):")
+                    for rev in r.reviews:
+                        lines.append(f"     - ★{rev.rating}: \"{rev.comment}\"")
+                rec_blocks.append("\n".join(lines))
+            rec_summary = "\n\n".join(rec_blocks)
 
         system_content = (
             "You are a friendly restaurant recommendation assistant for a Yelp-like platform. "
             "Help users discover great restaurants. Be conversational, helpful, and concise.\n"
+            "CRITICAL RULES:\n"
+            "1. You must ONLY mention restaurants that appear in the list below — use their EXACT names as written.\n"
+            "2. Do NOT invent, rename, or substitute any restaurant not in the list.\n"
+            "3. When mentioning a restaurant, always link it using its exact name and provided link, "
+            "e.g. [Bella Italia](/restaurants/2).\n"
         )
         if pref_summary:
             system_content += f"\nUser preferences: {pref_summary}\n"
         if rec_summary:
-            system_content += f"\nRelevant restaurants found:\n{rec_summary}\n"
-        if web_context:
-            system_content += f"\nAdditional web context: {web_context}\n"
+            system_content += f"\nRestaurants available in our database (recommend ONLY from this list):\n{rec_summary}\n"
+        else:
+            system_content += "\nNo matching restaurants were found in our database for this query.\n"
         system_content += (
-            "\nBased on the user's query and the restaurants above, provide a helpful "
-            "recommendation response. Reference the restaurant names and ratings when relevant."
+            "\nBased on the user's query and the customer reviews above, recommend only from the restaurants listed. "
+            "Reference specific reviews when relevant. Always include the restaurant link. "
+            "If none match, say so — do not suggest restaurants outside this list."
         )
 
         msgs = [SystemMessage(content=system_content)]
@@ -315,19 +319,6 @@ def _build_template_reply(  # noqa: D401
     return intro + "\n".join(lines)
 
 
-def _tavily_search(query: str) -> str:
-    """Optional Tavily web search for additional context."""
-    if not settings.TAVILY_API_KEY:
-        return ""
-    try:
-        from tavily import TavilyClient
-        client = TavilyClient(api_key=settings.TAVILY_API_KEY)
-        result = client.search(query=query, max_results=3)
-        snippets = [r.get("content", "") for r in result.get("results", [])]
-        return " ".join(snippets[:2])[:500]
-    except Exception:
-        return ""
-
 
 @router.post("/chat", response_model=ChatResponse)
 def chat(
@@ -349,7 +340,7 @@ def chat(
         ).first()
 
     # Extract intent filters from query
-    filters = _build_filters_from_query(q_lower)
+    filters = _build_filters_from_query(db, q_lower)
 
     # Query restaurant database
     matches = _query_restaurants(db, q_lower, prefs, filters)
@@ -378,7 +369,7 @@ def chat_anonymous(req: ChatRequest, db: Session = Depends(get_db)):
     q = (req.message or "").strip()
     q_lower = q.lower()
 
-    filters = _build_filters_from_query(q_lower)
+    filters = _build_filters_from_query(db, q_lower)
     matches = _query_restaurants(db, q_lower, None, filters)
     recommendations = [_format_rec(r) for r in matches]
     reply = _build_template_reply(q, matches, None, filters)

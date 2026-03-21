@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import { chatWithAssistant } from "../../services/aiAssistant";
 
 const PROMPTS = [
@@ -18,25 +19,32 @@ function TypingDots() {
 }
 
 function ReplyText({ text }) {
-  const lines = text.split("\n").filter((l) => l.trim());
-  const allBullets = lines.length > 1 && lines.every((l) => /^[-•*]/.test(l.trim()));
-
-  if (allBullets) {
-    return (
-      <ul className="ai-reply-list">
-        {lines.map((l, i) => (
-          <li key={i}>{l.replace(/^[-•*]\s*/, "")}</li>
-        ))}
-      </ul>
-    );
-  }
-
+  const navigate = useNavigate();
   return (
-    <>
-      {text.split(/\n\s*\n/).filter(Boolean).map((p, i) => (
-        <p key={i} className="ai-reply-para">{p.trim()}</p>
-      ))}
-    </>
+    <ReactMarkdown
+      components={{
+        a: ({ href, children }) => (
+          <a
+            href={href}
+            onClick={(e) => {
+              if (href?.startsWith("/")) {
+                e.preventDefault();
+                navigate(href);
+              }
+            }}
+            className="ai-reply-link"
+          >
+            {children}
+          </a>
+        ),
+        ul: ({ children }) => <ul className="ai-reply-list">{children}</ul>,
+        li: ({ children }) => <li className="ai-reply-li">{children}</li>,
+        p: ({ children }) => <p className="ai-reply-para">{children}</p>,
+        strong: ({ children }) => <strong className="ai-reply-bold">{children}</strong>,
+      }}
+    >
+      {text}
+    </ReactMarkdown>
   );
 }
 
@@ -49,10 +57,11 @@ export default function AIAssistant({ compact = false }) {
   const [loading, setLoading] = useState(false);
   const bodyRef = useRef(null);
   const inputRef = useRef(null);
+  const lastUserMsgRef = useRef(null);
 
   useEffect(() => {
-    if (bodyRef.current) {
-      bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
+    if (lastUserMsgRef.current) {
+      lastUserMsgRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [messages, loading]);
 
@@ -138,16 +147,24 @@ export default function AIAssistant({ compact = false }) {
           </div>
         ) : (
           <>
-            {messages.map((m, i) => (
-              <div key={i} className={`ai-bubble-row ${m.role}`}>
-                {m.role === "assistant" && (
-                  <div className="ai-bubble-avatar">✨</div>
-                )}
-                <div className={`ai-bubble ai-bubble--${m.role}`}>
-                  <ReplyText text={m.content} />
+            {messages.map((m, i) => {
+              const isLastUser = m.role === "user" && i === messages.length - 1 ||
+                (m.role === "user" && i === messages.length - 2 && messages[messages.length - 1]?.role === "assistant");
+              return (
+                <div
+                  key={i}
+                  className={`ai-bubble-row ${m.role}`}
+                  ref={isLastUser ? lastUserMsgRef : null}
+                >
+                  {m.role === "assistant" && (
+                    <div className="ai-bubble-avatar">✨</div>
+                  )}
+                  <div className={`ai-bubble ai-bubble--${m.role}`}>
+                    <ReplyText text={m.content} />
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
 
             {loading && (
               <div className="ai-bubble-row assistant">
