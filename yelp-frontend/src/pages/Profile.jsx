@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
+
+const BACKEND_URL = "http://127.0.0.1:8000";
 
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
@@ -44,6 +46,10 @@ export default function Profile() {
     sort_preference: "",
   });
 
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [uploadingPic, setUploadingPic] = useState(false);
+  const picInputRef = useRef(null);
+
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -76,6 +82,7 @@ export default function Profile() {
           ambiance: p.ambiance_preferences || "",
           sort_preference: p.sort_preference || "",
         });
+        if (u.profile_picture) setProfilePicture(u.profile_picture);
       } catch (err) {
         if (err?.response?.status === 401) {
           setError("Session expired. Please log in again.");
@@ -88,6 +95,25 @@ export default function Profile() {
       }
     })();
   }, [navigate]);
+
+  async function handlePictureChange(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingPic(true);
+    setError("");
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await api.post("/users/me/profile-picture", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setProfilePicture(res.data.profile_picture);
+    } catch (err) {
+      setError("Failed to upload profile picture.");
+    } finally {
+      setUploadingPic(false);
+    }
+  }
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -148,6 +174,32 @@ export default function Profile() {
         {error && <div className="auth-alert">{error}</div>}
 
         <form onSubmit={handleSubmit}>
+          <div className="profile-avatar-section">
+            <div className="profile-avatar-wrapper" onClick={() => picInputRef.current?.click()}>
+              {profilePicture ? (
+                <img
+                  src={`${BACKEND_URL}${profilePicture}`}
+                  alt="Profile"
+                  className="profile-avatar-img"
+                />
+              ) : (
+                <div className="profile-avatar-placeholder">
+                  {form.name ? form.name[0].toUpperCase() : "?"}
+                </div>
+              )}
+              <div className="profile-avatar-overlay">
+                {uploadingPic ? "Uploading..." : "Change Photo"}
+              </div>
+            </div>
+            <input
+              ref={picInputRef}
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handlePictureChange}
+            />
+          </div>
+
           <div className="profile-section">
             <h3>Basic Information</h3>
 

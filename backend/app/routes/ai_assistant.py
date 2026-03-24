@@ -165,6 +165,7 @@ def _query_restaurants(db: Session, q_lower: str, prefs: Optional[UserPreference
     return results
 
 
+
 def _format_rec(r: Restaurant) -> RestaurantRec:
     return RestaurantRec(
         id=r.id,
@@ -237,11 +238,13 @@ def _build_reply_with_llm(
         system_content = (
             "You are a friendly restaurant recommendation assistant for a Yelp-like platform. "
             "Help users discover great restaurants. Be conversational, helpful, and concise.\n"
-            "CRITICAL RULES:\n"
+            "FORMATTING RULES:\n"
             "1. You must ONLY mention restaurants that appear in the list below — use their EXACT names as written.\n"
             "2. Do NOT invent, rename, or substitute any restaurant not in the list.\n"
-            "3. When mentioning a restaurant, always link it using its exact name and provided link, "
-            "e.g. [Bella Italia](/restaurants/2).\n"
+            "3. Always bold restaurant names using **Name** markdown.\n"
+            "4. Highlight key details the user specifically asked about — e.g. if they asked about San Jose, "
+            "bold or emphasize 'San Jose' in your response. Do the same for cuisine type, price range, ambiance, etc.\n"
+            "5. Do NOT include any URLs or paths like /restaurants/1 in your response.\n"
         )
         if pref_summary:
             system_content += f"\nUser preferences: {pref_summary}\n"
@@ -251,7 +254,7 @@ def _build_reply_with_llm(
             system_content += "\nNo matching restaurants were found in our database for this query.\n"
         system_content += (
             "\nBased on the user's query and the customer reviews above, recommend only from the restaurants listed. "
-            "Reference specific reviews when relevant. Always include the restaurant link. "
+            "Reference specific reviews when relevant. Bold restaurant names. "
             "If none match, say so — do not suggest restaurants outside this list."
         )
 
