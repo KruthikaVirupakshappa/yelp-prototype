@@ -38,7 +38,7 @@ export default function AddRestaurant() {
   const [form, setForm] = useState({
     name: "", cuisine: "", price: "$$", location: "",
     address: "", zip_code: "", state: "", country: "United States",
-    phone: "", amenities: "", photos: [],
+    phone: "", amenities: "", photoFiles: [], photoPreviews: [],
   });
 
   function handleChange(e) {
@@ -48,8 +48,8 @@ export default function AddRestaurant() {
 
   function handlePhotoChange(e) {
     const files = Array.from(e.target.files || []);
-    const urls = files.map((file) => URL.createObjectURL(file));
-    setForm((prev) => ({ ...prev, photos: urls }));
+    const previews = files.map((file) => URL.createObjectURL(file));
+    setForm((prev) => ({ ...prev, photoFiles: files, photoPreviews: previews }));
   }
 
   async function handleSubmit(e) {
@@ -61,7 +61,7 @@ export default function AddRestaurant() {
     setSubmitting(true);
     setError("");
     try {
-      await api.post("/restaurants/", {
+      const res = await api.post("/restaurants/", {
         name: form.name.trim(),
         cuisine_type: form.cuisine,
         city: form.location.trim(),
@@ -76,6 +76,20 @@ export default function AddRestaurant() {
         website: null,
         email: null,
       });
+
+      const restaurantId = res.data?.id;
+      if (restaurantId && form.photoFiles.length > 0) {
+        await Promise.all(
+          form.photoFiles.map((file) => {
+            const fd = new FormData();
+            fd.append("file", file);
+            return api.post(`/restaurants/${restaurantId}/photos`, fd, {
+              headers: { "Content-Type": "multipart/form-data" },
+            });
+          })
+        );
+      }
+
       navigate("/explore");
     } catch (err) {
       const msg = err?.response?.data?.detail || err?.response?.data?.message || "Failed to add restaurant.";
@@ -181,11 +195,11 @@ export default function AddRestaurant() {
               <label className="ar-file-label">
                 <input type="file" accept="image/*" multiple onChange={handlePhotoChange} style={{ display: "none" }} />
                 <span className="ar-file-btn">📷 Choose photos</span>
-                <span className="ar-file-hint">{form.photos.length > 0 ? `${form.photos.length} selected` : "Optional"}</span>
+                <span className="ar-file-hint">{form.photoFiles.length > 0 ? `${form.photoFiles.length} selected` : "Optional"}</span>
               </label>
-              {form.photos.length > 0 && (
+              {form.photoPreviews.length > 0 && (
                 <div className="ar-previews">
-                  {form.photos.map((src, i) => (
+                  {form.photoPreviews.map((src, i) => (
                     <img key={i} src={src} alt={`Preview ${i + 1}`} className="ar-preview-img" />
                   ))}
                 </div>

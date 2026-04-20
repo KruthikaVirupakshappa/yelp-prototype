@@ -177,8 +177,8 @@ export default function AIAssistant({ compact = false }) {
 
             {source && (
               <div className="ai-source-badge-row">
-                <span className={`ai-source-badge ai-source-badge--${source}`}>
-                  {source === "llm" ? "✦ llama3.2 via Ollama" : "⚡ Template reply"}
+                <span className={`ai-source-badge ai-source-badge--${source === "ollama" || source === "openai" ? "llm" : "template"}`}>
+                  {source === "ollama" ? "✦ gemma4 via Ollama" : source === "openai" ? "✦ GPT-4o mini" : "⚡ Template reply"}
                 </span>
               </div>
             )}

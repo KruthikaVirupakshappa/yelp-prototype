@@ -1,102 +1,112 @@
 # Fork & Fire — Running the App
 
-Once you've completed [SETUP.md](SETUP.md), this is your day-to-day guide for starting everything up.
+---
+
+## Option A: Docker (Recommended)
+
+One command starts everything — MongoDB, Kafka, all 4 microservices, 3 workers, and the frontend.
+
+### Prerequisites
+- Docker Desktop running
+- Ollama installed (for AI assistant)
+
+### Steps
+
+```bash
+# From project root
+cd yelp-prototype
+
+# Start Ollama separately on your host (Docker cannot reach it otherwise)
+ollama serve   # skip if already running as a background service
+
+# Start the full stack
+docker-compose up --build
+```
+
+First run takes 5–10 minutes to build all images. Subsequent runs are fast (images cached).
+
+**On first run**, the `db-seed` container automatically populates MongoDB with sample users, restaurants, and reviews.
+
+Open **http://localhost** in your browser.
+
+### Service ports (for direct API access / debugging)
+
+| Service | Port | Docs |
+|---|---|---|
+| User / Reviewer Service | 8001 | http://localhost:8001/docs |
+| Restaurant Service | 8002 | http://localhost:8002/docs |
+| Restaurant Owner Service | 8003 | http://localhost:8003/docs |
+| Review Service | 8004 | http://localhost:8004/docs |
+| Frontend (nginx) | 80 | http://localhost |
+| MongoDB | 27017 | — |
+| Kafka | 9092 | — |
+
+### Stopping
+
+```bash
+docker-compose down          # stop containers, keep data
+docker-compose down -v       # stop + delete all volumes (wipes database)
+```
+
+### Re-seeding the database
+
+```bash
+docker-compose run --rm db-seed
+```
 
 ---
 
-## Every time you start
+## Option B: Local Development (no Docker)
 
-You need three things running at the same time — Ollama, the backend, and the frontend. Open three terminal tabs.
+Use this when you want hot-reload for active development.
 
----
+See [SETUP.md](SETUP.md) first to install all dependencies.
 
-### Tab 1 — Ollama (AI assistant)
+### You need 3 terminals:
 
-Ollama usually starts automatically after installation. Check if it's already running:
+#### Terminal 1 — Ollama (AI assistant)
 
+Check if already running:
 ```bash
 curl http://localhost:11434/api/tags
 ```
 
-If you get a JSON response back, it's already up. If you get "connection refused", start it manually:
-
+If you get "connection refused":
 ```bash
 ollama serve
 ```
 
-Leave this tab open.
-
----
-
-### Tab 2 — Backend (FastAPI)
+#### Terminal 2 — Backend (single monolith, all routes on :8000)
 
 ```bash
 cd yelp-prototype/backend
-
-source ../env/bin/activate          # activate the Python venv
-
+source ../env/bin/activate
 uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-You should see:
-```
-INFO:     Uvicorn running on http://127.0.0.1:8000
-INFO:     Application startup complete.
-```
+API docs: http://localhost:8000/docs
 
-The `--reload` flag means the server automatically restarts whenever you edit a Python file — handy during development.
-
-**If port 8000 is already taken:**
+If port 8000 is taken:
 ```bash
 kill -9 $(lsof -t -i:8000)
 ```
-Then try starting again.
 
-**API docs** (useful for testing endpoints directly):
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
-
----
-
-### Tab 3 — Frontend (React + Vite)
+#### Terminal 3 — Frontend (Vite dev server with hot reload)
 
 ```bash
 cd yelp-prototype/yelp-frontend
-
 npm run dev
 ```
 
-You'll see something like:
-```
-VITE ready in 300ms
-➜  Local:   http://localhost:5173/
-```
+Open http://localhost:5173
 
-Open http://localhost:5173 in your browser and the app should load.
-
----
-
-## Stopping everything
-
-- **Frontend:** `Ctrl+C` in the frontend terminal
-- **Backend:** `Ctrl+C` in the backend terminal
-- **Ollama:** `Ctrl+C` if you started it manually, or leave it running (it's lightweight)
-
----
-
-## Seeding sample data (first run)
-
-If you're starting fresh and want some restaurants and users already in the database so there's something to explore:
+### Seeding sample data (first run only)
 
 ```bash
 cd yelp-prototype/backend
-
 source ../env/bin/activate
-
 python seed_data.py
 ```
-
-This creates a handful of users (regular + owner), restaurants across different cuisines, reviews, preferences, and favorites so the app feels populated right away. Safe to run multiple times — it checks for duplicates before inserting.
 
 ---
 
@@ -104,20 +114,10 @@ This creates a handful of users (regular + owner), restaurants across different 
 
 | Symptom | Most likely cause | Fix |
 |---|---|---|
-| AI assistant shows "Template reply" badge | Ollama not running or wrong model | Run `ollama serve` and confirm `ollama list` shows `llama3.2:3b` |
-| Backend won't start | venv not activated | `source ../env/bin/activate` |
-| `ModuleNotFoundError` | Package not installed in venv | `pip install <package>` with venv active |
-| Login loop / "Could not validate credentials" | Old token with wrong format | Clear localStorage in browser dev tools and log in again |
-| Frontend shows blank page | Backend not running | Start the backend first |
-| Port 8000 in use | Another process has it | `kill -9 $(lsof -t -i:8000)` |
-
----
-
-## Tech stack at a glance
-
-| Layer | Technology |
-|---|---|
-| Frontend | React 18, Vite, React Router, Axios |
-| Backend | FastAPI, SQLAlchemy, MySQL, JWT auth |
-| AI Assistant | LangChain + Ollama (`llama3.2:3b`) |
-| Database | MySQL 8.0 |
+| `http://localhost` shows nothing | Docker not running or build failed | `docker-compose up --build` and check logs |
+| AI assistant returns template replies | Ollama not reachable | Run `ollama serve` on host; Docker uses `host.docker.internal:11434` |
+| `401 Unauthorized` on all requests | JWT secret mismatch | Ensure `.env` SECRET_KEY matches across all services |
+| MongoDB connection refused (local) | MongoDB not running | Start MongoDB: `brew services start mongodb-community` |
+| Port 8000 in use | Another process | `kill -9 $(lsof -t -i:8000)` |
+| `ModuleNotFoundError` (local) | venv not activated | `source ../env/bin/activate` |
+| Frontend blank page (local) | Backend not running | Start backend first, check for errors |

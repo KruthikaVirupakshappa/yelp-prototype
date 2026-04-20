@@ -1,15 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { api } from "../services/api";
+import { useDispatch, useSelector } from "react-redux";
+import { login, clearError } from "../store/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
+  const { loading, error: submitError } = useSelector((s) => s.auth);
   const successMessage = location.state?.message || "";
   const [form, setForm] = useState({ email: "", password: "" });
   const [touched, setTouched] = useState({});
-  const [submitError, setSubmitError] = useState("");
-  const [loading, setLoading] = useState(false);
+
+  useEffect(() => { dispatch(clearError()); }, [dispatch]);
 
   // Slideshow
   const images = useMemo(() => {
@@ -51,37 +54,10 @@ export default function Login() {
   async function onSubmit(e) {
     e.preventDefault();
     setTouched({ email: true, password: true });
-    setSubmitError("");
     if (!isValid) return;
-
-    try {
-      setLoading(true);
-      const res = await api.post("/auth/login", {
-        email: form.email.trim(),
-        password: form.password,
-      });
-
-      const token = res?.data?.access_token;
-      const tokenType = res?.data?.token_type || "bearer";
-      if (!token) throw new Error("No access_token returned from server.");
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("token_type", tokenType);
-      if (res?.data?.user) {
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-      }
+    const result = await dispatch(login({ email: form.email.trim(), password: form.password }));
+    if (login.fulfilled.match(result)) {
       navigate("/explore");
-    } catch (err) {
-      let msg = "Login failed. Please try again.";
-      const data = err?.response?.data;
-      if (typeof data === "string") msg = data;
-      else if (data?.detail)
-        msg = typeof data.detail === "string" ? data.detail : JSON.stringify(data.detail);
-      else if (data?.message) msg = data.message;
-      else if (err?.message) msg = err.message;
-      setSubmitError(msg);
-    } finally {
-      setLoading(false);
     }
   }
 

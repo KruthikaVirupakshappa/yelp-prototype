@@ -305,7 +305,11 @@ export default function OwnerDashboard() {
                     {dash.recent_reviews.map((rev, i) => (
                       <div key={i} className="od-recent-item">
                         <div className="od-recent-top">
-                          <span className="od-recent-rest">{rev.restaurant_name}</span>
+                          <span
+                            className="od-recent-rest"
+                            onClick={() => rev.restaurant_id && navigate(`/restaurants/${rev.restaurant_id}`)}
+                            style={{ cursor: rev.restaurant_id ? "pointer" : "default", textDecoration: rev.restaurant_id ? "underline" : "none" }}
+                          >{rev.restaurant_name}</span>
                           <StarRow rating={rev.rating} />
                         </div>
                         <div className="od-recent-user">{rev.user_name}</div>
@@ -335,7 +339,7 @@ export default function OwnerDashboard() {
                   <div key={r.id} className="od-rest-card">
                     <div className="od-rest-top">
                       <div>
-                        <div className="od-rest-name">{r.name}</div>
+                        <div className="od-rest-name" onClick={() => navigate(`/restaurants/${r.id}`)} style={{ cursor: "pointer" }}>{r.name}</div>
                         <div className="od-rest-meta">
                           {r.cuisine_type && <span className="od-pill">{r.cuisine_type}</span>}
                           {r.pricing_tier && <span className="od-pill">{r.pricing_tier}</span>}
@@ -548,7 +552,7 @@ export default function OwnerDashboard() {
                   <div key={r.id} className="od-rest-card">
                     <div className="od-rest-top">
                       <div>
-                        <div className="od-rest-name">{r.name}</div>
+                        <div className="od-rest-name" onClick={() => navigate(`/restaurants/${r.id}`)} style={{ cursor: "pointer" }}>{r.name}</div>
                         <div className="od-rest-meta">
                           {r.cuisine_type && <span className="od-pill">{r.cuisine_type}</span>}
                           {r.pricing_tier && <span className="od-pill">{r.pricing_tier}</span>}

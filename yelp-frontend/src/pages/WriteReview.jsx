@@ -11,8 +11,22 @@ export default function WriteReview() {
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login", { state: { message: "Please log in to write a review." } });
+      return;
     }
-  }, [navigate]);
+    // Prevent owner from reviewing their own restaurant
+    async function checkOwnership() {
+      try {
+        const res = await api.get(`/restaurants/${id}`);
+        const currentUser = JSON.parse(localStorage.getItem("user") || "null");
+        if (currentUser && res.data.owner_id === currentUser.id) {
+          navigate(`/restaurants/${id}`, { replace: true });
+        }
+      } catch {
+        // ignore — backend will also block the POST
+      }
+    }
+    checkOwnership();
+  }, [navigate, id]);
 
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);

@@ -1,0 +1,235 @@
+services:
+
+  # ─── Infrastructure ────────────────────────────────────────────────────────
+
+  mongodb:
+    image: mongo:7
+    container_name: yelp-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - yelp-net
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.0
+    container_name: yelp-zookeeper
+    restart: unless-stopped
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - yelp-net
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: yelp-kafka
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    networks:
+      - yelp-net
+
+  # ─── One-time DB Seed ──────────────────────────────────────────────────────
+
+  db-seed:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: yelp-db-seed
+    restart: "no"
+    depends_on:
+      - mongodb
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017
+      MONGODB_DB_NAME: yelp_db
+      SECRET_KEY: ${SECRET_KEY:-85e70883bdd0b466356391c6a8ee2a67a7a9be8ec808e2d39795bd548bf02fe2}
+    command: >
+      sh -c "sleep 5 && python seed_data.py"
+    networks:
+      - yelp-net
+
+  # ─── Microservices ─────────────────────────────────────────────────────────
+
+  user-service:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.user-service
+    container_name: yelp-user-service
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+      - kafka
+    ports:
+      - "8001:8001"
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017
+      MONGODB_DB_NAME: yelp_db
+      SECRET_KEY: ${SECRET_KEY:-85e70883bdd0b466356391c6a8ee2a67a7a9be8ec808e2d39795bd548bf02fe2}
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 1440
+      UPLOAD_DIR: uploads
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    volumes:
+      - uploads_data:/app/uploads
+    networks:
+      - yelp-net
+
+  restaurant-service:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.restaurant-service
+    container_name: yelp-restaurant-service
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+      - kafka
+    ports:
+      - "8002:8002"
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017
+      MONGODB_DB_NAME: yelp_db
+      SECRET_KEY: ${SECRET_KEY:-85e70883bdd0b466356391c6a8ee2a67a7a9be8ec808e2d39795bd548bf02fe2}
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 1440
+      UPLOAD_DIR: uploads
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    volumes:
+      - uploads_data:/app/uploads
+    networks:
+      - yelp-net
+
+  restaurant-owner-service:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.restaurant-owner-service
+    container_name: yelp-restaurant-owner-service
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    ports:
+      - "8003:8003"
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017
+      MONGODB_DB_NAME: yelp_db
+      SECRET_KEY: ${SECRET_KEY:-85e70883bdd0b466356391c6a8ee2a67a7a9be8ec808e2d39795bd548bf02fe2}
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 1440
+    networks:
+      - yelp-net
+
+  review-service:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.review-service
+    container_name: yelp-review-service
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+      - kafka
+    ports:
+      - "8004:8004"
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017
+      MONGODB_DB_NAME: yelp_db
+      SECRET_KEY: ${SECRET_KEY:-85e70883bdd0b466356391c6a8ee2a67a7a9be8ec808e2d39795bd548bf02fe2}
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 1440
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: gemma4:e2b
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    networks:
+      - yelp-net
+
+  # ─── Kafka Workers (Consumers) ─────────────────────────────────────────────
+
+  review-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.worker
+    container_name: yelp-review-worker
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+      - kafka
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017
+      MONGODB_DB_NAME: yelp_db
+      SECRET_KEY: ${SECRET_KEY:-85e70883bdd0b466356391c6a8ee2a67a7a9be8ec808e2d39795bd548bf02fe2}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    networks:
+      - yelp-net
+
+  restaurant-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.restaurant-worker
+    container_name: yelp-restaurant-worker
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+      - kafka
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017
+      MONGODB_DB_NAME: yelp_db
+      SECRET_KEY: ${SECRET_KEY:-85e70883bdd0b466356391c6a8ee2a67a7a9be8ec808e2d39795bd548bf02fe2}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    networks:
+      - yelp-net
+
+  user-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.user-worker
+    container_name: yelp-user-worker
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+      - kafka
+    environment:
+      MONGODB_URL: mongodb://mongodb:27017
+      MONGODB_DB_NAME: yelp_db
+      SECRET_KEY: ${SECRET_KEY:-85e70883bdd0b466356391c6a8ee2a67a7a9be8ec808e2d39795bd548bf02fe2}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    networks:
+      - yelp-net
+
+  # ─── Frontend ──────────────────────────────────────────────────────────────
+
+  frontend:
+    build:
+      context: ./yelp-frontend
+      dockerfile: Dockerfile
+    container_name: yelp-frontend
+    restart: unless-stopped
+    depends_on:
+      - user-service
+      - restaurant-service
+      - restaurant-owner-service
+      - review-service
+    ports:
+      - "80:80"
+    networks:
+      - yelp-net
+
+volumes:
+  mongo_data:
+  uploads_data:
+
+networks:
+  yelp-net:
+    driver: bridge

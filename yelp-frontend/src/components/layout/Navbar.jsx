@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/authSlice";
 import { api } from "../../services/api";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  useLocation(); // subscribe to route changes so token/user are re-read after login/logout
-
-  const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user") || "null");
+  const dispatch = useDispatch();
+  const { token, user } = useSelector((s) => s.auth);
 
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -62,7 +62,7 @@ export default function Navbar() {
   }
 
   function handleLogout() {
-    localStorage.clear();
+    dispatch(logout());
     navigate("/login");
   }
 

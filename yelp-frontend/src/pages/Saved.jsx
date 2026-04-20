@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
+import ConfirmModal from "../components/ConfirmModal";
 
 export default function Saved() {
   const navigate = useNavigate();
@@ -8,6 +9,7 @@ export default function Saved() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [removingId, setRemovingId] = useState(null);
+  const [confirmRemoveId, setConfirmRemoveId] = useState(null);
 
   async function loadFavorites() {
     if (!localStorage.getItem("token")) {
@@ -28,6 +30,7 @@ export default function Saved() {
   useEffect(() => { loadFavorites(); }, []);
 
   async function removeFavorite(restId) {
+    setConfirmRemoveId(null);
     setRemovingId(restId);
     try {
       await api.delete(`/favorites/${restId}`);
@@ -81,7 +84,7 @@ export default function Saved() {
                 </div>
                 <button
                   className="sv-remove"
-                  onClick={() => removeFavorite(r.id)}
+                  onClick={() => setConfirmRemoveId(r.id)}
                   disabled={removingId === r.id}
                   aria-label="Remove from saved"
                 >
@@ -115,6 +118,16 @@ export default function Saved() {
             </div>
           ))}
         </div>
+      )}
+
+      {confirmRemoveId && (
+        <ConfirmModal
+          message="Remove from saved?"
+          subtext={`"${favs.find((r) => r.id === confirmRemoveId)?.name}" will be removed from your saved list.`}
+          confirmLabel="Remove"
+          onConfirm={() => removeFavorite(confirmRemoveId)}
+          onCancel={() => setConfirmRemoveId(null)}
+        />
       )}
     </div>
   );

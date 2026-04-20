@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Literal, Optional
 from datetime import datetime
 
 
@@ -14,6 +14,14 @@ class ReviewUpdate(BaseModel):
     comment: Optional[str] = None
 
 
+class ReplyCreate(BaseModel):
+    reply: str
+
+
+class VoteCreate(BaseModel):
+    vote: Literal["helpful", "unhelpful"]
+
+
 class ReviewResponse(BaseModel):
     id: int
     user_id: int
@@ -24,6 +32,7 @@ class ReviewResponse(BaseModel):
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     user_name: Optional[str] = None
-
-    class Config:
-        from_attributes = True
+    owner_reply: Optional[str] = None
+    owner_reply_at: Optional[datetime] = None
+    helpful_votes: int = 0
+    unhelpful_votes: int = 0
