@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
-const BACKEND_URL = "http://127.0.0.1:8000";
-
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
   "HI","ID","IL","IN","IA","KS","KY","LA","ME","MD",
@@ -178,7 +176,7 @@ export default function Profile() {
             <div className="profile-avatar-wrapper" onClick={() => picInputRef.current?.click()}>
               {profilePicture ? (
                 <img
-                  src={`${BACKEND_URL}${profilePicture}`}
+                  src={profilePicture}
                   alt="Profile"
                   className="profile-avatar-img"
                 />

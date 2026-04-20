@@ -32,7 +32,7 @@ def seed():
         {"name": "Priya Nair", "email": "priya@example.com", "password": "password123", "role": "user",
          "city": "Sunnyvale", "state": "CA", "country": "United States", "gender": "female",
          "about_me": "Vegetarian looking for Indian and Mediterranean spots.", "languages": "English, Malayalam, Hindi"},
-        {"name": "James Park", "email": "james@test.com", "password": "sample", "role": "owner",
+        {"name": "James Park", "email": "james@test.com", "password": "password123", "role": "owner",
          "city": "San Jose", "state": "CA", "country": "United States", "gender": "male",
          "about_me": "Owner of Golden Chopsticks.", "restaurant_location": "San Jose, CA"},
         {"name": "Sofia Bellini", "email": "owner.sofia@example.com", "password": "password123", "role": "owner",
@@ -307,7 +307,7 @@ def seed():
     print("  Preferences: 3")
     print("\n  Login credentials (password: password123)")
     print("  alice@example.com / marcus@example.com / priya@example.com")
-    print("  owner.james@example.com / owner.sofia@example.com")
+    print("  james@test.com / owner.sofia@example.com")
 
 
 if __name__ == "__main__":
