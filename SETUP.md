@@ -1,16 +1,17 @@
-# Fork & Fire — Fresh Environment Setup
+# Fork & Fire — Environment Setup
 
-This guide walks you through setting up everything from scratch on a new machine. Follow it top to bottom and you should be up and running without having to Google anything.
+This guide walks through setting up the full development environment from scratch.
 
 ---
 
-## What you'll need
+## Prerequisites
 
-- **Python 3.10 or newer** — the backend won't work on anything older
-- **Node.js 18+** — for the frontend
-- **MySQL 8.0+** — the main database
-- **Ollama** — runs the AI assistant locally (no API key needed)
-- A terminal and basic comfort with running commands
+- **Python 3.10+**
+- **Node.js 18+**
+- **MongoDB 7** (for local dev without Docker)
+- **Docker Desktop** (for containerized runs)
+- **Ollama** (AI assistant — runs locally, no API key needed)
+- **Apache Kafka** (optional — only needed for local dev; Docker handles it automatically)
 
 ---
 
@@ -23,85 +24,85 @@ cd yelp-prototype
 
 ---
 
-## Step 2 — Set up the database
+## Step 2 — Configure environment files
 
-Make sure MySQL is running, then create the database:
-
-```bash
-mysql -u root -p < backend/init_db.sql
-```
-
-If you don't have a `root` password set, drop the `-p`. If your MySQL user is different, swap `root` for your username.
-
----
-
-## Step 3 — Backend Python environment
-
-Create a fresh virtual environment so packages don't conflict with anything else on your system:
-
-```bash
-cd backend
-
-python3 -m venv ../env          # creates the venv one level up
-source ../env/bin/activate    
-```
-
-Now install everything:
-
-```bash
-pip install --upgrade pip
-
-# Core backend
-pip install fastapi uvicorn sqlalchemy pymysql cryptography
-pip install python-jose[cryptography] passlib[bcrypt]
-pip install pydantic pydantic-settings python-multipart
-
-# LangChain + Ollama (for the AI assistant)
-pip install langchain langchain-core langchain-ollama
-
-# Optional: Tavily web search (only needed if you set TAVILY_API_KEY)
-pip install tavily-python
-```
-
-> **Tip:** If you ever see `ModuleNotFoundError` when starting the server, make sure the venv is activated (`source ../env/bin/activate`) before running uvicorn.
-
----
-
-## Step 4 — Configure the backend
-
-Copy the example env file and fill in your details:
-
+**Project root** (for Docker / docker-compose):
 ```bash
 cp .env.example .env
 ```
 
-Open `.env` and set these values:
-
+Edit `.env`:
 ```
-DATABASE_URL=mysql+pymysql://root:yourpassword@localhost/yelp_db
-SECRET_KEY=any_long_random_string_here
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=1440
-
-# AI Assistant — local Ollama (no key needed)
-OLLAMA_MODEL=llama3.2:3b
-OLLAMA_BASE_URL=http://localhost:11434
-
-# Optional extras (leave blank if you don't have them)
-OPENAI_API_KEY=
-TAVILY_API_KEY=
+SECRET_KEY=your-long-random-secret-key-here
+OLLAMA_BASE_URL=http://host.docker.internal:11434
 ```
 
-To generate a good SECRET_KEY you can run:
+Generate a secret key:
 ```bash
 python3 -c "import secrets; print(secrets.token_hex(32))"
 ```
 
+**Backend** (for local dev without Docker):
+```bash
+cp backend/.env.example backend/.env
+```
+
+Edit `backend/.env`:
+```
+MONGODB_URL=mongodb://localhost:27017
+MONGODB_DB_NAME=yelp_db
+SECRET_KEY=<same key as above>
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=1440
+UPLOAD_DIR=uploads
+OLLAMA_MODEL=llama3.2:latest
+OLLAMA_BASE_URL=http://localhost:11434
+KAFKA_BOOTSTRAP_SERVERS=localhost:9092
+```
+
+---
+
+## Step 3 — MongoDB (local dev only)
+
+Install MongoDB Community Edition:
+
+**macOS:**
+```bash
+brew tap mongodb/brew
+brew install mongodb-community@7.0
+brew services start mongodb-community@7.0
+```
+
+**Verify:**
+```bash
+mongosh --eval "db.adminCommand('ping')"
+```
+
+---
+
+## Step 4 — Python virtual environment (local dev only)
+
+```bash
+cd backend
+python3 -m venv ../env
+source ../env/bin/activate
+
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Seed the database
+
+```bash
+# Still inside backend/ with venv active
+python seed_data.py
+```
+
+This creates sample users, restaurants, reviews, and favorites. Safe to run multiple times.
+
 ---
 
 ## Step 5 — Install Ollama and pull the model
-
-Ollama runs the AI assistant locally — no cloud account, no API bills.
 
 **macOS:**
 ```bash
@@ -113,54 +114,90 @@ brew install ollama
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
+Pull the model (~2 GB, one time only):
 ```bash
-ollama pull llama3.2:3b
+ollama pull llama3.2:latest
 ```
 
-This downloads about 2 GB, so grab a coffee. You only need to do this once.
-
-Start Ollama (it usually runs as a background service automatically after install, but if not):
-
+Start Ollama (usually runs as a background service automatically):
 ```bash
 ollama serve
 ```
 
+Verify:
+```bash
+curl http://localhost:11434/api/tags
+```
+
 ---
 
-## Step 6 — Frontend
-
-Open a new terminal tab (keep the backend one), then:
+## Step 6 — Frontend (local dev only)
 
 ```bash
-cd yelp-prototype/yelp-frontend
-
+cd yelp-frontend
 npm install
 ```
 
-That's it — no extra config needed for the frontend.
+No additional config needed — the Vite dev server proxies `/api/` to `localhost:8000`.
 
 ---
 
-## Step 7 — Verify everything works
+## Step 7 — Docker setup (for containerized runs)
 
-Quick sanity check before starting:
+Make sure Docker Desktop is running, then from the project root:
 
 ```bash
-# Check Python venv is active
-python3 -c "import langchain_ollama; print('LangChain OK')"
+docker-compose up --build
+```
 
-# Check Ollama is running and has the model
-ollama list   # should show llama3.2:3b
+This builds and starts:
+- MongoDB
+- Zookeeper + Kafka
+- User Service (port 8001)
+- Restaurant Service (port 8002)
+- Restaurant Owner Service (port 8003)
+- Review Service (port 8004)
+- Review Worker (Kafka consumer)
+- Restaurant Worker (Kafka consumer)
+- User Worker (Kafka consumer)
+- Frontend / nginx (port 80)
+- db-seed (runs once to populate MongoDB)
 
-# Check Node
-node --version   # should be 18+
+---
 
-# Check MySQL
-mysql -u root -p -e "SHOW DATABASES;" | grep yelp_db
+## Step 8 — Kubernetes (for cluster deployment)
+
+```bash
+# Apply all manifests
+kubectl apply -f k8s/configmap.yaml
+kubectl apply -f k8s/mongodb.yaml
+kubectl apply -f k8s/kafka.yaml
+kubectl apply -f k8s/backend.yaml
+kubectl apply -f k8s/frontend.yaml
+
+# Check all pods are running
+kubectl get pods
 ```
 
 ---
 
-## Done!
+## Verify local setup
+
+```bash
+# Python environment
+source env/bin/activate
+python3 -c "import pymongo, fastapi, kafka; print('All packages OK')"
+
+# MongoDB
+mongosh --eval "db.adminCommand('ping')"
+
+# Ollama
+ollama list   # should show llama3.2:latest
+
+# Node
+node --version   # should be 18+
+```
+
+---
 
 Now head to [RUNNING.md](RUNNING.md) to start the app.

@@ -1,64 +1,68 @@
+from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
 from typing import List
 from app.database import get_db
-from app.models.favorite import Favorite
-from app.models.restaurant import Restaurant
-from app.models.user import User
 from app.schemas.restaurant import RestaurantResponse
 from app.auth import get_current_user
 
 router = APIRouter(prefix="/api/favorites", tags=["Favorites"])
 
 
+def _rest_to_response(r: dict) -> RestaurantResponse:
+    photos = [p["photo_url"] for p in r.get("photos", [])]
+    return RestaurantResponse(
+        id=r["id"], name=r["name"], cuisine_type=r["cuisine_type"],
+        description=r.get("description"), address=r.get("address"),
+        city=r.get("city"), state=r.get("state"), zip_code=r.get("zip_code"),
+        country=r.get("country"), phone=r.get("phone"), email=r.get("email"),
+        website=r.get("website"), hours_of_operation=r.get("hours_of_operation"),
+        pricing_tier=r.get("pricing_tier"), amenities=r.get("amenities"),
+        average_rating=r.get("average_rating", 0.0),
+        review_count=r.get("review_count", 0),
+        owner_id=r.get("owner_id"), created_by=r["created_by"],
+        created_at=r.get("created_at"), photos=photos,
+    )
+
+
 @router.post("/{restaurant_id}", status_code=status.HTTP_201_CREATED)
 def add_favorite(
     restaurant_id: int,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user),
+    db=Depends(get_db),
+    current_user: dict = Depends(get_current_user),
 ):
-    restaurant = db.query(Restaurant).filter(Restaurant.id == restaurant_id).first()
-    if not restaurant:
+    if not db["restaurants"].find_one({"id": restaurant_id}):
         raise HTTPException(status_code=404, detail="Restaurant not found")
-
-    existing = db.query(Favorite).filter(
-        Favorite.user_id == current_user.id, Favorite.restaurant_id == restaurant_id
-    ).first()
-    if existing:
+    if db["favorites"].find_one({"user_id": current_user["id"], "restaurant_id": restaurant_id}):
         raise HTTPException(status_code=400, detail="Already in favorites")
 
-    fav = Favorite(user_id=current_user.id, restaurant_id=restaurant_id)
-    db.add(fav)
-    db.commit()
+    db["favorites"].insert_one({
+        "user_id": current_user["id"],
+        "restaurant_id": restaurant_id,
+        "created_at": datetime.now(timezone.utc),
+    })
     return {"message": "Added to favorites"}
 
 
 @router.delete("/{restaurant_id}", status_code=status.HTTP_204_NO_CONTENT)
 def remove_favorite(
     restaurant_id: int,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user),
+    db=Depends(get_db),
+    current_user: dict = Depends(get_current_user),
 ):
-    fav = db.query(Favorite).filter(
-        Favorite.user_id == current_user.id, Favorite.restaurant_id == restaurant_id
-    ).first()
-    if not fav:
+    result = db["favorites"].delete_one({"user_id": current_user["id"], "restaurant_id": restaurant_id})
+    if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Not in favorites")
-    db.delete(fav)
-    db.commit()
 
 
 @router.get("/", response_model=List[RestaurantResponse])
 def get_favorites(
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user),
+    db=Depends(get_db),
+    current_user: dict = Depends(get_current_user),
 ):
-    favs = db.query(Favorite).filter(Favorite.user_id == current_user.id).all()
-    restaurants = []
+    favs = list(db["favorites"].find({"user_id": current_user["id"]}))
+    result = []
     for f in favs:
-        r = db.query(Restaurant).filter(Restaurant.id == f.restaurant_id).first()
+        r = db["restaurants"].find_one({"id": f["restaurant_id"]})
         if r:
-            resp = RestaurantResponse.model_validate(r)
-            resp.photos = [p.photo_url for p in r.photos]
-            restaurants.append(resp)
-    return restaurants
+            result.append(_rest_to_response(r))
+    return result

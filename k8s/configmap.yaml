@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: yelp-config
+  namespace: default
+data:
+  MONGODB_DB_NAME: "yelp_db"
+  ALGORITHM: "HS256"
+  ACCESS_TOKEN_EXPIRE_MINUTES: "1440"
+  UPLOAD_DIR: "uploads"
+  OLLAMA_MODEL: "llama3.2:latest"
+  KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: yelp-secrets
+  namespace: default
+type: Opaque
+stringData:
+  SECRET_KEY: "85e70883bdd0b466356391c6a8ee2a67a7a9be8ec808e2d39795bd548bf02fe2"
+  MONGODB_URL: "mongodb://mongodb-service:27017"

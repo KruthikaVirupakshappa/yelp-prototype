@@ -20,6 +20,3 @@ class PreferencesResponse(BaseModel):
     preferred_location: Optional[str] = None
     ambiance_preferences: Optional[str] = None
     sort_preference: Optional[str] = None
-
-    class Config:
-        from_attributes = True

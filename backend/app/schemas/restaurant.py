@@ -41,20 +41,9 @@ class RestaurantResponse(BaseModel):
     hours_of_operation: Optional[str] = None
     pricing_tier: Optional[str] = None
     amenities: Optional[str] = None
-    average_rating: float
-    review_count: int
+    average_rating: float = 0.0
+    review_count: int = 0
     owner_id: Optional[int] = None
     created_by: int
     created_at: Optional[datetime] = None
     photos: Optional[List[str]] = []
-
-    class Config:
-        from_attributes = True
-
-
-class RestaurantSearchQuery(BaseModel):
-    name: Optional[str] = None
-    cuisine_type: Optional[str] = None
-    keywords: Optional[str] = None
-    city: Optional[str] = None
-    zip_code: Optional[str] = None

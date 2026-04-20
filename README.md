@@ -1,154 +1,155 @@
-# yelp-prototype
-Prototype of Yelp with multiple functionalities and chatbot.
+# Fork & Fire — Yelp Prototype
 
-## Description:
-
-
-### Execute backend
-
-To run the backend application and load it in Swagger UI, follow [backend/README.md](backend/README.md).
+A full-stack restaurant discovery and review platform built for CMPE 236 Distributed Systems (Lab 1 + Lab 2).
 
 ---
 
-## Team Git sync Workflow
+## Architecture (Lab 2)
 
-**Repo**: `yelp-prototype`  
+The backend is split into **4 independent microservices**, each with its own Dockerfile, connected through Kafka and MongoDB:
 
-**Details**: 
-- Main branch: main  
-- Backend branch: `backend-kv`  
-- Frontend branch: `frontend-sadaf`  
-
-**Goal**:
-- Work independently on backend and frontend.
-- Keep `main` in a non-conflicting, clean state, merge to main only when it's safe to proceed.
-- Merge into `main` directly (no Pull Requests).
+```
+Frontend (React + Vite)
+        │  nginx routes each /api/<prefix>/ to the correct service
+        ▼
+┌──────────────────┬───────────────────┬──────────────────────────┬───────────────┐
+│  User Service    │ Restaurant Service│ Restaurant Owner Service │ Review Service│
+│  :8001           │ :8002             │ :8003                    │ :8004         │
+│  /api/auth/      │ /api/restaurants/ │ /api/owner/              │ /api/reviews/ │
+│  /api/users/     │                   │                          │ /api/favorites│
+│  /api/preferences│                   │                          │ /api/ai-assist│
+└────────┬─────────┴────────┬──────────┴──────────────────────────┴───────┬───────┘
+         │                  │                                               │
+         ▼                  ▼                                               ▼
+    Kafka Topics       Kafka Topics                                   Kafka Topics
+  user.created       restaurant.created                            review.created
+  user.updated       restaurant.updated                            review.updated
+                     restaurant.claimed                            review.deleted
+         │                  │                                               │
+         ▼                  ▼                                               ▼
+   User Worker       Restaurant Worker                             Review Worker
+   (consumer)         (consumer)                                    (consumer)
+         │                  │                                               │
+         └──────────────────┴───────────────────────────────────────────────┘
+                                        │
+                                   MongoDB (shared)
+```
 
 ---
 
-### Rules We Follow
+## Tech Stack
 
-1. **Never commit directly to `main`.**
-2. **Always sync your branch with `main` before starting work and before merging to `main`.**
-3. **Keep changes separated by folder** to avoid conflicts:
-   - Backend changes should stay under something like: `backend/` or necessary differentiator.
-   - Frontend changes should stay under something like: `frontend/` or necessary differentiator.
-4. **Small, frequent commits** with clear messages of the change.
-5. Let's Communicate if there is any doubt or before modifying shared files like README, package.json, or environment files.
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, Vite, Redux Toolkit, React Router, Axios |
+| Backend | FastAPI (4 microservices), PyMongo |
+| Database | MongoDB 7 |
+| Messaging | Apache Kafka (3 topics groups, 3 worker consumers) |
+| AI Assistant | LangChain + Ollama (`llama3.2:latest`) |
+| Containerization | Docker, docker-compose |
+| Orchestration | Kubernetes (k8s/) |
+| Performance Testing | Apache JMeter |
 
-------------------------------------------------------------
-### BACKEND WORKFLOW (branch: backend-kv)
-------------------------------------------------------------
+---
 
-#### ONE TIME SETUP (first time only)
-
-```bash
-git clone https://github.com/KruthikaVirupakshappa/yelp-prototype.git   # Clone the repository
-cd yelp-prototype                                                       # Enter project folder
-git fetch origin                                                        # Fetch all remote branches
-git checkout backend-kv                                                 # Switch to backend branch
-git pull origin backend-kv                                              # Get latest backend branch updates
-```
-
-
-#### BEFORE STARTING ANY NEW WORK (always sync from main)
+## Quick Start (Docker)
 
 ```bash
-git fetch origin                        # Fetch latest changes from remote without modifying local branches
-git checkout backend-kv                 # Switch to your feature branch
-git rebase origin/main                  # Move backend-kv commits on top of latest remote main branch
+# 1. Clone the repo
+git clone https://github.com/KruthikaVirupakshappa/yelp-prototype.git
+cd yelp-prototype
 
-# If there are conflicts:
-#   - Fix the conflicted files manually
-#   - Run: git add <resolved-files>
-git rebase --continue                   # Continue the rebase after resolving conflicts
+# 2. Copy and configure env
+cp .env.example .env          # edit SECRET_KEY if desired
 
-git push --force-with-lease origin backend-kv   # Safely update remote branch after rebase (required because history changed)
+# 3. Start everything (MongoDB, Kafka, all 4 services, 3 workers, frontend)
+docker-compose up --build
+
+# 4. Open the app
+open http://localhost
 ```
 
-#### COMMIT AND PUSH CHANGES 
+The `db-seed` service runs automatically on first start and populates sample users, restaurants, and reviews.
 
+For Ollama (AI assistant), run separately on your host:
 ```bash
-git add .                       # Stage all changes
-git commit -m "backend: message"   # Commit backend changes
-git push origin backend-kv      # Push backend branch to GitHub
-
-#Optional safety step before pushing or if push fails:
-git checkout main               # Go to main
-git pull origin main            # Ensure main is updated
-git checkout backend-kv         # Return to backend branch
-git rebase main                 # Re-apply backend changes on latest main
-git push --force-with-lease origin backend-kv   # Safely force push after rebase
+ollama serve   # if not already running as a background service
 ```
 
-#### MERGE BACKEND INTO MAIN (no PR)
+---
 
-We can discuss and sync before pushing your branch changes to main branch.
-To simplify the workflow and avoid confusion, we can create a PR by following below workflow.
+## Running Locally (without Docker)
 
-1. Go to GitHub UI after pushing your local changes by following previous steps.
-2. It will usually indicate in yellow bar on top to create PR with your latest changes.
-You can click it to create PR.
-3. If you don't see that option, you can select your branch in dropdown and 
-click contribute button to create PR.
-4. Once PR is created, if there is no merge conflict, we can merge it directly
-to main since we both have merge permission.
+See [SETUP.md](SETUP.md) for full environment setup, then [RUNNING.md](RUNNING.md) for day-to-day startup.
 
-------------------------------------------------------------
-## FRONTEND WORKFLOW (branch: frontend-sadaf)
-------------------------------------------------------------
+---
 
-#### ONE TIME SETUP (first time only)
+## Project Structure
 
-```bash
-git clone https://github.com/KruthikaVirupakshappa/yelp-prototype.git   # Clone the repository
-cd yelp-prototype                                                       # Enter project folder
-git fetch origin                                                        # Fetch all remote branches
-git checkout frontend-sadaf                                             # Switch to frontend branch
-git pull origin frontend-sadaf                                          # Get latest frontend branch updates
+```
+yelp-prototype/
+├── backend/
+│   ├── main.py                        # Monolith entry point (local dev)
+│   ├── main_user.py                   # User/Reviewer Service entry point
+│   ├── main_restaurant.py             # Restaurant Service entry point
+│   ├── main_owner.py                  # Restaurant Owner Service entry point
+│   ├── main_review.py                 # Review Service entry point
+│   ├── review_worker.py               # Kafka consumer — review events
+│   ├── restaurant_worker.py           # Kafka consumer — restaurant events
+│   ├── user_worker.py                 # Kafka consumer — user events
+│   ├── seed_data.py                   # Sample data seeder
+│   ├── Dockerfile.user-service
+│   ├── Dockerfile.restaurant-service
+│   ├── Dockerfile.restaurant-owner-service
+│   ├── Dockerfile.review-service
+│   ├── Dockerfile.worker              # Review worker
+│   ├── Dockerfile.restaurant-worker
+│   ├── Dockerfile.user-worker
+│   └── app/
+│       ├── routes/                    # All API route handlers
+│       ├── schemas/                   # Pydantic models
+│       ├── database.py                # MongoDB connection
+│       ├── config.py                  # Settings (pydantic-settings)
+│       ├── auth.py                    # JWT + bcrypt helpers
+│       └── kafka_producer.py          # Non-blocking Kafka publisher
+├── yelp-frontend/
+│   ├── src/
+│   │   ├── store/                     # Redux slices (auth, restaurants, reviews, favorites)
+│   │   ├── pages/
+│   │   └── components/
+│   ├── Dockerfile                     # Multi-stage: npm build → nginx
+│   └── nginx.conf                     # Routes /api/* to correct microservice
+├── k8s/                               # Kubernetes manifests
+├── jmeter/                            # JMeter test plan (.jmx) + results
+├── docker-compose.yml
+└── .env.example
 ```
 
-#### BEFORE STARTING ANY NEW WORK (always sync from main)
+---
 
-```bash
-git fetch origin                        # Fetch latest changes from remote without modifying local branches
-git checkout frontend-sadaf                # Switch to your feature branch
-git rebase origin/main                  # Move frontend-sadaf commits on top of latest remote main branch
+## Kafka Topics
 
-# If there are conflicts:
-#   - Fix the conflicted files manually
-#   - Run: git add <resolved-files>
-git rebase --continue                   # Continue the rebase after resolving conflicts
+| Topic | Producer | Consumer |
+|---|---|---|
+| `review.created` | Review Service | Review Worker |
+| `review.updated` | Review Service | Review Worker |
+| `review.deleted` | Review Service | Review Worker |
+| `restaurant.created` | Restaurant Service | Restaurant Worker |
+| `restaurant.updated` | Restaurant Service | Restaurant Worker |
+| `restaurant.claimed` | Restaurant Service | Restaurant Worker |
+| `user.created` | User Service | User Worker |
+| `user.updated` | User Service | User Worker |
 
-git push --force-with-lease origin frontend-sadaf   # Safely update remote branch after rebase (required because history changed)
-```
+---
 
-#### COMMIT AND PUSH CHANGES 
+## Team Git Workflow
 
-```bash
+**Branches:**
+- `main` — stable, production-ready
 
-git add .                       # Stage all changes
-git commit -m "frontend: message"   # Commit frontend changes
-git push origin frontend-sadaf      # Push frontend branch to GitHub
-
-# Optional safety step before pushing or if push fails::
-git checkout main               # Go to main
-git pull origin main            # Ensure main is updated
-git checkout frontend-sadaf     # Return to frontend branch
-git rebase main                 # Re-apply frontend changes on latest main
-git push --force-with-lease origin frontend-sadaf   # Safely force push after rebase
-```
-
-
-#### MERGE FRONTEND INTO MAIN - PR
-We can discuss and sync before pushing your branch changes to main branch.
-To simplify the workflow and avoid confusion, we can create a PR by following below workflow.
-
-1. Go to GitHub UI after pushing your local changes by following previous steps.
-2. It will usually indicate in yellow bar on top to create PR with your latest changes.
-You can click it to create PR.
-3. If you don't see that option, you can select your branch in dropdown and 
-click contribute button to create PR.
-4. Once PR is created, if there is no merge conflict, we can merge it directly
-to main since we both have merge permission.
+**Rules:**
+1. Never commit directly to `main`
+2. Always sync with `main` before starting work (`git rebase origin/main`)
+3. Keep changes under new branch for each PR
+4. Create a PR to merge into `main`
 

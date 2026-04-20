@@ -1,97 +1,180 @@
-# Yelp Prototype - Backend (FastAPI + MySQL)
+# Fork & Fire — Backend
 
-## Setup
+FastAPI backend split into **4 microservices** + **3 Kafka worker consumers**, all backed by MongoDB.
 
-### 1. Prerequisites
-- Python 3.10+
-- MySQL 8.0+
+---
 
-### 2. Create MySQL Database
+## Services
+
+| Service | Entry point | Port | Routes |
+|---|---|---|---|
+| User / Reviewer | `main_user.py` | 8001 | `/api/auth/`, `/api/users/`, `/api/preferences/` |
+| Restaurant | `main_restaurant.py` | 8002 | `/api/restaurants/` |
+| Restaurant Owner | `main_owner.py` | 8003 | `/api/owner/` |
+| Review | `main_review.py` | 8004 | `/api/reviews/`, `/api/favorites/`, `/api/ai-assistant/` |
+
+## Kafka Workers (Consumers)
+
+| Worker | File | Listens on |
+|---|---|---|
+| Review Worker | `review_worker.py` | `review.created`, `review.updated`, `review.deleted` |
+| Restaurant Worker | `restaurant_worker.py` | `restaurant.created`, `restaurant.updated`, `restaurant.claimed` |
+| User Worker | `user_worker.py` | `user.created`, `user.updated` |
+
+---
+
+## Running with Docker
+
 ```bash
-mysql -u root -p < init_db.sql
+# From project root
+docker-compose up --build
 ```
 
-### 3. Install Dependencies
+Each service gets its own container. See [docker-compose.yml](../docker-compose.yml).
+
+---
+
+## Running Locally (monolith mode)
+
+All routes on a single FastAPI app at port 8000 — easiest for development.
+
 ```bash
 cd backend
-pip install -r requirements.txt
+source ../env/bin/activate
+uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-### 4. Configure Environment
+API docs: http://localhost:8000/docs
+
+### Seed sample data
+
 ```bash
-cp .env.example .env
-# Edit .env with your MySQL credentials, OpenAI key, and Tavily key
+python seed_data.py
 ```
 
-### 5. Run the Server
-```bash
-uvicorn main:app --reload --port 8000
-```
+### Kill port 8000 if already in use
 
-### 6. If port 8000 is already in use, kill the existing session:
 ```bash
 kill -9 $(lsof -t -i:8000)
 ```
-Then restart the server using the command above.
 
-### 7. API Documentation
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
+---
+
+## Running individual microservices locally
+
+```bash
+source ../env/bin/activate
+
+# User Service
+uvicorn main_user:app --port 8001 --reload
+
+# Restaurant Service
+uvicorn main_restaurant:app --port 8002 --reload
+
+# Restaurant Owner Service
+uvicorn main_owner:app --port 8003 --reload
+
+# Review Service
+uvicorn main_review:app --port 8004 --reload
+
+# Workers (in separate terminals)
+python review_worker.py
+python restaurant_worker.py
+python user_worker.py
+```
+
+---
 
 ## API Endpoints
 
-### Authentication
+### Authentication — User Service (:8001)
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/signup` | Register a new user/owner |
-| POST | `/api/auth/login` | Login and get JWT token |
+|---|---|---|
+| POST | `/api/auth/signup` | Register a new user or owner |
+| POST | `/api/auth/login` | Login and receive JWT token |
 
-### Users
+### Users — User Service (:8001)
 | Method | Endpoint | Description |
-|--------|----------|-------------|
+|---|---|---|
 | GET | `/api/users/me` | Get current user profile |
 | PUT | `/api/users/me` | Update profile |
 | POST | `/api/users/me/profile-picture` | Upload profile picture |
 
-### Restaurants
+### Preferences — User Service (:8001)
 | Method | Endpoint | Description |
-|--------|----------|-------------|
+|---|---|---|
+| GET | `/api/preferences/` | Get preferences |
+| PUT | `/api/preferences/` | Update preferences |
+
+### Restaurants — Restaurant Service (:8002)
+| Method | Endpoint | Description |
+|---|---|---|
 | POST | `/api/restaurants/` | Create restaurant |
-| GET | `/api/restaurants/` | Search restaurants (query params: name, cuisine_type, keywords, city, zip_code) |
+| GET | `/api/restaurants/` | Search/list restaurants |
 | GET | `/api/restaurants/{id}` | Get restaurant details |
 | PUT | `/api/restaurants/{id}` | Update restaurant |
-| POST | `/api/restaurants/{id}/claim` | Claim restaurant (owners) |
+| POST | `/api/restaurants/{id}/photos` | Upload photo |
+| POST | `/api/restaurants/{id}/claim` | Claim restaurant (owners only) |
 
-### Reviews
+### Owner Dashboard — Restaurant Owner Service (:8003)
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/reviews/` | Create review |
+|---|---|---|
+| GET | `/api/owner/restaurants` | List owned restaurants |
+| GET | `/api/owner/restaurants/{id}/reviews` | Reviews for owned restaurant |
+| GET | `/api/owner/unclaimed` | Browse unclaimed restaurants |
+| GET | `/api/owner/dashboard` | Analytics dashboard |
+
+### Reviews — Review Service (:8004)
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/reviews/` | Submit review (triggers Kafka event) |
 | GET | `/api/reviews/restaurant/{id}` | Get restaurant reviews |
 | PUT | `/api/reviews/{id}` | Update own review |
 | DELETE | `/api/reviews/{id}` | Delete own review |
-| GET | `/api/reviews/user/history` | Get user's review history |
+| GET | `/api/reviews/user/history` | Current user's review history |
 
-### Favorites
+### Favorites — Review Service (:8004)
 | Method | Endpoint | Description |
-|--------|----------|-------------|
+|---|---|---|
 | POST | `/api/favorites/{restaurant_id}` | Add to favorites |
 | DELETE | `/api/favorites/{restaurant_id}` | Remove from favorites |
 | GET | `/api/favorites/` | List favorites |
 
-### Preferences
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/preferences/` | Get user preferences |
-| PUT | `/api/preferences/` | Update preferences |
+### AI Assistant — Review Service (:8004)
+| Method | Endpoint | Auth | Description |
+|---|---|---|---|
+| POST | `/api/ai-assistant/chat` | Required | Chat with AI (uses Ollama) |
+| POST | `/api/ai-assistant/chat/anonymous` | None | Anonymous AI chat |
 
-### AI Assistant
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/ai-assistant/chat` | Chat with AI assistant |
+---
 
-### Owner Dashboard
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/owner/restaurants` | Get owned restaurants |
-| GET | `/api/owner/restaurants/{id}/reviews` | Get reviews for owned restaurant |
-| GET | `/api/owner/dashboard` | Get dashboard analytics |
+## MongoDB Collections
+
+| Collection | Description |
+|---|---|
+| `users` | User accounts with bcrypt-hashed passwords |
+| `sessions` | JWT sessions keyed by user_id |
+| `restaurants` | Restaurant records with embedded photos array |
+| `reviews` | Review documents |
+| `favorites` | User–restaurant favorite pairs |
+| `preferences` | Per-user cuisine/dietary/ambiance preferences |
+| `activity_logs` | Audit log of user actions |
+| `counters` | Auto-increment sequence tracker |
+
+---
+
+## Environment variables
+
+Copy `backend/.env.example` to `backend/.env` and fill in:
+
+```
+MONGODB_URL=mongodb://localhost:27017
+MONGODB_DB_NAME=yelp_db
+SECRET_KEY=<generate with: python3 -c "import secrets; print(secrets.token_hex(32))">
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=1440
+UPLOAD_DIR=uploads
+OLLAMA_MODEL=llama3.2:latest
+OLLAMA_BASE_URL=http://localhost:11434
+KAFKA_BOOTSTRAP_SERVERS=localhost:9092
+```

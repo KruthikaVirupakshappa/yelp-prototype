@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import AIAssistant from "../components/chat/AIAssistant";
 import { api } from "../services/api";
+import ConfirmModal from "../components/ConfirmModal";
+import { OpenNowBadge } from "../utils/openNow.jsx";
 
 const PRICE_OPTIONS = ["$", "$$", "$$$", "$$$$"];
 const SORT_OPTIONS = [
@@ -30,6 +32,7 @@ export default function Explore() {
   const [query, setQuery] = useState(urlQuery);
   const [cityInput, setCityInput] = useState("");
   const [priceFilter, setPriceFilter] = useState("");
+  const [ratingFilter, setRatingFilter] = useState(0);
   const [sortBy, setSortBy] = useState(isTopRated ? "rating" : "");
 
   // Autocomplete suggestions
@@ -99,20 +102,31 @@ export default function Explore() {
     }, 300);
   }, [query, cityInput]);
 
+  const [confirmUnsaveId, setConfirmUnsaveId] = useState(null);
+
   async function toggleSave(restId) {
     if (!localStorage.getItem("token")) {
       navigate("/login", { state: { message: "Please log in to save restaurants." } });
       return;
     }
-    const isSaved = savedIds.includes(restId);
+    if (savedIds.includes(restId)) {
+      setConfirmUnsaveId(restId);
+      return;
+    }
     try {
-      if (isSaved) {
-        await api.delete(`/favorites/${restId}`);
-        setSavedIds((prev) => prev.filter((x) => x !== restId));
-      } else {
-        await api.post(`/favorites/${restId}`);
-        setSavedIds((prev) => (prev.includes(restId) ? prev : [...prev, restId]));
-      }
+      await api.post(`/favorites/${restId}`);
+      setSavedIds((prev) => (prev.includes(restId) ? prev : [...prev, restId]));
+    } catch (err) {
+      console.error(err);
+      await loadFavorites();
+    }
+  }
+
+  async function doUnsave(restId) {
+    setConfirmUnsaveId(null);
+    try {
+      await api.delete(`/favorites/${restId}`);
+      setSavedIds((prev) => prev.filter((x) => x !== restId));
     } catch (err) {
       console.error(err);
       await loadFavorites();
@@ -123,12 +137,13 @@ export default function Explore() {
     setQuery("");
     setCityInput("");
     setPriceFilter("");
+    setRatingFilter(0);
     setSortBy(isTopRated ? "rating" : "");
     setSuggestions([]);
     fetchRestaurants();
   }
 
-  const hasFilters = query || cityInput || priceFilter || sortBy;
+  const hasFilters = query || cityInput || priceFilter || ratingFilter || sortBy;
 
   // Client-side price filter + sort
   const filtered = useMemo(() => {
@@ -136,6 +151,9 @@ export default function Explore() {
 
     if (priceFilter) {
       list = list.filter((r) => r.pricing_tier === priceFilter);
+    }
+    if (ratingFilter > 0) {
+      list = list.filter((r) => (r.average_rating || 0) >= ratingFilter);
     }
 
     switch (sortBy) {
@@ -164,7 +182,7 @@ export default function Explore() {
     }
 
     return list;
-  }, [restaurants, priceFilter, sortBy]);
+  }, [restaurants, priceFilter, ratingFilter, sortBy]);
 
   // Close suggestions on outside click
   useEffect(() => {
@@ -179,6 +197,15 @@ export default function Explore() {
 
   return (
     <div className="explore-wrap">
+      {confirmUnsaveId && (
+        <ConfirmModal
+          message="Remove from saved?"
+          subtext={`"${restaurants.find((r) => r.id === confirmUnsaveId)?.name}" will be removed from your saved list.`}
+          confirmLabel="Remove"
+          onConfirm={() => doUnsave(confirmUnsaveId)}
+          onCancel={() => setConfirmUnsaveId(null)}
+        />
+      )}
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <h1 className="explore-title" style={{ marginBottom: 6 }}>
           {isTopRated ? "Top Rated" : "Explore"}
@@ -260,6 +287,29 @@ export default function Explore() {
                 Clear
               </button>
             )}
+          </div>
+
+          {/* Filter row: rating chips */}
+          <div className="filter-row2" style={{ marginBottom: 8 }}>
+            <span style={{ fontWeight: 800, color: "#5a5a66", fontSize: 13 }}>Rating:</span>
+            {[0, 4, 3].map((minR) => (
+              <button
+                key={minR}
+                type="button"
+                onClick={() => setRatingFilter(ratingFilter === minR ? 0 : minR)}
+                style={{
+                  borderRadius: 999, padding: "7px 14px", fontWeight: 850, fontSize: 13,
+                  border: ratingFilter === minR ? "none" : "1px solid rgba(0,0,0,0.12)",
+                  background: ratingFilter === minR ? "linear-gradient(90deg,#ff2d55,#ff7a18)" : "rgba(255,255,255,0.96)",
+                  color: ratingFilter === minR ? "#fff" : "#1b1b24",
+                  cursor: "pointer",
+                  boxShadow: ratingFilter === minR ? "0 6px 18px rgba(255,45,85,0.22)" : "none",
+                  transition: "all 160ms ease",
+                }}
+              >
+                {minR === 0 ? "Any Rating" : `${minR}★+`}
+              </button>
+            ))}
           </div>
 
           {/* Filter row: price chips + sort */}
@@ -366,6 +416,7 @@ export default function Explore() {
                             📍 {r.city}{r.state ? `, ${r.state}` : ""}
                           </span>
                         )}
+                        <OpenNowBadge hours={r.hours_of_operation} />
                       </div>
 
                       <div className="rest-actions2">
