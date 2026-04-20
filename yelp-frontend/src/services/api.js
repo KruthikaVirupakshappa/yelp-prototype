@@ -38,13 +38,19 @@ api.interceptors.response.use(
     );
 
     if (error?.response?.status === 401) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("token_type");
-      localStorage.removeItem("user");
-      // Redirect to login only when on a protected page (not already on auth pages)
-      const path = window.location.pathname;
-      if (path !== "/login" && path !== "/signup") {
-        window.location.href = "/login";
+      const url = error?.config?.url || "";
+      const isMutatingRequest = ["post", "put", "patch", "delete"].includes(
+        (error?.config?.method || "").toLowerCase()
+      );
+      // Only force-logout on GET requests (background fetches), not form submissions
+      if (!isMutatingRequest) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("token_type");
+        localStorage.removeItem("user");
+        const path = window.location.pathname;
+        if (path !== "/login" && path !== "/signup") {
+          window.location.href = "/login";
+        }
       }
     }
 
