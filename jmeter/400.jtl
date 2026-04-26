@@ -1,0 +1,2000 @@
+1777246012931,522,POST /api/auth/signup,201,true,522
+1777246013010,459,POST /api/auth/signup,201,true,459
+1777246012856,617,POST /api/auth/signup,201,true,617
+1777246013088,426,POST /api/auth/signup,201,true,426
+1777246013155,408,POST /api/auth/signup,201,true,408
+1777246013232,380,POST /api/auth/signup,201,true,380
+1777246013310,419,POST /api/auth/signup,201,true,419
+1777246013384,394,POST /api/auth/signup,201,true,394
+1777246013454,426,POST /api/auth/login,200,true,426
+1777246013880,98,GET /api/restaurants/?keywords=Italian,200,true,98
+1777246013978,33,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,33
+1777246014011,78,POST /api/reviews/ (submit review),201,true,78
+1777246013563,544,POST /api/auth/login,200,true,544
+1777246014107,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246014122,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246013514,622,POST /api/auth/login,200,true,622
+1777246014136,30,GET /api/restaurants/?keywords=Italian,200,true,30
+1777246014136,32,POST /api/reviews/ (submit review),201,true,32
+1777246014167,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246013473,715,POST /api/auth/login,200,true,715
+1777246014188,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246014185,37,POST /api/reviews/ (submit review),201,true,37
+1777246014204,20,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,20
+1777246013460,770,POST /api/auth/signup,201,true,770
+1777246013469,770,POST /api/auth/login,200,true,770
+1777246014225,31,POST /api/reviews/ (submit review),201,true,31
+1777246014240,22,GET /api/restaurants/?keywords=Italian,200,true,22
+1777246014262,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246013612,681,POST /api/auth/login,200,true,681
+1777246014265,42,POST /api/reviews/ (submit review),201,true,42
+1777246014293,25,GET /api/restaurants/?keywords=Italian,200,true,25
+1777246013684,637,POST /api/auth/signup,201,true,637
+1777246014318,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246014324,32,POST /api/reviews/ (submit review),201,true,32
+1777246013758,615,POST /api/auth/signup,201,true,615
+1777246013730,659,POST /api/auth/login,200,true,659
+1777246014389,40,GET /api/restaurants/?keywords=Italian,200,true,40
+1777246014429,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246013534,920,POST /api/auth/signup,201,true,920
+1777246014445,62,POST /api/reviews/ (submit review),201,true,62
+1777246013835,672,POST /api/auth/signup,201,true,672
+1777246014132,470,POST /api/auth/signup,201,true,470
+1777246013610,1017,POST /api/auth/signup,201,true,1017
+1777246014230,483,POST /api/auth/login,200,true,483
+1777246014713,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246014721,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246014730,34,POST /api/reviews/ (submit review),201,true,34
+1777246013779,1121,POST /api/auth/login,200,true,1121
+1777246014900,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246014906,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246014910,22,POST /api/reviews/ (submit review),201,true,22
+1777246014321,835,POST /api/auth/login,200,true,835
+1777246015156,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246014373,797,POST /api/auth/login,200,true,797
+1777246013907,1264,POST /api/auth/signup,201,true,1264
+1777246014059,1112,POST /api/auth/signup,201,true,1112
+1777246015170,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246015171,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246015187,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246014280,960,POST /api/auth/signup,201,true,960
+1777246015182,110,POST /api/reviews/ (submit review),201,true,110
+1777246015199,93,POST /api/reviews/ (submit review),201,true,93
+1777246014206,1145,POST /api/auth/signup,201,true,1145
+1777246014506,865,POST /api/auth/signup,201,true,865
+1777246014627,762,POST /api/auth/login,200,true,762
+1777246015389,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246015401,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246014659,754,POST /api/auth/signup,201,true,754
+1777246015413,79,POST /api/reviews/ (submit review),201,true,79
+1777246013982,1514,POST /api/auth/signup,201,true,1514
+1777246014438,1177,POST /api/auth/signup,201,true,1177
+1777246014358,1259,POST /api/auth/signup,201,true,1259
+1777246014808,930,POST /api/auth/signup,201,true,930
+1777246014454,1525,POST /api/auth/login,200,true,1525
+1777246015979,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246015984,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246016001,75,POST /api/reviews/ (submit review),201,true,75
+1777246014881,1244,POST /api/auth/signup,201,true,1244
+1777246015413,834,POST /api/auth/login,200,true,834
+1777246016247,28,GET /api/restaurants/?keywords=Italian,200,true,28
+1777246016276,49,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,49
+1777246014507,1853,POST /api/auth/login,200,true,1853
+1777246016326,94,POST /api/reviews/ (submit review),201,true,92
+1777246016360,123,GET /api/restaurants/?keywords=Italian,200,true,123
+1777246016484,89,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,89
+1777246016573,57,POST /api/reviews/ (submit review),201,true,57
+1777246014959,1792,POST /api/auth/signup,201,true,1792
+1777246015258,1646,POST /api/auth/signup,201,true,1646
+1777246014584,2395,POST /api/auth/signup,201,true,2395
+1777246014603,2424,POST /api/auth/login,200,true,2424
+1777246017027,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246017039,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246017048,27,POST /api/reviews/ (submit review),201,true,27
+1777246015240,1915,POST /api/auth/login,200,true,1915
+1777246017155,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246017164,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246017167,30,POST /api/reviews/ (submit review),201,true,30
+1777246014733,2871,POST /api/auth/signup,201,true,2871
+1777246015331,2273,POST /api/auth/signup,201,true,2273
+1777246016234,1376,POST /api/auth/signup,201,true,1376
+1777246015171,2619,POST /api/auth/login,200,true,2619
+1777246017790,37,GET /api/restaurants/?keywords=Italian,200,true,37
+1777246015033,2794,POST /api/auth/signup,201,true,2794
+1777246016751,1082,POST /api/auth/login,200,true,1082
+1777246016683,1157,POST /api/auth/signup,201,true,1157
+1777246017828,39,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,39
+1777246017834,46,GET /api/restaurants/?keywords=Italian,200,true,46
+1777246017880,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246017867,36,POST /api/reviews/ (submit review),201,true,36
+1777246017893,38,POST /api/reviews/ (submit review),201,true,38
+1777246015496,2816,POST /api/auth/login,200,true,2816
+1777246015108,3205,POST /api/auth/signup,201,true,3205
+1777246015617,2697,POST /api/auth/login,200,true,2697
+1777246015351,2964,POST /api/auth/login,200,true,2964
+1777246018313,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246015408,2912,POST /api/auth/signup,201,true,2912
+1777246018315,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246018315,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246018327,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246018320,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246018329,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246015371,2971,POST /api/auth/login,200,true,2971
+1777246018342,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246018356,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246018334,62,POST /api/reviews/ (submit review),201,true,62
+1777246018334,62,POST /api/reviews/ (submit review),201,true,62
+1777246018342,94,POST /api/reviews/ (submit review),201,true,94
+1777246018372,204,POST /api/reviews/ (submit review),201,true,204
+1777246015171,3718,POST /api/auth/login,200,true,3718
+1777246015615,3274,POST /api/auth/login,200,true,3274
+1777246016310,2612,POST /api/auth/signup,201,true,2612
+1777246018890,36,GET /api/restaurants/?keywords=Italian,200,true,36
+1777246015182,3745,POST /api/auth/signup,201,true,3745
+1777246016160,2768,POST /api/auth/signup,201,true,2768
+1777246018890,46,GET /api/restaurants/?keywords=Italian,200,true,46
+1777246018936,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246018926,22,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,22
+1777246015931,3027,POST /api/auth/signup,201,true,3026
+1777246016006,2986,POST /api/auth/signup,201,true,2986
+1777246018948,48,POST /api/reviews/ (submit review),201,true,48
+1777246017433,1563,POST /api/auth/signup,201,true,1563
+1777246018948,49,POST /api/reviews/ (submit review),201,true,49
+1777246015555,3479,POST /api/auth/signup,201,true,3479
+1777246015738,3818,POST /api/auth/login,200,true,3818
+1777246019557,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246015707,3867,POST /api/auth/signup,201,true,3867
+1777246019574,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246017882,1699,POST /api/auth/signup,201,true,1699
+1777246017809,1772,POST /api/auth/signup,201,true,1772
+1777246016382,3199,POST /api/auth/signup,201,true,3199
+1777246015632,3950,POST /api/auth/signup,201,true,3950
+1777246019579,38,POST /api/reviews/ (submit review),201,true,38
+1777246017580,2058,POST /api/auth/signup,201,true,2058
+1777246017211,2492,POST /api/auth/signup,201,true,2492
+1777246016910,2811,POST /api/auth/signup,201,true,2811
+1777246015857,4556,POST /api/auth/signup,201,true,4556
+1777246016125,4305,POST /api/auth/login,200,true,4305
+1777246020430,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246020437,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246020442,27,POST /api/reviews/ (submit review),201,true,27
+1777246015783,4733,POST /api/auth/signup,201,true,4733
+1777246017605,2915,POST /api/auth/login,200,true,2915
+1777246020521,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246018484,2041,POST /api/auth/signup,201,true,2041
+1777246020524,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246020526,26,POST /api/reviews/ (submit review),201,true,26
+1777246016081,4736,POST /api/auth/signup,201,true,4736
+1777246017133,3685,POST /api/auth/signup,201,true,3685
+1777246018314,2530,POST /api/auth/login,200,true,2530
+1777246020844,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246020856,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246018407,2461,POST /api/auth/signup,201,true,2461
+1777246016835,4045,POST /api/auth/signup,201,true,4045
+1777246018707,2175,POST /api/auth/signup,201,true,2175
+1777246016983,3903,POST /api/auth/signup,201,true,3903
+1777246020866,24,POST /api/reviews/ (submit review),201,true,24
+1777246016539,4358,POST /api/auth/signup,201,true,4358
+1777246016905,3999,POST /api/auth/login,200,true,3999
+1777246020904,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246020908,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246020911,15,POST /api/reviews/ (submit review),201,true,15
+1777246015485,5511,POST /api/auth/signup,201,true,5511
+1777246017605,3429,POST /api/auth/login,200,true,3428
+1777246016759,4276,POST /api/auth/signup,201,true,4276
+1777246021034,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246017358,3686,POST /api/auth/signup,201,true,3686
+1777246017058,3991,POST /api/auth/signup,201,true,3991
+1777246021044,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246021055,30,POST /api/reviews/ (submit review),201,true,30
+1777246018928,2391,POST /api/auth/login,200,true,2391
+1777246021320,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246021334,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246021352,30,POST /api/reviews/ (submit review),201,true,30
+1777246018260,3588,POST /api/auth/signup,201,true,3588
+1777246016460,5388,POST /api/auth/signup,201,true,5388
+1777246018183,3682,POST /api/auth/signup,201,true,3682
+1777246016979,4887,POST /api/auth/login,200,true,4887
+1777246021866,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246021871,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246021873,10,POST /api/reviews/ (submit review),201,true,10
+1777246018034,3862,POST /api/auth/signup,201,true,3862
+1777246016609,5336,POST /api/auth/signup,201,true,5336
+1777246017657,4397,POST /api/auth/signup,201,true,4397
+1777246017840,4238,POST /api/auth/login,200,true,4238
+1777246022078,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246022085,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246022087,18,POST /api/reviews/ (submit review),201,true,18
+1777246018109,4047,POST /api/auth/signup,201,true,4047
+1777246019157,3002,POST /api/auth/signup,201,true,3002
+1777246019458,2701,POST /api/auth/signup,201,true,2701
+1777246018634,3695,POST /api/auth/signup,201,true,3695
+1777246018928,3401,POST /api/auth/login,200,true,3401
+1777246022329,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246022339,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246017506,4844,POST /api/auth/signup,201,true,4844
+1777246022349,26,POST /api/reviews/ (submit review),201,true,26
+1777246017284,5091,POST /api/auth/signup,201,true,5091
+1777246020058,2876,POST /api/auth/signup,201,true,2876
+1777246018560,4588,POST /api/auth/signup,201,true,4588
+1777246018320,4828,POST /api/auth/login,200,true,4828
+1777246023148,15,GET /api/restaurants/?keywords=Italian,200,true,15
+1777246017735,5428,POST /api/auth/signup,201,true,5428
+1777246023163,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246018958,4240,POST /api/auth/login,200,true,4240
+1777246017828,5371,POST /api/auth/login,200,true,5371
+1777246023176,23,POST /api/reviews/ (submit review),201,true,23
+1777246023199,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246018332,4894,POST /api/auth/signup,201,true,4894
+1777246023206,23,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,23
+1777246023199,40,GET /api/restaurants/?keywords=Italian,200,true,40
+1777246023240,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246023230,52,POST /api/reviews/ (submit review),201,true,52
+1777246023257,25,POST /api/reviews/ (submit review),201,true,25
+1777246018922,4410,POST /api/auth/login,200,true,4410
+1777246019232,4105,POST /api/auth/signup,201,true,4105
+1777246017610,5737,POST /api/auth/login,200,true,5737
+1777246023332,24,GET /api/restaurants/?keywords=Italian,200,true,24
+1777246019581,3775,POST /api/auth/login,200,true,3775
+1777246018930,4426,POST /api/auth/signup,201,true,4426
+1777246023347,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246023359,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246023356,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246023356,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246023369,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246023369,70,POST /api/reviews/ (submit review),201,true,70
+1777246023380,66,POST /api/reviews/ (submit review),201,true,66
+1777246023369,77,POST /api/reviews/ (submit review),201,true,77
+1777246018784,4835,POST /api/auth/signup,201,true,4835
+1777246019679,3940,POST /api/auth/signup,201,true,3940
+1777246019703,3940,POST /api/auth/login,200,true,3940
+1777246018997,4646,POST /api/auth/login,200,true,4646
+1777246019018,4629,POST /api/auth/signup,201,true,4629
+1777246023643,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246020133,3521,POST /api/auth/signup,201,true,3521
+1777246023643,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246023654,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246023655,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246017957,5714,POST /api/auth/signup,201,true,5714
+1777246023661,32,POST /api/reviews/ (submit review),201,true,32
+1777246023661,41,POST /api/reviews/ (submit review),201,true,41
+1777246019533,4195,POST /api/auth/signup,201,true,4195
+1777246019758,3981,POST /api/auth/signup,201,true,3981
+1777246018860,4902,POST /api/auth/signup,201,true,4902
+1777246019982,3843,POST /api/auth/signup,201,true,3843
+1777246019574,4454,POST /api/auth/login,200,true,4454
+1777246024029,7,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246024036,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246024042,70,POST /api/reviews/ (submit review),201,true,70
+1777246018992,5141,POST /api/auth/login,200,true,5141
+1777246024133,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246019034,5113,POST /api/auth/login,200,true,5113
+1777246024147,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246024147,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246020742,3425,POST /api/auth/signup,201,true,3425
+1777246024163,28,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,28
+1777246024163,38,POST /api/reviews/ (submit review),201,true,38
+1777246024191,214,POST /api/reviews/ (submit review),201,true,214
+1777246020818,3624,POST /api/auth/login,200,true,3624
+1777246024442,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246024447,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246024457,29,POST /api/reviews/ (submit review),201,true,29
+1777246019084,5414,POST /api/auth/signup,201,true,5414
+1777246019307,5198,POST /api/auth/signup,201,true,5198
+1777246020881,3631,POST /api/auth/login,200,true,3631
+1777246024512,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246024515,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246019581,4948,POST /api/auth/login,200,true,4948
+1777246020510,4024,POST /api/auth/signup,201,true,4024
+1777246024529,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246024535,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246024522,25,POST /api/reviews/ (submit review),201,true,25
+1777246024538,29,POST /api/reviews/ (submit review),201,true,29
+1777246019606,5029,POST /api/auth/signup,201,true,5029
+1777246019833,4812,POST /api/auth/signup,201,true,4812
+1777246019908,4738,POST /api/auth/signup,201,true,4738
+1777246019379,5393,POST /api/auth/signup,201,true,5393
+1777246020808,4355,POST /api/auth/signup,201,true,4355
+1777246019581,5582,POST /api/auth/login,200,true,5582
+1777246019582,5583,POST /api/auth/login,200,true,5583
+1777246025163,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246025165,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246025179,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246025179,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246025192,36,POST /api/reviews/ (submit review),201,true,36
+1777246025192,51,POST /api/reviews/ (submit review),201,true,51
+1777246019638,5864,POST /api/auth/login,200,true,5864
+1777246025502,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246025520,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246019722,5807,POST /api/auth/login,200,true,5807
+1777246025529,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246025536,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246020413,5126,POST /api/auth/login,200,true,5126
+1777246025539,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246025543,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246020517,5037,POST /api/auth/login,200,true,5037
+1777246025555,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246025539,37,POST /api/reviews/ (submit review),201,true,37
+1777246025569,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246025523,63,POST /api/reviews/ (submit review),201,true,63
+1777246025548,59,POST /api/reviews/ (submit review),201,true,59
+1777246025578,30,POST /api/reviews/ (submit review),201,true,30
+1777246020525,5150,POST /api/auth/login,200,true,5150
+1777246020868,4815,POST /api/auth/login,200,true,4815
+1777246025675,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246025683,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246025686,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246025690,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246020881,4847,POST /api/auth/signup,201,true,4847
+1777246020431,5298,POST /api/auth/signup,201,true,5298
+1777246020287,5442,POST /api/auth/signup,201,true,5442
+1777246025698,42,POST /api/reviews/ (submit review),201,true,42
+1777246025696,44,POST /api/reviews/ (submit review),201,true,44
+1777246020585,5207,POST /api/auth/signup,201,true,5206
+1777246020210,5639,POST /api/auth/signup,201,true,5639
+1777246020818,5084,POST /api/auth/login,200,true,5084
+1777246020687,5219,POST /api/auth/signup,201,true,5219
+1777246020882,5027,POST /api/auth/login,200,true,5027
+1777246021707,4207,POST /api/auth/signup,201,true,4207
+1777246020996,4918,POST /api/auth/login,200,true,4918
+1777246020358,5559,POST /api/auth/signup,201,true,5559
+1777246025914,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246025903,20,GET /api/restaurants/?keywords=Italian,200,true,20
+1777246021483,4440,POST /api/auth/signup,201,true,4440
+1777246021111,4812,POST /api/auth/signup,201,true,4812
+1777246025909,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246021030,4901,POST /api/auth/signup,201,true,4901
+1777246021631,4300,POST /api/auth/signup,201,true,4300
+1777246025923,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246025923,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246025923,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246025941,55,POST /api/reviews/ (submit review),201,true,55
+1777246025941,55,POST /api/reviews/ (submit review),201,true,55
+1777246025941,55,POST /api/reviews/ (submit review),201,true,55
+1777246020886,5341,POST /api/auth/login,200,true,5341
+1777246020958,5271,POST /api/auth/signup,201,true,5271
+1777246021858,4374,POST /api/auth/signup,201,true,4374
+1777246026227,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246026233,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246026238,18,POST /api/reviews/ (submit review),201,true,18
+1777246021332,5039,POST /api/auth/signup,201,true,5039
+1777246021044,5339,POST /api/auth/login,200,true,5339
+1777246021050,5334,POST /api/auth/login,200,true,5334
+1777246026384,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246026384,15,GET /api/restaurants/?keywords=Italian,200,true,15
+1777246026392,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246026399,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246020897,5522,POST /api/auth/login,200,true,5522
+1777246026420,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246026429,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246026405,59,POST /api/reviews/ (submit review),201,true,59
+1777246026405,64,POST /api/reviews/ (submit review),201,true,64
+1777246026442,49,POST /api/reviews/ (submit review),201,true,49
+1777246021848,4862,POST /api/auth/login,200,true,4862
+1777246022329,4383,POST /api/auth/login,200,true,4383
+1777246026711,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246026712,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246026714,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246026715,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246026723,34,POST /api/reviews/ (submit review),201,true,34
+1777246026729,33,POST /api/reviews/ (submit review),201,true,32
+1777246021257,5576,POST /api/auth/signup,201,true,5576
+1777246021945,5013,POST /api/auth/login,200,true,5013
+1777246026958,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246021406,5567,POST /api/auth/signup,201,true,5567
+1777246026965,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246026974,19,POST /api/reviews/ (submit review),201,true,19
+1777246021930,5125,POST /api/auth/signup,201,true,5125
+1777246021555,5502,POST /api/auth/signup,201,true,5502
+1777246021782,5517,POST /api/auth/signup,201,true,5517
+1777246022005,5303,POST /api/auth/signup,201,true,5303
+1777246022159,5357,POST /api/auth/login,200,true,5357
+1777246027517,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246027526,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246027529,9,POST /api/reviews/ (submit review),201,true,9
+1777246021035,6776,POST /api/auth/login,200,true,6776
+1777246027811,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246021897,5919,POST /api/auth/login,200,true,5919
+1777246027814,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246027816,2,GET /api/restaurants/?keywords=Italian,200,true,2
+1777246027818,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246022156,5664,POST /api/auth/login,200,true,5664
+1777246027821,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246023338,4495,POST /api/auth/login,200,true,4495
+1777246027833,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246027839,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246027824,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246027816,35,POST /api/reviews/ (submit review),201,true,35
+1777246027820,44,POST /api/reviews/ (submit review),201,true,44
+1777246027841,34,POST /api/reviews/ (submit review),201,true,34
+1777246027841,59,POST /api/reviews/ (submit review),201,true,59
+1777246022054,5885,POST /api/auth/login,200,true,5885
+1777246027939,15,GET /api/restaurants/?keywords=Italian,200,true,15
+1777246027954,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246027965,15,POST /api/reviews/ (submit review),201,true,14
+1777246021183,6841,POST /api/auth/signup,201,true,6841
+1777246021848,6177,POST /api/auth/login,200,true,6177
+1777246022384,5641,POST /api/auth/signup,201,true,5641
+1777246022157,5868,POST /api/auth/signup,201,true,5868
+1777246022081,5947,POST /api/auth/signup,201,true,5947
+1777246023584,4445,POST /api/auth/signup,201,true,4445
+1777246028025,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246028030,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246022530,5513,POST /api/auth/signup,201,true,5513
+1777246022756,5287,POST /api/auth/signup,201,true,5287
+1777246028042,17,POST /api/reviews/ (submit review),201,true,17
+1777246023740,4332,POST /api/auth/login,200,true,4332
+1777246028072,2,GET /api/restaurants/?keywords=Italian,200,true,2
+1777246028075,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246022455,5631,POST /api/auth/signup,201,true,5631
+1777246028077,15,POST /api/reviews/ (submit review),201,true,15
+1777246021865,6256,POST /api/auth/login,200,true,6255
+1777246028121,2,GET /api/restaurants/?keywords=Italian,200,true,2
+1777246028123,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246022233,5919,POST /api/auth/signup,201,true,5919
+1777246023058,5094,POST /api/auth/signup,201,true,5094
+1777246028125,34,POST /api/reviews/ (submit review),201,true,34
+1777246022832,5416,POST /api/auth/signup,201,true,5416
+1777246024109,4401,POST /api/auth/signup,201,true,4401
+1777246022684,5858,POST /api/auth/signup,201,true,5858
+1777246023825,4750,POST /api/auth/login,200,true,4750
+1777246028575,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246028592,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246028607,47,POST /api/reviews/ (submit review),201,true,47
+1777246023733,5054,POST /api/auth/signup,201,true,5054
+1777246022159,6666,POST /api/auth/login,200,true,6666
+1777246022350,6476,POST /api/auth/login,200,true,6476
+1777246022306,6521,POST /api/auth/signup,201,true,6521
+1777246028825,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246028826,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246024256,4574,POST /api/auth/signup,201,true,4574
+1777246023619,5213,POST /api/auth/login,200,true,5213
+1777246028830,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246028830,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246022610,6228,POST /api/auth/signup,201,true,6228
+1777246023647,5191,POST /api/auth/login,200,true,5191
+1777246028832,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246028838,20,GET /api/restaurants/?keywords=Italian,200,true,20
+1777246028853,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246028858,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246022908,5965,POST /api/auth/signup,201,true,5965
+1777246028836,43,POST /api/reviews/ (submit review),201,true,43
+1777246023657,5233,POST /api/auth/signup,201,true,5233
+1777246024534,4408,POST /api/auth/login,200,true,4408
+1777246023213,5729,POST /api/auth/signup,201,true,5729
+1777246028943,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246028955,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246022375,6588,POST /api/auth/login,200,true,6588
+1777246023163,5800,POST /api/auth/login,200,true,5800
+1777246028963,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246028963,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246028971,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246028971,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246028837,153,POST /api/reviews/ (submit review),201,true,153
+1777246028862,133,POST /api/reviews/ (submit review),201,true,133
+1777246028863,153,POST /api/reviews/ (submit review),201,true,153
+1777246028963,58,POST /api/reviews/ (submit review),201,true,58
+1777246023132,5915,POST /api/auth/signup,201,true,5915
+1777246028990,66,POST /api/reviews/ (submit review),201,true,66
+1777246028990,68,POST /api/reviews/ (submit review),201,true,68
+1777246023148,6094,POST /api/auth/login,200,true,6094
+1777246029242,26,GET /api/restaurants/?keywords=Italian,200,true,26
+1777246029268,53,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,53
+1777246023728,5602,POST /api/auth/login,200,true,5602
+1777246024168,5162,POST /api/auth/login,200,true,5162
+1777246023671,5660,POST /api/auth/login,200,true,5660
+1777246029331,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246029331,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246029332,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246029322,23,POST /api/reviews/ (submit review),201,true,23
+1777246029338,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246029339,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246029339,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246029351,78,POST /api/reviews/ (submit review),201,true,78
+1777246029348,81,POST /api/reviews/ (submit review),201,true,81
+1777246029350,79,POST /api/reviews/ (submit review),201,true,79
+1777246022934,7065,POST /api/auth/login,200,true,7065
+1777246029999,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246030005,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246030014,28,POST /api/reviews/ (submit review),201,true,28
+1777246023227,6859,POST /api/auth/login,200,true,6859
+1777246030086,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246030098,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246030109,14,POST /api/reviews/ (submit review),201,true,14
+1777246023503,6800,POST /api/auth/signup,201,true,6800
+1777246023620,6685,POST /api/auth/login,200,true,6685
+1777246030306,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246024859,5454,POST /api/auth/signup,201,true,5454
+1777246030311,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246023361,6980,POST /api/auth/signup,201,true,6980
+1777246030316,33,POST /api/reviews/ (submit review),201,true,33
+1777246023289,7128,POST /api/auth/signup,201,true,7128
+1777246022984,7466,POST /api/auth/signup,201,true,7466
+1777246023762,6691,POST /api/auth/login,200,true,6691
+1777246030453,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246030462,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246030472,38,POST /api/reviews/ (submit review),201,true,38
+1777246024032,6508,POST /api/auth/signup,201,true,6508
+1777246023433,7108,POST /api/auth/signup,201,true,7108
+1777246023804,7337,POST /api/auth/signup,201,true,7337
+1777246023884,7258,POST /api/auth/signup,201,true,7258
+1777246024646,6497,POST /api/auth/login,200,true,6497
+1777246031143,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246031149,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246031155,14,POST /api/reviews/ (submit review),201,true,14
+1777246023655,7538,POST /api/auth/login,200,true,7538
+1777246024330,6863,POST /api/auth/signup,201,true,6863
+1777246024631,6563,POST /api/auth/signup,201,true,6563
+1777246025458,5736,POST /api/auth/signup,201,true,5736
+1777246025401,5794,POST /api/auth/signup,201,true,5794
+1777246025756,5441,POST /api/auth/signup,201,true,5441
+1777246031193,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246024708,6494,POST /api/auth/signup,201,true,6494
+1777246023356,7848,POST /api/auth/login,200,true,7848
+1777246031201,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246031204,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246025729,5487,POST /api/auth/login,200,true,5487
+1777246031210,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246024498,6736,POST /api/auth/login,200,true,6736
+1777246031216,18,GET /api/restaurants/?keywords=Italian,200,true,18
+1777246031205,37,POST /api/reviews/ (submit review),201,true,37
+1777246031234,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246031223,23,POST /api/reviews/ (submit review),201,true,23
+1777246031234,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246031250,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246031246,33,POST /api/reviews/ (submit review),201,true,33
+1777246031260,24,POST /api/reviews/ (submit review),201,true,24
+1777246024646,6705,POST /api/auth/login,200,true,6705
+1777246024773,6590,POST /api/auth/login,200,true,6590
+1777246023955,7408,POST /api/auth/signup,201,true,7408
+1777246031351,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246031364,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246025850,5526,POST /api/auth/login,200,true,5526
+1777246031368,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246024483,6896,POST /api/auth/signup,201,true,6896
+1777246031375,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246025906,5490,POST /api/auth/login,200,true,5490
+1777246024556,6841,POST /api/auth/signup,201,true,6841
+1777246031376,25,GET /api/restaurants/?keywords=Italian,200,true,25
+1777246025238,6163,POST /api/auth/signup,201,true,6163
+1777246031401,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246031397,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246031404,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246031379,62,POST /api/reviews/ (submit review),201,true,62
+1777246031394,54,POST /api/reviews/ (submit review),201,true,54
+1777246031404,52,POST /api/reviews/ (submit review),201,true,52
+1777246031408,52,POST /api/reviews/ (submit review),201,true,52
+1777246025609,5993,POST /api/auth/signup,201,true,5993
+1777246025309,6293,POST /api/auth/signup,201,true,6293
+1777246025157,6445,POST /api/auth/signup,201,true,6445
+1777246026064,5577,POST /api/auth/signup,201,true,5577
+1777246026229,5412,POST /api/auth/login,200,true,5412
+1777246031641,20,GET /api/restaurants/?keywords=Italian,200,true,20
+1777246031661,41,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,41
+1777246031702,28,POST /api/reviews/ (submit review),201,true,28
+1777246024408,7501,POST /api/auth/signup,201,true,7501
+1777246024505,7404,POST /api/auth/login,200,true,7404
+1777246031909,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246026581,5334,POST /api/auth/signup,201,true,5334
+1777246031915,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246026371,5570,POST /api/auth/login,200,true,5570
+1777246024184,7758,POST /api/auth/signup,201,true,7758
+1777246031941,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246031946,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246031923,32,POST /api/reviews/ (submit review),201,true,32
+1777246031954,22,POST /api/reviews/ (submit review),201,true,22
+1777246025163,6854,POST /api/auth/login,200,true,6854
+1777246032018,28,GET /api/restaurants/?keywords=Italian,200,true,28
+1777246032046,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246032058,37,POST /api/reviews/ (submit review),201,true,37
+1777246024784,7463,POST /api/auth/signup,201,true,7463
+1777246026232,6015,POST /api/auth/login,200,true,6015
+1777246026657,5591,POST /api/auth/signup,201,true,5591
+1777246032247,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246032250,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246032254,11,POST /api/reviews/ (submit review),201,true,11
+1777246026507,5816,POST /api/auth/signup,201,true,5816
+1777246025983,6340,POST /api/auth/signup,201,true,6340
+1777246025082,7251,POST /api/auth/signup,201,true,7251
+1777246025792,6541,POST /api/auth/login,200,true,6541
+1777246025007,7326,POST /api/auth/signup,201,true,7326
+1777246026208,6125,POST /api/auth/signup,201,true,6125
+1777246032333,23,GET /api/restaurants/?keywords=Italian,200,true,23
+1777246032356,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246032373,27,POST /api/reviews/ (submit review),201,true,27
+1777246024635,8086,POST /api/auth/login,200,true,8086
+1777246032721,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246032732,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246032737,57,POST /api/reviews/ (submit review),201,true,57
+1777246025729,7791,POST /api/auth/login,200,true,7791
+1777246024934,8586,POST /api/auth/signup,201,true,8586
+1777246026358,7162,POST /api/auth/signup,201,true,7162
+1777246033520,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246033526,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246025834,7705,POST /api/auth/signup,201,true,7705
+1777246033528,216,POST /api/reviews/ (submit review),201,true,216
+1777246026734,7031,POST /api/auth/signup,201,true,7031
+1777246025682,8083,POST /api/auth/signup,201,true,8083
+1777246025923,7846,POST /api/auth/login,200,true,7846
+1777246025531,8239,POST /api/auth/signup,201,true,8239
+1777246033770,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246026430,7345,POST /api/auth/signup,201,true,7345
+1777246033775,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246033778,20,POST /api/reviews/ (submit review),201,true,20
+1777246026881,6960,POST /api/auth/signup,201,true,6960
+1777246027556,6285,POST /api/auth/signup,201,true,6285
+1777246025917,7980,POST /api/auth/login,200,true,7980
+1777246033897,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246033908,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246025923,7998,POST /api/auth/login,200,true,7998
+1777246026287,7636,POST /api/auth/signup,201,true,7636
+1777246026808,7115,POST /api/auth/signup,201,true,7115
+1777246027057,6874,POST /api/auth/login,200,true,6874
+1777246033922,18,GET /api/restaurants/?keywords=Italian,200,true,18
+1777246025931,8010,POST /api/auth/login,200,true,8009
+1777246033932,22,GET /api/restaurants/?keywords=Italian,200,true,22
+1777246025909,8045,POST /api/auth/signup,201,true,8045
+1777246033921,34,POST /api/reviews/ (submit review),201,true,33
+1777246033954,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246033940,30,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,30
+1777246033941,30,GET /api/restaurants/?keywords=Italian,200,true,30
+1777246033971,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246025914,8108,POST /api/auth/login,200,true,8108
+1777246034022,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246033970,63,POST /api/reviews/ (submit review),201,true,63
+1777246034032,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246033971,99,POST /api/reviews/ (submit review),201,true,99
+1777246033978,98,POST /api/reviews/ (submit review),201,true,98
+1777246034048,43,POST /api/reviews/ (submit review),201,true,43
+1777246025729,8373,POST /api/auth/login,200,true,8373
+1777246034103,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246034108,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246034110,15,POST /api/reviews/ (submit review),201,true,15
+1777246026134,8060,POST /api/auth/signup,201,true,8060
+1777246026957,7308,POST /api/auth/signup,201,true,7307
+1777246025931,8339,POST /api/auth/login,200,true,8339
+1777246027180,7092,POST /api/auth/signup,201,true,7092
+1777246034270,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246034277,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246034294,41,POST /api/reviews/ (submit review),201,true,41
+1777246027405,7000,POST /api/auth/signup,201,true,7000
+1777246027257,7150,POST /api/auth/signup,201,true,7150
+1777246026834,7733,POST /api/auth/login,200,true,7733
+1777246034567,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246034588,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246034606,40,POST /api/reviews/ (submit review),201,true,40
+1777246027300,7394,POST /api/auth/login,200,true,7394
+1777246034694,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246034699,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246026973,7735,POST /api/auth/login,200,true,7735
+1777246034708,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246028086,6627,POST /api/auth/login,200,true,6627
+1777246034703,10,POST /api/reviews/ (submit review),201,true,10
+1777246034713,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246034713,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246034723,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246034725,41,POST /api/reviews/ (submit review),201,true,41
+1777246034728,39,POST /api/reviews/ (submit review),201,true,39
+1777246027332,7474,POST /api/auth/signup,201,true,7474
+1777246027055,7751,POST /api/auth/login,200,true,7751
+1777246027108,7698,POST /api/auth/signup,201,true,7698
+1777246028249,6565,POST /api/auth/login,200,true,6565
+1777246034807,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246034815,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246034815,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246027035,7794,POST /api/auth/signup,201,true,7794
+1777246027486,7350,POST /api/auth/signup,201,true,7350
+1777246034828,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246034828,25,POST /api/reviews/ (submit review),201,true,25
+1777246028152,6708,POST /api/auth/login,200,true,6708
+1777246027633,7240,POST /api/auth/signup,201,true,7240
+1777246034860,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246034847,34,POST /api/reviews/ (submit review),201,true,34
+1777246034874,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246034889,23,POST /api/reviews/ (submit review),201,true,23
+1777246028028,7162,POST /api/auth/login,200,true,7162
+1777246028543,6651,POST /api/auth/login,200,true,6651
+1777246035189,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246028043,7154,POST /api/auth/login,200,true,7154
+1777246035194,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246035194,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246035196,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246035204,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246035205,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246035212,30,POST /api/reviews/ (submit review),201,true,30
+1777246035210,37,POST /api/reviews/ (submit review),201,true,37
+1777246035202,54,POST /api/reviews/ (submit review),201,true,54
+1777246028459,6831,POST /api/auth/signup,201,true,6831
+1777246028043,7251,POST /api/auth/login,200,true,7251
+1777246027309,7985,POST /api/auth/login,200,true,7985
+1777246035293,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246035293,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246035307,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246035307,29,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,29
+1777246027934,7404,POST /api/auth/signup,201,true,7404
+1777246035323,40,POST /api/reviews/ (submit review),201,true,40
+1777246035336,41,POST /api/reviews/ (submit review),201,true,41
+1777246028160,7299,POST /api/auth/signup,201,true,7299
+1777246028830,6642,POST /api/auth/login,200,true,6642
+1777246035471,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246035482,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246028511,6987,POST /api/auth/login,200,true,6987
+1777246027784,7715,POST /api/auth/signup,201,true,7715
+1777246035498,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246035498,22,POST /api/reviews/ (submit review),201,true,22
+1777246035519,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246035530,46,POST /api/reviews/ (submit review),201,true,46
+1777246029287,6307,POST /api/auth/signup,201,true,6307
+1777246028832,6863,POST /api/auth/signup,201,true,6862
+1777246028235,7589,POST /api/auth/signup,201,true,7589
+1777246028024,7808,POST /api/auth/login,200,true,7808
+1777246035831,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246035838,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246035842,27,POST /api/reviews/ (submit review),201,true,27
+1777246028152,7778,POST /api/auth/login,200,true,7778
+1777246028873,7056,POST /api/auth/login,200,true,7056
+1777246028029,7926,POST /api/auth/login,200,true,7926
+1777246035929,25,GET /api/restaurants/?keywords=Italian,200,true,25
+1777246035929,25,GET /api/restaurants/?keywords=Italian,200,true,25
+1777246028891,7074,POST /api/auth/login,200,true,7074
+1777246035954,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246035954,22,GET /api/restaurants/?keywords=Italian,200,true,22
+1777246035954,22,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,22
+1777246035965,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246035976,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246035976,18,POST /api/reviews/ (submit review),201,true,18
+1777246027706,8289,POST /api/auth/signup,201,true,8289
+1777246035977,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246035973,34,POST /api/reviews/ (submit review),201,true,34
+1777246028081,7927,POST /api/auth/signup,201,true,7927
+1777246028005,8016,POST /api/auth/signup,201,true,8016
+1777246035995,27,POST /api/reviews/ (submit review),201,true,27
+1777246027857,8184,POST /api/auth/signup,201,true,8184
+1777246035994,56,POST /api/reviews/ (submit review),201,true,56
+1777246029048,7247,POST /api/auth/login,200,true,7247
+1777246028025,8271,POST /api/auth/login,200,true,8271
+1777246028684,7616,POST /api/auth/signup,201,true,7616
+1777246036296,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246036301,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246028827,7483,POST /api/auth/login,200,true,7483
+1777246036295,25,GET /api/restaurants/?keywords=Italian,200,true,25
+1777246036309,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246036320,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246036320,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246036303,35,POST /api/reviews/ (submit review),201,true,35
+1777246036328,23,POST /api/reviews/ (submit review),201,true,23
+1777246036332,28,POST /api/reviews/ (submit review),201,true,28
+1777246028025,8400,POST /api/auth/login,200,true,8400
+1777246036424,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246028387,8047,POST /api/auth/signup,201,true,8047
+1777246036430,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246029435,7016,POST /api/auth/signup,201,true,7016
+1777246028987,7487,POST /api/auth/signup,201,true,7487
+1777246028608,7904,POST /api/auth/signup,201,true,7904
+1777246028536,8039,POST /api/auth/signup,201,true,8039
+1777246036445,137,POST /api/reviews/ (submit review),201,true,137
+1777246030035,6609,POST /api/auth/signup,201,true,6609
+1777246028787,7951,POST /api/auth/login,200,true,7951
+1777246036737,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246036741,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246036745,12,POST /api/reviews/ (submit review),201,true,12
+1777246028306,8656,POST /api/auth/signup,201,true,8656
+1777246029504,8013,POST /api/auth/signup,201,true,8013
+1777246028756,8784,POST /api/auth/signup,201,true,8784
+1777246028915,8654,POST /api/auth/signup,201,true,8654
+1777246029209,8361,POST /api/auth/signup,201,true,8361
+1777246029884,7712,POST /api/auth/signup,201,true,7712
+1777246030108,7488,POST /api/auth/signup,201,true,7488
+1777246029129,8468,POST /api/auth/signup,201,true,8468
+1777246029358,8488,POST /api/auth/signup,201,true,8488
+1777246028943,8997,POST /api/auth/login,200,true,8997
+1777246037939,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246037943,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246029665,8299,POST /api/auth/signup,201,true,8299
+1777246037945,21,POST /api/reviews/ (submit review),201,true,21
+1777246030418,7552,POST /api/auth/login,200,true,7552
+1777246037969,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246037972,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246037976,21,POST /api/reviews/ (submit review),201,true,21
+1777246030258,7771,POST /api/auth/signup,201,true,7771
+1777246030184,7846,POST /api/auth/signup,201,true,7846
+1777246029589,8462,POST /api/auth/signup,201,true,8462
+1777246029812,8251,POST /api/auth/signup,201,true,8251
+1777246028838,9284,POST /api/auth/login,200,true,9284
+1777246029057,9065,POST /api/auth/signup,201,true,9065
+1777246031364,6759,POST /api/auth/login,200,true,6759
+1777246030405,7718,POST /api/auth/signup,201,true,7718
+1777246038121,15,GET /api/restaurants/?keywords=Italian,200,true,15
+1777246038122,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246038136,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246038136,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246038147,31,POST /api/reviews/ (submit review),201,true,31
+1777246038147,36,POST /api/reviews/ (submit review),201,true,36
+1777246030541,7723,POST /api/auth/login,200,true,7723
+1777246038263,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246038269,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246031081,7201,POST /api/auth/signup,201,true,7201
+1777246029964,8320,POST /api/auth/signup,201,true,8320
+1777246038275,33,POST /api/reviews/ (submit review),201,true,33
+1777246030451,7869,POST /api/auth/login,200,true,7869
+1777246038319,19,GET /api/restaurants/?keywords=Italian,200,true,19
+1777246038338,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246038350,37,POST /api/reviews/ (submit review),201,true,37
+1777246030303,8128,POST /api/auth/login,200,true,8128
+1777246038430,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246038435,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246038440,34,POST /api/reviews/ (submit review),201,true,34
+1777246029737,8844,POST /api/auth/signup,201,true,8844
+1777246030341,8241,POST /api/auth/login,200,true,8241
+1777246038581,15,GET /api/restaurants/?keywords=Italian,200,true,15
+1777246030780,7823,POST /api/auth/signup,201,true,7823
+1777246030485,8118,POST /api/auth/signup,201,true,8118
+1777246038596,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246038604,18,POST /api/reviews/ (submit review),201,true,18
+1777246030540,8357,POST /api/auth/login,200,true,8357
+1777246031641,7272,POST /api/auth/login,200,true,7272
+1777246031233,7680,POST /api/auth/signup,201,true,7680
+1777246038896,31,GET /api/restaurants/?keywords=Italian,200,true,31
+1777246038912,29,GET /api/restaurants/?keywords=Italian,200,true,29
+1777246038928,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246038941,43,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,43
+1777246038942,50,POST /api/reviews/ (submit review),201,true,50
+1777246038984,35,POST /api/reviews/ (submit review),201,true,35
+1777246030634,8390,POST /api/auth/signup,201,true,8390
+1777246030559,8466,POST /api/auth/signup,201,true,8466
+1777246030313,8716,POST /api/auth/login,200,true,8716
+1777246039029,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246039041,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246039048,28,POST /api/reviews/ (submit review),201,true,28
+1777246031142,8239,POST /api/auth/login,200,true,8239
+1777246031142,8240,POST /api/auth/login,200,true,8240
+1777246039381,2,GET /api/restaurants/?keywords=Italian,200,true,2
+1777246031202,8183,POST /api/auth/login,200,true,8183
+1777246030707,8679,POST /api/auth/signup,201,true,8679
+1777246039384,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246030331,9059,POST /api/auth/signup,201,true,9059
+1777246031538,7857,POST /api/auth/signup,201,true,7857
+1777246031465,7930,POST /api/auth/signup,201,true,7930
+1777246039388,24,POST /api/reviews/ (submit review),201,true,24
+1777246039380,32,GET /api/restaurants/?keywords=Italian,200,true,32
+1777246031916,7498,POST /api/auth/login,200,true,7498
+1777246031155,8267,POST /api/auth/signup,201,true,8267
+1777246031010,8412,POST /api/auth/signup,201,true,8412
+1777246031194,8229,POST /api/auth/login,200,true,8229
+1777246039412,25,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,25
+1777246039413,24,GET /api/restaurants/?keywords=Italian,200,true,24
+1777246039384,53,GET /api/restaurants/?keywords=Italian,200,true,53
+1777246039437,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246039437,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246039422,35,GET /api/restaurants/?keywords=Italian,200,true,35
+1777246039437,32,POST /api/reviews/ (submit review),201,true,32
+1777246039457,23,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,23
+1777246039456,43,POST /api/reviews/ (submit review),201,true,43
+1777246039456,43,POST /api/reviews/ (submit review),201,true,43
+1777246039480,53,POST /api/reviews/ (submit review),201,true,53
+1777246032204,7438,POST /api/auth/signup,201,true,7438
+1777246032247,7400,POST /api/auth/login,200,true,7400
+1777246030860,8788,POST /api/auth/signup,201,true,8788
+1777246039646,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246031195,8466,POST /api/auth/login,200,true,8466
+1777246039661,18,GET /api/restaurants/?keywords=Italian,200,true,18
+1777246031387,8293,POST /api/auth/signup,201,true,8293
+1777246039660,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246039679,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246030936,8760,POST /api/auth/signup,201,true,8760
+1777246031197,8499,POST /api/auth/login,200,true,8499
+1777246039696,18,GET /api/restaurants/?keywords=Italian,200,true,18
+1777246039679,35,POST /api/reviews/ (submit review),201,true,35
+1777246039695,41,POST /api/reviews/ (submit review),201,true,41
+1777246039714,22,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,22
+1777246039736,20,POST /api/reviews/ (submit review),201,true,20
+1777246031602,8372,POST /api/auth/login,200,true,8372
+1777246031685,8297,POST /api/auth/signup,201,true,8297
+1777246031397,8584,POST /api/auth/login,200,true,8584
+1777246032333,7657,POST /api/auth/login,200,true,7657
+1777246031193,8805,POST /api/auth/login,200,true,8805
+1777246039989,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246039975,23,GET /api/restaurants/?keywords=Italian,200,true,23
+1777246039981,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246039997,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246039998,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246039998,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246039998,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246040006,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246040006,39,POST /api/reviews/ (submit review),201,true,39
+1777246031379,8727,POST /api/auth/login,200,true,8727
+1777246031194,8912,POST /api/auth/login,200,true,8912
+1777246032061,8049,POST /api/auth/signup,201,true,8049
+1777246040105,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246040105,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246040015,105,POST /api/reviews/ (submit review),201,true,105
+1777246040015,108,POST /api/reviews/ (submit review),201,true,108
+1777246040115,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246040118,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246040025,112,POST /api/reviews/ (submit review),201,true,112
+1777246040137,31,POST /api/reviews/ (submit review),201,true,31
+1777246040129,55,POST /api/reviews/ (submit review),201,true,55
+1777246031309,9062,POST /api/auth/signup,201,true,9062
+1777246031988,8517,POST /api/auth/signup,201,true,8517
+1777246032248,8293,POST /api/auth/login,200,true,8293
+1777246032583,7958,POST /api/auth/signup,201,true,7958
+1777246032333,8208,POST /api/auth/login,200,true,8208
+1777246031603,8939,POST /api/auth/login,200,true,8939
+1777246040541,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246040542,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246040541,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246040546,25,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,25
+1777246040555,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246040555,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246040571,48,POST /api/reviews/ (submit review),201,true,48
+1777246040571,71,POST /api/reviews/ (submit review),201,true,71
+1777246040574,77,POST /api/reviews/ (submit review),201,true,77
+1777246031757,8947,POST /api/auth/signup,201,true,8947
+1777246032282,8430,POST /api/auth/signup,201,true,8430
+1777246031603,9113,POST /api/auth/login,200,true,9113
+1777246040716,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246040719,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246040724,20,POST /api/reviews/ (submit review),201,true,20
+1777246031608,9174,POST /api/auth/signup,201,true,9174
+1777246032434,8356,POST /api/auth/signup,201,true,8356
+1777246032323,8487,POST /api/auth/login,200,true,8487
+1777246040810,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246040817,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246032808,8016,POST /api/auth/signup,201,true,8016
+1777246040821,80,POST /api/reviews/ (submit review),201,true,80
+1777246031401,9585,POST /api/auth/login,200,true,9585
+1777246033482,7504,POST /api/auth/signup,201,true,7504
+1777246032359,8628,POST /api/auth/signup,201,true,8628
+1777246040986,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246040992,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246040995,25,POST /api/reviews/ (submit review),201,true,25
+1777246032133,8924,POST /api/auth/signup,201,true,8924
+1777246031942,9115,POST /api/auth/login,200,true,9115
+1777246041057,18,GET /api/restaurants/?keywords=Italian,200,true,18
+1777246041075,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246041083,20,POST /api/reviews/ (submit review),201,true,20
+1777246031909,9230,POST /api/auth/login,200,true,9230
+1777246031830,9313,POST /api/auth/signup,201,true,9313
+1777246033765,7380,POST /api/auth/login,200,true,7380
+1777246041140,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246041145,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246041147,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246041155,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246032884,8282,POST /api/auth/signup,201,true,8282
+1777246041165,40,POST /api/reviews/ (submit review),201,true,40
+1777246041165,40,POST /api/reviews/ (submit review),201,true,40
+1777246031909,9371,POST /api/auth/signup,201,true,9371
+1777246032333,8947,POST /api/auth/login,200,true,8947
+1777246041280,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246041284,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246041290,24,POST /api/reviews/ (submit review),201,true,24
+1777246033635,7775,POST /api/auth/signup,201,true,7775
+1777246032738,8673,POST /api/auth/signup,201,true,8673
+1777246033841,7725,POST /api/auth/login,200,true,7725
+1777246041566,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246041573,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246041576,31,POST /api/reviews/ (submit review),201,true,31
+1777246033860,7917,POST /api/auth/signup,201,true,7917
+1777246032660,9217,POST /api/auth/signup,201,true,9217
+1777246033035,8846,POST /api/auth/signup,201,true,8846
+1777246033841,8046,POST /api/auth/login,200,true,8046
+1777246041888,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246041892,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246041895,29,POST /api/reviews/ (submit review),201,true,29
+1777246033411,9892,POST /api/auth/signup,201,true,9892
+1777246033539,9771,POST /api/auth/login,200,true,9771
+1777246034307,9008,POST /api/auth/signup,201,true,9008
+1777246032508,10808,POST /api/auth/signup,201,true,10808
+1777246043310,15,GET /api/restaurants/?keywords=Italian,200,true,15
+1777246043325,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246033954,9378,POST /api/auth/login,200,true,9378
+1777246033924,9409,POST /api/auth/login,200,true,9409
+1777246034406,8927,POST /api/auth/login,200,true,8927
+1777246043332,26,GET /api/restaurants/?keywords=Italian,200,true,26
+1777246043334,24,GET /api/restaurants/?keywords=Italian,200,true,24
+1777246043333,25,GET /api/restaurants/?keywords=Italian,200,true,25
+1777246043359,20,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,20
+1777246043359,20,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,20
+1777246043359,20,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,20
+1777246043331,48,POST /api/reviews/ (submit review),201,true,48
+1777246032959,10454,POST /api/auth/signup,201,true,10454
+1777246033108,10316,POST /api/auth/signup,201,true,10316
+1777246043379,64,POST /api/reviews/ (submit review),201,true,64
+1777246043379,74,POST /api/reviews/ (submit review),201,true,74
+1777246043379,78,POST /api/reviews/ (submit review),201,true,78
+1777246034606,8881,POST /api/auth/signup,201,true,8881
+1777246032323,11165,POST /api/auth/login,200,true,11165
+1777246034233,9261,POST /api/auth/signup,201,true,9261
+1777246043488,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246033765,9737,POST /api/auth/login,200,true,9737
+1777246043498,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246043502,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246034383,9132,POST /api/auth/signup,201,true,9132
+1777246043516,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246033336,10206,POST /api/auth/signup,201,true,10206
+1777246033562,9980,POST /api/auth/signup,201,true,9980
+1777246043507,58,POST /api/reviews/ (submit review),201,true,58
+1777246043521,48,POST /api/reviews/ (submit review),201,true,48
+1777246033260,10328,POST /api/auth/signup,201,true,10328
+1777246034806,8782,POST /api/auth/login,200,true,8782
+1777246033776,9815,POST /api/auth/login,200,true,9815
+1777246034273,9318,POST /api/auth/login,200,true,9318
+1777246033520,10071,POST /api/auth/login,200,true,10071
+1777246034010,9587,POST /api/auth/signup,201,true,9587
+1777246043592,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246043588,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246043592,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246033188,10416,POST /api/auth/signup,201,true,10416
+1777246043592,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246043600,22,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,22
+1777246043598,27,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,27
+1777246043598,28,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,28
+1777246043613,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246033924,9728,POST /api/auth/login,200,true,9728
+1777246033520,10134,POST /api/auth/login,200,true,10134
+1777246033935,9719,POST /api/auth/signup,201,true,9719
+1777246043652,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246043654,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246043661,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246043663,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246034265,9408,POST /api/auth/login,200,true,9408
+1777246043673,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246043683,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246034194,9512,POST /api/auth/login,200,true,9512
+1777246043707,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246043713,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246034829,8909,POST /api/auth/login,200,true,8909
+1777246035509,8228,POST /api/auth/signup,201,true,8228
+1777246043738,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246043743,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246033770,9990,POST /api/auth/login,200,true,9990
+1777246043760,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246043770,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246043626,171,POST /api/reviews/ (submit review),201,true,171
+1777246043625,175,POST /api/reviews/ (submit review),201,true,175
+1777246043626,174,POST /api/reviews/ (submit review),201,true,174
+1777246043622,178,POST /api/reviews/ (submit review),201,true,178
+1777246043718,119,POST /api/reviews/ (submit review),201,true,119
+1777246043745,127,POST /api/reviews/ (submit review),201,true,127
+1777246043669,203,POST /api/reviews/ (submit review),201,true,203
+1777246043688,191,POST /api/reviews/ (submit review),201,true,191
+1777246043776,103,POST /api/reviews/ (submit review),201,true,103
+1777246043669,210,POST /api/reviews/ (submit review),201,true,210
+1777246034984,9480,POST /api/auth/signup,201,true,9480
+1777246034532,9942,POST /api/auth/signup,201,true,9942
+1777246035593,8883,POST /api/auth/login,200,true,8883
+1777246044478,15,GET /api/restaurants/?keywords=Italian,200,true,15
+1777246044493,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246044500,34,POST /api/reviews/ (submit review),201,true,34
+1777246033709,10964,POST /api/auth/signup,201,true,10964
+1777246034407,10266,POST /api/auth/login,200,true,10266
+1777246044673,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246044686,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246044700,60,POST /api/reviews/ (submit review),201,true,60
+1777246034833,10045,POST /api/auth/signup,201,true,10045
+1777246033786,11115,POST /api/auth/signup,201,true,11115
+1777246034760,10154,POST /api/auth/signup,201,true,10154
+1777246035583,9344,POST /api/auth/signup,201,true,9344
+1777246034458,10473,POST /api/auth/signup,201,true,10473
+1777246034682,10249,POST /api/auth/signup,201,true,10249
+1777246035823,9134,POST /api/auth/login,200,true,9134
+1777246036299,8658,POST /api/auth/login,200,true,8658
+1777246035432,9525,POST /api/auth/signup,201,true,9525
+1777246035882,9076,POST /api/auth/signup,201,true,9076
+1777246035280,9684,POST /api/auth/signup,201,true,9684
+1777246034163,10802,POST /api/auth/signup,201,true,10802
+1777246044958,20,GET /api/restaurants/?keywords=Italian,200,true,20
+1777246044958,20,GET /api/restaurants/?keywords=Italian,200,true,20
+1777246044978,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246044979,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246044993,29,POST /api/reviews/ (submit review),201,true,29
+1777246044993,29,POST /api/reviews/ (submit review),201,true,29
+1777246034079,10993,POST /api/auth/signup,201,true,10993
+1777246035359,9717,POST /api/auth/signup,201,true,9717
+1777246035458,9618,POST /api/auth/login,200,true,9618
+1777246035289,9787,POST /api/auth/login,200,true,9787
+1777246045077,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246045078,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246045088,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246045088,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246045091,22,POST /api/reviews/ (submit review),201,true,22
+1777246045090,23,POST /api/reviews/ (submit review),201,true,23
+1777246036007,9374,POST /api/auth/login,200,true,9374
+1777246036574,8810,POST /api/auth/login,200,true,8810
+1777246035338,10048,POST /api/auth/login,200,true,10048
+1777246045383,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246045386,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246034874,10525,POST /api/auth/login,200,true,10525
+1777246036512,8886,POST /api/auth/login,200,true,8886
+1777246034807,10593,POST /api/auth/login,200,true,10593
+1777246035994,9405,POST /api/auth/login,200,true,9405
+1777246036041,9359,POST /api/auth/login,200,true,9359
+1777246035498,9911,POST /api/auth/login,200,true,9911
+1777246034836,10576,POST /api/auth/login,200,true,10576
+1777246035059,10353,POST /api/auth/signup,201,true,10353
+1777246045396,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246045387,26,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,26
+1777246045387,26,GET /api/restaurants/?keywords=Italian,200,true,26
+1777246045400,33,GET /api/restaurants/?keywords=Italian,200,true,33
+1777246045401,32,GET /api/restaurants/?keywords=Italian,200,true,32
+1777246045401,32,GET /api/restaurants/?keywords=Italian,200,true,32
+1777246045399,34,GET /api/restaurants/?keywords=Italian,200,true,34
+1777246045399,34,GET /api/restaurants/?keywords=Italian,200,true,34
+1777246045413,21,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,21
+1777246045410,24,GET /api/restaurants/?keywords=Italian,200,true,24
+1777246045412,22,GET /api/restaurants/?keywords=Italian,200,true,22
+1777246036021,9412,POST /api/auth/login,200,true,9412
+1777246045433,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246036557,8892,POST /api/auth/signup,201,true,8892
+1777246036473,8977,POST /api/auth/login,200,true,8977
+1777246036450,9000,POST /api/auth/login,200,true,9000
+1777246036407,9043,POST /api/auth/signup,201,true,9043
+1777246036644,8806,POST /api/auth/login,200,true,8806
+1777246045433,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246035957,9493,POST /api/auth/signup,201,true,9493
+1777246035809,9641,POST /api/auth/signup,201,true,9641
+1777246045413,38,POST /api/reviews/ (submit review),201,true,38
+1777246036107,9343,POST /api/auth/signup,201,true,9343
+1777246035694,9756,POST /api/auth/login,200,true,9756
+1777246045433,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246045433,21,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,21
+1777246045434,32,POST /api/reviews/ (submit review),201,true,32
+1777246045434,32,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,32
+1777246045433,33,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,33
+1777246045434,32,GET /api/restaurants/?keywords=Italian,200,true,32
+1777246036436,9029,POST /api/auth/login,200,true,9029
+1777246045434,33,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,33
+1777246045413,66,POST /api/reviews/ (submit review),201,true,66
+1777246045451,28,GET /api/restaurants/?keywords=Italian,200,true,28
+1777246045451,28,GET /api/restaurants/?keywords=Italian,200,true,28
+1777246045451,28,GET /api/restaurants/?keywords=Italian,200,true,28
+1777246045451,29,GET /api/restaurants/?keywords=Italian,200,true,29
+1777246045467,27,GET /api/restaurants/?keywords=Italian,200,true,27
+1777246045466,28,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,28
+1777246045480,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246045480,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246045480,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246045480,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246045494,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246036329,9280,POST /api/auth/signup,201,true,9280
+1777246035207,10406,POST /api/auth/signup,201,true,10406
+1777246045451,175,POST /api/reviews/ (submit review),201,true,175
+1777246045438,213,POST /api/reviews/ (submit review),201,true,213
+1777246035654,9996,POST /api/auth/signup,201,true,9996
+1777246036031,9619,POST /api/auth/signup,201,true,9619
+1777246045451,200,POST /api/reviews/ (submit review),201,true,200
+1777246045466,191,POST /api/reviews/ (submit review),201,true,191
+1777246045467,191,POST /api/reviews/ (submit review),201,true,191
+1777246037008,8655,POST /api/auth/signup,201,true,8655
+1777246036858,8813,POST /api/auth/signup,201,true,8813
+1777246036706,8966,POST /api/auth/signup,201,true,8966
+1777246036182,9495,POST /api/auth/signup,201,true,9495
+1777246036258,9440,POST /api/auth/signup,201,true,9440
+1777246036930,8769,POST /api/auth/signup,201,true,8769
+1777246037079,8621,POST /api/auth/signup,201,true,8621
+1777246034905,10797,POST /api/auth/signup,201,true,10797
+1777246037153,8554,POST /api/auth/signup,201,true,8554
+1777246036782,8928,POST /api/auth/signup,201,true,8928
+1777246036632,9079,POST /api/auth/signup,201,true,9079
+1777246045454,264,POST /api/reviews/ (submit review),201,true,264
+1777246045498,253,POST /api/reviews/ (submit review),201,true,253
+1777246035734,10022,POST /api/auth/signup,201,true,10022
+1777246045498,259,POST /api/reviews/ (submit review),201,true,259
+1777246045466,297,POST /api/reviews/ (submit review),201,true,297
+1777246045498,272,POST /api/reviews/ (submit review),201,true,272
+1777246045505,267,POST /api/reviews/ (submit review),201,true,267
+1777246045498,299,POST /api/reviews/ (submit review),201,true,299
+1777246045494,303,POST /api/reviews/ (submit review),201,true,303
+1777246035130,10669,POST /api/auth/signup,201,true,10669
+1777246036961,8843,POST /api/auth/login,200,true,8843
+1777246045805,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246045817,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246045828,22,POST /api/reviews/ (submit review),201,true,22
+1777246036484,9771,POST /api/auth/signup,201,true,9771
+1777246037307,9710,POST /api/auth/signup,201,true,9710
+1777246037595,9423,POST /api/auth/login,200,true,9423
+1777246037606,9415,POST /api/auth/signup,201,true,9415
+1777246047019,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246037379,9643,POST /api/auth/signup,201,true,9643
+1777246047023,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246047026,21,POST /api/reviews/ (submit review),201,true,21
+1777246037534,9552,POST /api/auth/signup,201,true,9552
+1777246037516,9576,POST /api/auth/login,200,true,9576
+1777246047093,23,GET /api/restaurants/?keywords=Italian,200,true,23
+1777246047116,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246037539,9606,POST /api/auth/login,200,true,9606
+1777246038121,9032,POST /api/auth/login,200,true,9032
+1777246037846,9309,POST /api/auth/login,200,true,9309
+1777246047124,33,POST /api/reviews/ (submit review),201,true,33
+1777246047147,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246047155,18,GET /api/restaurants/?keywords=Italian,200,true,18
+1777246047156,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246047168,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246047173,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246047173,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246038284,8902,POST /api/auth/login,200,true,8902
+1777246047187,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246047191,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246047176,40,POST /api/reviews/ (submit review),201,true,40
+1777246047180,41,POST /api/reviews/ (submit review),201,true,41
+1777246047180,41,POST /api/reviews/ (submit review),201,true,41
+1777246037569,9663,POST /api/auth/login,200,true,9663
+1777246047233,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246037760,9479,POST /api/auth/signup,201,true,9479
+1777246047238,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246047195,48,POST /api/reviews/ (submit review),201,true,48
+1777246047243,12,POST /api/reviews/ (submit review),201,true,12
+1777246037983,9363,POST /api/auth/signup,201,true,9363
+1777246038806,8687,POST /api/auth/signup,201,true,8687
+1777246037910,9652,POST /api/auth/signup,201,true,9652
+1777246038028,9534,POST /api/auth/login,200,true,9534
+1777246038051,9512,POST /api/auth/login,200,true,9512
+1777246038062,9505,POST /api/auth/login,200,true,9505
+1777246047564,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246047563,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246047568,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246037595,9978,POST /api/auth/login,200,true,9978
+1777246047571,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246047571,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246047574,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246047574,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246038058,9521,POST /api/auth/signup,201,true,9521
+1777246038281,9299,POST /api/auth/login,200,true,9299
+1777246037596,9985,POST /api/auth/login,200,true,9985
+1777246047580,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246047582,2,GET /api/restaurants/?keywords=Italian,200,true,2
+1777246047582,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246047585,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246047584,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246038507,9084,POST /api/auth/signup,201,true,9084
+1777246038205,9388,POST /api/auth/signup,201,true,9388
+1777246047574,42,POST /api/reviews/ (submit review),201,true,42
+1777246047576,53,POST /api/reviews/ (submit review),201,true,53
+1777246047577,180,POST /api/reviews/ (submit review),201,true,180
+1777246047587,184,POST /api/reviews/ (submit review),201,true,184
+1777246047587,192,POST /api/reviews/ (submit review),201,true,192
+1777246047584,195,POST /api/reviews/ (submit review),201,true,195
+1777246037681,10382,POST /api/auth/signup,201,true,10382
+1777246038581,9869,POST /api/auth/signup,201,true,9869
+1777246038029,10426,POST /api/auth/login,200,true,10426
+1777246037964,10502,POST /api/auth/login,200,true,10502
+1777246037835,10633,POST /api/auth/signup,201,true,10633
+1777246048456,26,GET /api/restaurants/?keywords=Italian,200,true,26
+1777246048467,15,GET /api/restaurants/?keywords=Italian,200,true,15
+1777246037231,11250,POST /api/auth/signup,201,true,11250
+1777246048482,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246048482,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246038912,9596,POST /api/auth/login,200,true,9596
+1777246048490,25,POST /api/reviews/ (submit review),201,true,25
+1777246048509,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246048522,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246039696,8844,POST /api/auth/login,200,true,8844
+1777246038283,10257,POST /api/auth/signup,201,true,10257
+1777246038122,10418,POST /api/auth/login,200,true,10418
+1777246039389,9151,POST /api/auth/login,200,true,9151
+1777246038580,9960,POST /api/auth/login,200,true,9960
+1777246038728,9812,POST /api/auth/signup,201,true,9812
+1777246037569,10971,POST /api/auth/login,200,true,10971
+1777246048492,61,POST /api/reviews/ (submit review),201,true,61
+1777246048541,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246048529,51,POST /api/reviews/ (submit review),201,true,51
+1777246048541,39,GET /api/restaurants/?keywords=Italian,200,true,39
+1777246048541,39,GET /api/restaurants/?keywords=Italian,200,true,39
+1777246048541,42,GET /api/restaurants/?keywords=Italian,200,true,42
+1777246048558,29,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,29
+1777246048541,46,GET /api/restaurants/?keywords=Italian,200,true,46
+1777246048587,21,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,21
+1777246037457,11150,POST /api/auth/signup,201,true,11150
+1777246048580,29,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,29
+1777246048584,25,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,25
+1777246048580,29,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,29
+1777246048587,22,POST /api/reviews/ (submit review),201,true,22
+1777246038430,10191,POST /api/auth/signup,201,true,10191
+1777246038882,9777,POST /api/auth/signup,201,true,9777
+1777246039034,9628,POST /api/auth/signup,201,true,9628
+1777246038357,10306,POST /api/auth/signup,201,true,10306
+1777246048609,75,POST /api/reviews/ (submit review),201,true,75
+1777246048609,75,POST /api/reviews/ (submit review),201,true,75
+1777246048609,75,POST /api/reviews/ (submit review),201,true,75
+1777246048608,80,POST /api/reviews/ (submit review),201,true,80
+1777246038133,10620,POST /api/auth/signup,201,true,10620
+1777246038603,10155,POST /api/auth/login,200,true,10155
+1777246048759,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246048763,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246039023,9758,POST /api/auth/login,200,true,9758
+1777246048782,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246048765,28,POST /api/reviews/ (submit review),201,true,28
+1777246048793,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246048807,49,POST /api/reviews/ (submit review),201,true,49
+1777246039395,9620,POST /api/auth/login,200,true,9620
+1777246038602,10413,POST /api/auth/login,200,true,10413
+1777246038958,10059,POST /api/auth/signup,201,true,10059
+1777246040110,8909,POST /api/auth/login,200,true,8909
+1777246049016,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246049016,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246038655,10366,POST /api/auth/signup,201,true,10366
+1777246049020,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246049021,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246049021,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246049025,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246049027,46,POST /api/reviews/ (submit review),201,true,46
+1777246049027,46,POST /api/reviews/ (submit review),201,true,46
+1777246049027,46,POST /api/reviews/ (submit review),201,true,46
+1777246039408,9706,POST /api/auth/signup,201,true,9706
+1777246039104,10010,POST /api/auth/signup,201,true,10010
+1777246040230,8885,POST /api/auth/signup,201,true,8885
+1777246039024,10090,POST /api/auth/login,200,true,10090
+1777246039482,9632,POST /api/auth/signup,201,true,9632
+1777246039386,9729,POST /api/auth/login,200,true,9729
+1777246049116,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246039422,9711,POST /api/auth/login,200,true,9711
+1777246039395,9738,POST /api/auth/login,200,true,9738
+1777246049115,19,GET /api/restaurants/?keywords=Italian,200,true,19
+1777246039258,9875,POST /api/auth/signup,201,true,9875
+1777246049134,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246049134,21,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,21
+1777246049134,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246049133,22,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,22
+1777246049155,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246049155,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246049155,124,POST /api/reviews/ (submit review),201,true,124
+1777246049155,141,POST /api/reviews/ (submit review),201,true,141
+1777246049166,130,POST /api/reviews/ (submit review),201,true,130
+1777246049166,130,POST /api/reviews/ (submit review),201,true,130
+1777246039422,9898,POST /api/auth/login,200,true,9898
+1777246039181,10139,POST /api/auth/signup,201,true,10139
+1777246049321,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246049326,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246039558,9788,POST /api/auth/signup,201,true,9788
+1777246049345,17,POST /api/reviews/ (submit review),201,true,17
+1777246039641,9720,POST /api/auth/login,200,true,9720
+1777246049362,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246049369,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246039632,9748,POST /api/auth/signup,201,true,9748
+1777246040309,9072,POST /api/auth/signup,201,true,9072
+1777246039782,9612,POST /api/auth/signup,201,true,9612
+1777246039679,9716,POST /api/auth/login,200,true,9716
+1777246039858,9548,POST /api/auth/signup,201,true,9548
+1777246049396,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246049381,32,POST /api/reviews/ (submit review),201,true,32
+1777246049410,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246049417,22,POST /api/reviews/ (submit review),201,true,22
+1777246039981,9571,POST /api/auth/login,200,true,9571
+1777246039708,9846,POST /api/auth/signup,201,true,9846
+1777246039337,10217,POST /api/auth/signup,201,true,10217
+1777246040156,9398,POST /api/auth/signup,201,true,9398
+1777246040910,8645,POST /api/auth/signup,201,true,8645
+1777246049553,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246040987,8572,POST /api/auth/login,200,true,8572
+1777246049560,19,GET /api/restaurants/?keywords=Italian,200,true,19
+1777246049560,19,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,19
+1777246049579,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246049593,32,POST /api/reviews/ (submit review),201,true,32
+1777246049580,45,POST /api/reviews/ (submit review),201,true,45
+1777246040078,9872,POST /api/auth/signup,201,true,9872
+1777246039647,10303,POST /api/auth/login,200,true,10303
+1777246039933,10019,POST /api/auth/signup,201,true,10019
+1777246040372,9581,POST /api/auth/login,200,true,9581
+1777246040004,9949,POST /api/auth/signup,201,true,9949
+1777246040383,9572,POST /api/auth/signup,201,true,9572
+1777246049951,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246049953,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246049959,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246049960,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246049974,19,POST /api/reviews/ (submit review),201,true,19
+1777246049974,21,POST /api/reviews/ (submit review),201,true,21
+1777246040684,9344,POST /api/auth/signup,201,true,9344
+1777246040782,9246,POST /api/auth/login,200,true,9246
+1777246040533,9495,POST /api/auth/signup,201,true,9495
+1777246040466,9564,POST /api/auth/signup,201,true,9564
+1777246040841,9189,POST /api/auth/signup,201,true,9189
+1777246040505,9526,POST /api/auth/login,200,true,9526
+1777246050031,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246050028,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246050034,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246050035,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246050040,37,POST /api/reviews/ (submit review),201,true,37
+1777246050040,37,POST /api/reviews/ (submit review),201,true,37
+1777246040541,9552,POST /api/auth/login,200,true,9552
+1777246040759,9334,POST /api/auth/signup,201,true,9334
+1777246040704,9389,POST /api/auth/login,200,true,9389
+1777246050093,15,GET /api/restaurants/?keywords=Italian,200,true,15
+1777246050093,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246050108,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246050109,24,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,24
+1777246050121,22,POST /api/reviews/ (submit review),201,true,22
+1777246041285,8870,POST /api/auth/signup,201,true,8870
+1777246050133,29,POST /api/reviews/ (submit review),201,true,29
+1777246040608,9728,POST /api/auth/signup,201,true,9728
+1777246040824,9520,POST /api/auth/login,200,true,9520
+1777246050344,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246050348,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246050350,30,POST /api/reviews/ (submit review),201,true,30
+1777246041581,9472,POST /api/auth/signup,201,true,9472
+1777246040790,10282,POST /api/auth/login,200,true,10282
+1777246041057,10015,POST /api/auth/login,200,true,10015
+1777246040984,10088,POST /api/auth/signup,201,true,10088
+1777246041208,9864,POST /api/auth/signup,201,true,9864
+1777246040987,10089,POST /api/auth/login,200,true,10089
+1777246042035,9041,POST /api/auth/signup,201,true,9041
+1777246051072,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246051072,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246041658,9430,POST /api/auth/signup,201,true,9430
+1777246041436,9652,POST /api/auth/signup,201,true,9652
+1777246051088,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246051088,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246041357,9746,POST /api/auth/signup,201,true,9746
+1777246041058,10045,POST /api/auth/signup,201,true,10045
+1777246051076,27,GET /api/restaurants/?keywords=Italian,200,true,27
+1777246041166,9937,POST /api/auth/login,200,true,9937
+1777246051103,21,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,21
+1777246051103,22,GET /api/restaurants/?keywords=Italian,200,true,22
+1777246051125,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246051103,46,POST /api/reviews/ (submit review),201,true,46
+1777246051103,46,POST /api/reviews/ (submit review),201,true,46
+1777246041412,9751,POST /api/auth/login,200,true,9751
+1777246041878,9285,POST /api/auth/login,200,true,9285
+1777246051124,52,POST /api/reviews/ (submit review),201,true,52
+1777246041509,9667,POST /api/auth/signup,201,true,9667
+1777246051131,45,POST /api/reviews/ (submit review),201,true,45
+1777246051163,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246051163,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246051179,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246051184,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246051195,23,POST /api/reviews/ (submit review),201,true,23
+1777246051193,31,POST /api/reviews/ (submit review),201,true,31
+1777246041411,9848,POST /api/auth/login,200,true,9848
+1777246041735,9528,POST /api/auth/signup,201,true,9528
+1777246040712,10551,POST /api/auth/login,200,true,10551
+1777246051259,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246051265,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246051263,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246051272,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246041882,9400,POST /api/auth/signup,201,true,9400
+1777246051270,41,POST /api/reviews/ (submit review),201,true,41
+1777246051275,41,POST /api/reviews/ (submit review),201,true,41
+1777246043413,7917,POST /api/auth/login,200,true,7917
+1777246043317,8016,POST /api/auth/login,200,true,8016
+1777246051330,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246051334,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246043605,7741,POST /api/auth/login,200,true,7741
+1777246051342,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246051346,24,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,24
+1777246051347,23,GET /api/restaurants/?keywords=Italian,200,true,23
+1777246041280,10090,POST /api/auth/login,200,true,10090
+1777246041882,9491,POST /api/auth/login,200,true,9491
+1777246044474,6899,POST /api/auth/login,200,true,6899
+1777246041959,9414,POST /api/auth/signup,201,true,9414
+1777246051370,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246051370,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246041810,9570,POST /api/auth/signup,201,true,9570
+1777246051373,25,GET /api/restaurants/?keywords=Italian,200,true,25
+1777246051370,28,POST /api/reviews/ (submit review),201,true,28
+1777246051356,45,POST /api/reviews/ (submit review),201,true,45
+1777246051380,27,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,27
+1777246051373,34,GET /api/restaurants/?keywords=Italian,200,true,34
+1777246051398,27,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,27
+1777246051407,20,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,20
+1777246043597,7934,POST /api/auth/login,200,true,7934
+1777246051531,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246051380,157,POST /api/reviews/ (submit review),201,true,157
+1777246051537,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246051407,149,POST /api/reviews/ (submit review),201,true,149
+1777246051428,135,POST /api/reviews/ (submit review),201,true,135
+1777246051425,146,POST /api/reviews/ (submit review),201,true,146
+1777246051542,32,POST /api/reviews/ (submit review),201,true,32
+1777246043516,8085,POST /api/auth/login,200,true,8085
+1777246041133,10468,POST /api/auth/signup,201,true,10468
+1777246042783,8819,POST /api/auth/signup,201,true,8819
+1777246043542,8060,POST /api/auth/login,200,true,8060
+1777246042557,9045,POST /api/auth/signup,201,true,9045
+1777246051601,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246051602,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246051606,1,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,1
+1777246051606,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246042484,9130,POST /api/auth/signup,201,true,9130
+1777246051608,27,POST /api/reviews/ (submit review),201,true,27
+1777246051608,31,POST /api/reviews/ (submit review),201,true,31
+1777246041144,10562,POST /api/auth/login,200,true,10562
+1777246051706,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246042105,9605,POST /api/auth/signup,201,true,9605
+1777246051710,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246043542,8181,POST /api/auth/login,200,true,8181
+1777246051723,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246051726,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246051713,23,POST /api/reviews/ (submit review),201,true,23
+1777246043304,8439,POST /api/auth/login,200,true,8439
+1777246051743,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246051750,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246041777,9978,POST /api/auth/login,200,true,9978
+1777246051755,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246044965,6795,POST /api/auth/login,200,true,6795
+1777246042634,9129,POST /api/auth/signup,201,true,9129
+1777246042331,9432,POST /api/auth/signup,201,true,9431
+1777246042416,9347,POST /api/auth/signup,201,true,9347
+1777246051758,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246042256,9512,POST /api/auth/signup,201,true,9512
+1777246051760,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246045077,6695,POST /api/auth/login,200,true,6695
+1777246051773,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246051773,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246042186,9595,POST /api/auth/signup,201,true,9595
+1777246051780,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246044958,6830,POST /api/auth/login,200,true,6830
+1777246044965,6823,POST /api/auth/login,200,true,6823
+1777246044878,6912,POST /api/auth/login,200,true,6912
+1777246042710,9081,POST /api/auth/signup,201,true,9081
+1777246051789,2,GET /api/restaurants/?keywords=Italian,200,true,2
+1777246051788,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246051790,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246051791,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246051792,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246051793,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246051731,71,POST /api/reviews/ (submit review),201,true,71
+1777246051755,59,POST /api/reviews/ (submit review),201,true,59
+1777246051767,68,POST /api/reviews/ (submit review),201,true,68
+1777246051795,43,POST /api/reviews/ (submit review),201,true,43
+1777246051796,64,POST /api/reviews/ (submit review),201,true,64
+1777246051781,79,POST /api/reviews/ (submit review),201,true,79
+1777246051788,76,POST /api/reviews/ (submit review),201,true,76
+1777246051797,67,POST /api/reviews/ (submit review),201,true,67
+1777246045450,6674,POST /api/auth/login,200,true,6674
+1777246052124,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246052130,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246052133,18,POST /api/reviews/ (submit review),201,true,18
+1777246043495,8718,POST /api/auth/login,200,true,8718
+1777246052213,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246052222,20,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,20
+1777246052242,37,POST /api/reviews/ (submit review),201,true,37
+1777246045665,6773,POST /api/auth/login,200,true,6773
+1777246052438,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246052442,1,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,1
+1777246044929,7517,POST /api/auth/login,200,true,7517
+1777246052447,2,GET /api/restaurants/?keywords=Italian,200,true,2
+1777246052449,1,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,1
+1777246045701,6790,POST /api/auth/login,200,true,6790
+1777246052491,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246052500,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246052443,98,POST /api/reviews/ (submit review),201,true,98
+1777246052450,94,POST /api/reviews/ (submit review),201,true,94
+1777246052503,47,POST /api/reviews/ (submit review),201,true,47
+1777246043424,9245,POST /api/auth/login,200,true,9245
+1777246043487,9183,POST /api/auth/login,200,true,9183
+1777246052670,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246052670,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246052683,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246052682,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246045072,7626,POST /api/auth/login,200,true,7626
+1777246052698,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246052705,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246052691,28,POST /api/reviews/ (submit review),201,true,28
+1777246052690,32,POST /api/reviews/ (submit review),201,true,32
+1777246052711,65,POST /api/reviews/ (submit review),201,true,65
+1777246043316,9582,POST /api/auth/login,200,true,9582
+1777246052898,18,GET /api/restaurants/?keywords=Italian,200,true,18
+1777246052916,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246052921,53,POST /api/reviews/ (submit review),201,true,53
+1777246043654,9409,POST /api/auth/login,200,true,9409
+1777246044914,8150,POST /api/auth/login,200,true,8150
+1777246045412,7653,POST /api/auth/login,200,true,7653
+1777246053065,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246053064,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246053064,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246053075,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246053074,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246053081,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246053089,40,POST /api/reviews/ (submit review),201,true,40
+1777246053084,45,POST /api/reviews/ (submit review),201,true,45
+1777246053082,50,POST /api/reviews/ (submit review),201,true,50
+1777246045451,8238,POST /api/auth/login,200,true,8238
+1777246053690,25,GET /api/restaurants/?keywords=Italian,200,true,25
+1777246053715,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246053731,16,POST /api/reviews/ (submit review),201,true,16
+1777246043588,10374,POST /api/auth/login,200,true,10374
+1777246045712,8250,POST /api/auth/login,200,true,8250
+1777246045615,8347,POST /api/auth/login,200,true,8347
+1777246053963,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246045678,8306,POST /api/auth/login,200,true,8306
+1777246047594,6390,POST /api/auth/login,200,true,6390
+1777246043738,10246,POST /api/auth/login,200,true,10246
+1777246053963,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246053963,21,GET /api/restaurants/?keywords=Italian,200,true,21
+1777246044931,9063,POST /api/auth/login,200,true,9063
+1777246044464,9531,POST /api/auth/login,200,true,9531
+1777246045610,8386,POST /api/auth/login,200,true,8386
+1777246044673,9323,POST /api/auth/login,200,true,9323
+1777246044931,9065,POST /api/auth/login,200,true,9065
+1777246053984,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246053984,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246044959,9041,POST /api/auth/login,200,true,9041
+1777246053984,24,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,24
+1777246048469,5539,POST /api/auth/login,200,true,5539
+1777246053984,24,GET /api/restaurants/?keywords=Italian,200,true,24
+1777246054000,22,GET /api/restaurants/?keywords=Italian,200,true,22
+1777246053996,26,GET /api/restaurants/?keywords=Italian,200,true,26
+1777246053984,38,GET /api/restaurants/?keywords=Italian,200,true,38
+1777246053995,27,GET /api/restaurants/?keywords=Italian,200,true,27
+1777246054008,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246053996,28,GET /api/restaurants/?keywords=Italian,200,true,28
+1777246053995,29,GET /api/restaurants/?keywords=Italian,200,true,29
+1777246053998,26,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,26
+1777246053998,26,POST /api/reviews/ (submit review),201,true,26
+1777246053984,40,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,40
+1777246053996,28,GET /api/restaurants/?keywords=Italian,200,true,28
+1777246054008,22,GET /api/restaurants/?keywords=Italian,200,true,22
+1777246054022,26,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,26
+1777246054022,26,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,26
+1777246054024,24,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,24
+1777246054022,26,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,26
+1777246054024,24,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,24
+1777246054030,24,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,24
+1777246054024,39,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,39
+1777246054022,41,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,41
+1777246044901,9178,POST /api/auth/login,200,true,9178
+1777246045800,8302,POST /api/auth/login,200,true,8302
+1777246054080,23,GET /api/restaurants/?keywords=Italian,200,true,23
+1777246054008,95,POST /api/reviews/ (submit review),201,true,95
+1777246045451,8652,POST /api/auth/login,200,true,8652
+1777246054024,79,POST /api/reviews/ (submit review),201,true,79
+1777246047580,6524,POST /api/auth/login,200,true,6524
+1777246045451,8665,POST /api/auth/login,200,true,8665
+1777246054103,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246054105,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246054103,18,GET /api/restaurants/?keywords=Italian,200,true,18
+1777246054102,19,GET /api/restaurants/?keywords=Italian,200,true,19
+1777246054116,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246054121,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246054121,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246054121,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246054124,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246045651,8545,POST /api/auth/login,200,true,8545
+1777246054197,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246054200,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246054024,193,POST /api/reviews/ (submit review),201,true,193
+1777246054024,194,POST /api/reviews/ (submit review),201,true,194
+1777246047593,6633,POST /api/auth/login,200,true,6633
+1777246045451,8776,POST /api/auth/login,200,true,8776
+1777246054227,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246054227,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246054234,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246054236,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246045701,8550,POST /api/auth/login,200,true,8550
+1777246045672,8581,POST /api/auth/login,200,true,8581
+1777246045699,8555,POST /api/auth/login,200,true,8555
+1777246048451,5804,POST /api/auth/login,200,true,5804
+1777246045757,8504,POST /api/auth/login,200,true,8504
+1777246045702,8567,POST /api/auth/login,200,true,8567
+1777246045673,8597,POST /api/auth/login,200,true,8597
+1777246054251,30,GET /api/restaurants/?keywords=Italian,200,true,30
+1777246054253,35,GET /api/restaurants/?keywords=Italian,200,true,35
+1777246054254,35,GET /api/restaurants/?keywords=Italian,200,true,35
+1777246054255,36,GET /api/restaurants/?keywords=Italian,200,true,36
+1777246054281,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246054271,27,GET /api/restaurants/?keywords=Italian,200,true,27
+1777246054261,37,GET /api/restaurants/?keywords=Italian,200,true,37
+1777246054269,29,GET /api/restaurants/?keywords=Italian,200,true,29
+1777246054048,264,POST /api/reviews/ (submit review),201,true,264
+1777246054288,29,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,29
+1777246054048,269,POST /api/reviews/ (submit review),201,true,269
+1777246054291,26,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,26
+1777246054289,28,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,28
+1777246054298,25,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,25
+1777246054298,25,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,25
+1777246054298,26,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,26
+1777246054054,274,POST /api/reviews/ (submit review),201,true,274
+1777246054048,283,POST /api/reviews/ (submit review),201,true,283
+1777246054064,267,POST /api/reviews/ (submit review),201,true,267
+1777246054048,307,POST /api/reviews/ (submit review),201,true,307
+1777246054064,320,POST /api/reviews/ (submit review),201,true,320
+1777246054048,361,POST /api/reviews/ (submit review),201,true,361
+1777246054133,304,POST /api/reviews/ (submit review),201,true,304
+1777246054132,334,POST /api/reviews/ (submit review),201,true,334
+1777246054132,336,POST /api/reviews/ (submit review),201,true,336
+1777246047348,7124,POST /api/auth/login,200,true,7124
+1777246054203,272,POST /api/reviews/ (submit review),201,true,272
+1777246054472,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246054117,373,POST /api/reviews/ (submit review),201,true,373
+1777246054138,352,POST /api/reviews/ (submit review),201,true,352
+1777246054237,259,POST /api/reviews/ (submit review),201,true,259
+1777246054485,20,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,20
+1777246048541,5969,POST /api/auth/login,200,true,5969
+1777246047022,7488,POST /api/auth/login,200,true,7488
+1777246048064,6454,POST /api/auth/login,200,true,6454
+1777246049953,4565,POST /api/auth/login,200,true,4565
+1777246045651,8879,POST /api/auth/login,200,true,8879
+1777246049396,5134,POST /api/auth/login,200,true,5134
+1777246045711,8819,POST /api/auth/login,200,true,8819
+1777246054239,291,POST /api/reviews/ (submit review),201,true,291
+1777246048664,5866,POST /api/auth/login,200,true,5866
+1777246054530,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246054510,32,GET /api/restaurants/?keywords=Italian,200,true,32
+1777246054510,32,GET /api/restaurants/?keywords=Italian,200,true,32
+1777246054518,24,GET /api/restaurants/?keywords=Italian,200,true,24
+1777246054530,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246054518,24,GET /api/restaurants/?keywords=Italian,200,true,24
+1777246054530,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246054530,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246054317,231,POST /api/reviews/ (submit review),201,true,231
+1777246054323,225,POST /api/reviews/ (submit review),201,true,225
+1777246047087,7466,POST /api/auth/login,200,true,7466
+1777246048754,5801,POST /api/auth/login,200,true,5801
+1777246054542,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246054317,243,POST /api/reviews/ (submit review),201,true,243
+1777246054542,21,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,21
+1777246054324,240,POST /api/reviews/ (submit review),201,true,240
+1777246054542,22,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,22
+1777246054542,22,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,22
+1777246054298,266,POST /api/reviews/ (submit review),201,true,266
+1777246054547,18,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,18
+1777246054317,251,POST /api/reviews/ (submit review),201,true,251
+1777246054542,27,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,27
+1777246054553,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246054542,28,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,28
+1777246054555,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246049115,5462,POST /api/auth/login,200,true,5462
+1777246054570,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246054572,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246054547,32,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,32
+1777246054577,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246054323,258,POST /api/reviews/ (submit review),201,true,258
+1777246054581,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246054559,82,POST /api/reviews/ (submit review),201,true,82
+1777246054505,142,POST /api/reviews/ (submit review),201,true,142
+1777246054565,274,POST /api/reviews/ (submit review),201,true,274
+1777246054564,279,POST /api/reviews/ (submit review),201,true,279
+1777246054578,270,POST /api/reviews/ (submit review),201,true,270
+1777246054570,278,POST /api/reviews/ (submit review),201,true,278
+1777246054564,284,POST /api/reviews/ (submit review),201,true,284
+1777246054570,278,POST /api/reviews/ (submit review),201,true,278
+1777246054579,270,POST /api/reviews/ (submit review),201,true,270
+1777246054577,272,POST /api/reviews/ (submit review),201,true,272
+1777246054583,266,POST /api/reviews/ (submit review),201,true,266
+1777246054563,314,POST /api/reviews/ (submit review),201,true,314
+1777246047018,8159,POST /api/auth/login,200,true,8159
+1777246055177,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246055189,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246055191,18,POST /api/reviews/ (submit review),201,true,18
+1777246047240,7969,POST /api/auth/login,200,true,7969
+1777246055210,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246055217,8,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,8
+1777246055225,19,POST /api/reviews/ (submit review),201,true,19
+1777246049347,5897,POST /api/auth/login,200,true,5897
+1777246055244,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246055251,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246049555,5729,POST /api/auth/login,200,true,5729
+1777246055268,18,POST /api/reviews/ (submit review),201,true,18
+1777246055284,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246047494,7796,POST /api/auth/login,200,true,7796
+1777246047563,7727,POST /api/auth/login,200,true,7727
+1777246055290,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246055290,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246049381,5917,POST /api/auth/login,200,true,5917
+1777246047023,8276,POST /api/auth/login,200,true,8276
+1777246055287,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246055299,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246055299,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246045708,9608,POST /api/auth/login,200,true,9608
+1777246048541,6775,POST /api/auth/login,200,true,6775
+1777246049954,5375,POST /api/auth/login,200,true,5375
+1777246048622,6707,POST /api/auth/login,200,true,6707
+1777246051072,4257,POST /api/auth/login,200,true,4257
+1777246051602,3727,POST /api/auth/login,200,true,3727
+1777246055315,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246049555,5774,POST /api/auth/login,200,true,5774
+1777246049022,6307,POST /api/auth/login,200,true,6307
+1777246055316,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246055316,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246055298,31,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,31
+1777246049019,6311,POST /api/auth/login,200,true,6311
+1777246055315,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246055298,32,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,32
+1777246046257,9073,POST /api/auth/login,200,true,9073
+1777246048482,6848,POST /api/auth/login,200,true,6848
+1777246051088,4242,POST /api/auth/login,200,true,4242
+1777246049115,6215,POST /api/auth/login,200,true,6215
+1777246049115,6216,POST /api/auth/login,200,true,6216
+1777246049555,5777,POST /api/auth/login,200,true,5777
+1777246055301,41,POST /api/reviews/ (submit review),201,true,41
+1777246050336,5006,POST /api/auth/login,200,true,5006
+1777246055330,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246055330,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246048663,6683,POST /api/auth/login,200,true,6683
+1777246055330,28,GET /api/restaurants/?keywords=Italian,200,true,28
+1777246055330,28,GET /api/restaurants/?keywords=Italian,200,true,28
+1777246055330,47,GET /api/restaurants/?keywords=Italian,200,true,47
+1777246055329,48,GET /api/restaurants/?keywords=Italian,200,true,48
+1777246055330,47,GET /api/restaurants/?keywords=Italian,200,true,47
+1777246055331,47,GET /api/restaurants/?keywords=Italian,200,true,47
+1777246055332,46,GET /api/restaurants/?keywords=Italian,200,true,46
+1777246055330,49,POST /api/reviews/ (submit review),201,true,49
+1777246055330,54,GET /api/restaurants/?keywords=Italian,200,true,54
+1777246055330,54,GET /api/restaurants/?keywords=Italian,200,true,54
+1777246055346,41,GET /api/restaurants/?keywords=Italian,200,true,41
+1777246055329,60,GET /api/restaurants/?keywords=Italian,200,true,60
+1777246055329,60,GET /api/restaurants/?keywords=Italian,200,true,60
+1777246055329,60,GET /api/restaurants/?keywords=Italian,200,true,60
+1777246055358,37,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,37
+1777246055330,65,GET /api/restaurants/?keywords=Italian,200,true,65
+1777246055358,37,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,37
+1777246055378,24,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,24
+1777246055342,60,GET /api/restaurants/?keywords=Italian,200,true,60
+1777246055377,25,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,25
+1777246055330,81,POST /api/reviews/ (submit review),201,true,81
+1777246055377,34,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,34
+1777246055384,33,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,33
+1777246055378,39,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,39
+1777246055345,72,POST /api/reviews/ (submit review),201,true,72
+1777246055330,87,POST /api/reviews/ (submit review),201,true,87
+1777246055329,88,POST /api/reviews/ (submit review),201,true,88
+1777246055384,33,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,33
+1777246055377,46,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,46
+1777246055389,34,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,34
+1777246055389,35,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,35
+1777246055402,22,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,22
+1777246055389,35,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,35
+1777246055395,30,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,30
+1777246055387,39,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,39
+1777246048609,6872,POST /api/auth/login,200,true,6872
+1777246049115,6368,POST /api/auth/login,200,true,6368
+1777246055481,12,GET /api/restaurants/?keywords=Italian,200,true,12
+1777246055483,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246055494,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246055494,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246049134,6362,POST /api/auth/login,200,true,6362
+1777246055497,1,GET /api/restaurants/?keywords=Italian,200,true,1
+1777246055498,1,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,1
+1777246055346,183,POST /api/reviews/ (submit review),201,true,183
+1777246050155,5381,POST /api/auth/login,200,true,5381
+1777246055536,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246055544,12,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,12
+1777246055395,231,POST /api/reviews/ (submit review),201,true,231
+1777246049381,6256,POST /api/auth/login,200,true,6256
+1777246049321,6327,POST /api/auth/login,200,true,6327
+1777246055637,13,GET /api/restaurants/?keywords=Italian,200,true,13
+1777246055648,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246055650,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246055656,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246055402,295,POST /api/reviews/ (submit review),201,true,295
+1777246055395,302,POST /api/reviews/ (submit review),201,true,302
+1777246055412,339,POST /api/reviews/ (submit review),201,true,339
+1777246055402,354,POST /api/reviews/ (submit review),201,true,354
+1777246055417,341,POST /api/reviews/ (submit review),201,true,341
+1777246055427,331,POST /api/reviews/ (submit review),201,true,331
+1777246055424,335,POST /api/reviews/ (submit review),201,true,335
+1777246055423,336,POST /api/reviews/ (submit review),201,true,336
+1777246055423,336,POST /api/reviews/ (submit review),201,true,336
+1777246055496,263,POST /api/reviews/ (submit review),201,true,263
+1777246055424,335,POST /api/reviews/ (submit review),201,true,335
+1777246049955,5816,POST /api/auth/login,200,true,5816
+1777246055771,18,GET /api/restaurants/?keywords=Italian,200,true,18
+1777246055790,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246055417,420,POST /api/reviews/ (submit review),201,true,420
+1777246055424,416,POST /api/reviews/ (submit review),201,true,416
+1777246055496,348,POST /api/reviews/ (submit review),201,true,348
+1777246051791,4060,POST /api/auth/login,200,true,4060
+1777246055417,434,POST /api/reviews/ (submit review),201,true,434
+1777246055425,433,POST /api/reviews/ (submit review),201,true,433
+1777246055665,194,POST /api/reviews/ (submit review),201,true,194
+1777246055500,361,POST /api/reviews/ (submit review),201,true,361
+1777246055657,203,POST /api/reviews/ (submit review),201,true,203
+1777246055851,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246055865,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246055556,333,POST /api/reviews/ (submit review),201,true,333
+1777246055799,93,POST /api/reviews/ (submit review),201,true,93
+1777246055868,26,POST /api/reviews/ (submit review),201,true,26
+1777246051103,4851,POST /api/auth/login,200,true,4851
+1777246051088,4869,POST /api/auth/login,200,true,4869
+1777246055954,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246055957,14,GET /api/restaurants/?keywords=Italian,200,true,14
+1777246055972,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246055972,11,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,11
+1777246050030,5969,POST /api/auth/login,200,true,5969
+1777246055999,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246051380,4626,POST /api/auth/login,200,true,4626
+1777246051282,4731,POST /api/auth/login,200,true,4731
+1777246056014,8,GET /api/restaurants/?keywords=Italian,200,true,8
+1777246056006,16,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,16
+1777246056006,16,GET /api/restaurants/?keywords=Italian,200,true,16
+1777246055983,39,POST /api/reviews/ (submit review),201,true,39
+1777246049407,6615,POST /api/auth/login,200,true,6615
+1777246055983,40,POST /api/reviews/ (submit review),201,true,40
+1777246056022,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246056022,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246056022,10,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,10
+1777246056022,18,POST /api/reviews/ (submit review),201,true,18
+1777246051763,4280,POST /api/auth/login,200,true,4280
+1777246056031,14,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,14
+1777246056043,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246056051,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246049555,6500,POST /api/auth/login,200,true,6500
+1777246056032,25,POST /api/reviews/ (submit review),201,true,25
+1777246056055,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246056062,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246056055,25,POST /api/reviews/ (submit review),201,true,25
+1777246056032,48,POST /api/reviews/ (submit review),201,true,48
+1777246056045,46,POST /api/reviews/ (submit review),201,true,46
+1777246050093,5998,POST /api/auth/login,200,true,5998
+1777246056091,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246056101,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246056069,48,POST /api/reviews/ (submit review),201,true,48
+1777246056107,28,POST /api/reviews/ (submit review),201,true,28
+1777246048661,7484,POST /api/auth/login,200,true,7484
+1777246056146,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246056149,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246051373,4782,POST /api/auth/login,200,true,4782
+1777246049951,6206,POST /api/auth/login,200,true,6206
+1777246056156,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246056157,2,GET /api/restaurants/?keywords=Italian,200,true,2
+1777246056159,2,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,2
+1777246056159,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246056151,44,POST /api/reviews/ (submit review),201,true,44
+1777246056161,34,POST /api/reviews/ (submit review),201,true,34
+1777246056164,53,POST /api/reviews/ (submit review),201,true,53
+1777246050028,6194,POST /api/auth/login,200,true,6194
+1777246051053,5176,POST /api/auth/login,200,true,5176
+1777246051263,4974,POST /api/auth/login,200,true,4974
+1777246056222,20,GET /api/restaurants/?keywords=Italian,200,true,20
+1777246056229,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246056237,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246056243,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246056246,15,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,15
+1777246056246,17,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,17
+1777246056250,22,POST /api/reviews/ (submit review),201,true,22
+1777246051072,5216,POST /api/auth/login,200,true,5216
+1777246050028,6260,POST /api/auth/login,200,true,6260
+1777246051076,5214,POST /api/auth/login,200,true,5214
+1777246056263,32,POST /api/reviews/ (submit review),201,true,32
+1777246056261,34,POST /api/reviews/ (submit review),201,true,34
+1777246056288,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246056288,10,GET /api/restaurants/?keywords=Italian,200,true,10
+1777246051602,4696,POST /api/auth/login,200,true,4696
+1777246051614,4690,POST /api/auth/login,200,true,4690
+1777246056290,17,GET /api/restaurants/?keywords=Italian,200,true,17
+1777246056298,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246056298,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246056295,13,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,13
+1777246056304,4,GET /api/restaurants/?keywords=Italian,200,true,4
+1777246056307,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246056307,4,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,4
+1777246056308,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246051763,4550,POST /api/auth/login,200,true,4550
+1777246056313,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246051763,4557,POST /api/auth/login,200,true,4557
+1777246056321,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246056321,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246056330,5,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,5
+1777246050030,6348,POST /api/auth/login,200,true,6348
+1777246056378,11,GET /api/restaurants/?keywords=Italian,200,true,11
+1777246056389,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246051103,5296,POST /api/auth/login,200,true,5296
+1777246056399,5,GET /api/restaurants/?keywords=Italian,200,true,5
+1777246051768,4640,POST /api/auth/login,200,true,4640
+1777246056404,7,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,7
+1777246056408,6,GET /api/restaurants/?keywords=Italian,200,true,6
+1777246051176,5239,POST /api/auth/login,200,true,5239
+1777246051710,4705,POST /api/auth/login,200,true,4705
+1777246056415,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246056415,9,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,9
+1777246056415,9,GET /api/restaurants/?keywords=Italian,200,true,9
+1777246056424,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246056424,6,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,6
+1777246056311,136,POST /api/reviews/ (submit review),201,true,136
+1777246056308,145,POST /api/reviews/ (submit review),201,true,145
+1777246056311,150,POST /api/reviews/ (submit review),201,true,150
+1777246051601,4862,POST /api/auth/login,200,true,4862
+1777246056311,153,POST /api/reviews/ (submit review),201,true,153
+1777246056464,7,GET /api/restaurants/?keywords=Italian,200,true,7
+1777246056307,164,POST /api/reviews/ (submit review),201,true,164
+1777246051781,4691,POST /api/auth/login,200,true,4691
+1777246056471,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246056326,150,POST /api/reviews/ (submit review),201,true,150
+1777246056473,3,GET /api/restaurants/?keywords=Italian,200,true,3
+1777246056477,3,GET /api/restaurants/?city=San Jose&cuisine_type=Korean,200,true,3
+1777246056335,147,POST /api/reviews/ (submit review),201,true,147
+1777246056395,123,POST /api/reviews/ (submit review),201,true,123
+1777246056430,95,POST /api/reviews/ (submit review),201,true,95
+1777246056411,117,POST /api/reviews/ (submit review),201,true,117
+1777246056424,107,POST /api/reviews/ (submit review),201,true,107
+1777246056430,102,POST /api/reviews/ (submit review),201,true,102
+1777246056474,63,POST /api/reviews/ (submit review),201,true,63
+1777246056480,61,POST /api/reviews/ (submit review),201,true,61
