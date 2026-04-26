@@ -38,6 +38,12 @@ def seed():
         {"name": "Sofia Bellini", "email": "owner.sofia@example.com", "password": "password123", "role": "owner",
          "city": "Santa Clara", "state": "CA", "country": "United States", "gender": "female",
          "about_me": "Running Bella Italia since 2018.", "restaurant_location": "Santa Clara, CA"},
+        {"name": "Kevin Yoon", "email": "owner.kevin@example.com", "password": "password123", "role": "owner",
+         "city": "San Jose", "state": "CA", "country": "United States", "gender": "male",
+         "about_me": "Chef and owner of Seoul Kitchen. Trained in Seoul and San Francisco.", "restaurant_location": "San Jose, CA"},
+        {"name": "Anh Nguyen", "email": "owner.anh@example.com", "password": "password123", "role": "owner",
+         "city": "Cupertino", "state": "CA", "country": "United States", "gender": "female",
+         "about_me": "Bringing authentic Thai flavors to the South Bay since 2015.", "restaurant_location": "Cupertino, CA"},
     ]
 
     created_users = {}
@@ -90,6 +96,8 @@ def seed():
     # ── RESTAURANTS ────────────────────────────────
     owner_james = created_users.get("james@test.com")
     owner_sofia = created_users.get("owner.sofia@example.com")
+    owner_kevin = created_users.get("owner.kevin@example.com")
+    owner_anh = created_users.get("owner.anh@example.com")
     alice = created_users.get("alice@example.com")
 
     restaurants_data = [
@@ -141,6 +149,18 @@ def seed():
          "country": "United States", "phone": "(650) 555-0808", "pricing_tier": "$$",
          "hours_of_operation": "Mon-Fri 7am-3pm, Sat-Sun 8am-4pm",
          "amenities": "Dine-in, Outdoor seating, Wi-Fi, Vegan options", "owner": None},
+        {"name": "Seoul Kitchen", "cuisine_type": "Korean",
+         "description": "Modern Korean BBQ and traditional comfort dishes. Premium USDA meats, tabletop grills, and house-made kimchi fermented in-house.",
+         "address": "630 N First St", "city": "San Jose", "state": "CA", "zip_code": "95112",
+         "country": "United States", "phone": "(408) 555-0909", "pricing_tier": "$$",
+         "hours_of_operation": "Mon-Thu 5pm-10pm, Fri-Sat 5pm-11pm, Sun 4pm-9:30pm",
+         "amenities": "Dine-in, Tabletop BBQ grills, Reservations, Full bar, Private dining room", "owner": owner_kevin},
+        {"name": "Thai Orchid", "cuisine_type": "Thai",
+         "description": "Family recipes from Chiang Mai — aromatic curries, pad thai, and fresh papaya salads. Authentic flavors with locally sourced produce.",
+         "address": "19800 Stevens Creek Blvd", "city": "Cupertino", "state": "CA", "zip_code": "95014",
+         "country": "United States", "phone": "(408) 555-1010", "pricing_tier": "$$",
+         "hours_of_operation": "Tue-Sun 11:30am-2:30pm, 5pm-9:30pm",
+         "amenities": "Dine-in, Takeout, Delivery, Vegan options, Gluten-free options", "owner": owner_anh},
     ]
 
     created_restaurants = {}
@@ -236,6 +256,62 @@ def seed():
          "comment": "Really good eggs benedict with a light hollandaise.",
          "photo_url": "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=800",
          "helpful_votes": 5, "unhelpful_votes": 1},
+        {"user": "priya@example.com", "restaurant": "Morning Glory Café", "rating": 5,
+         "comment": "The granola bowl with seasonal fruit was incredible. Love that they source everything locally. Weekend wait is long but totally worth it.",
+         "helpful_votes": 8, "unhelpful_votes": 0},
+
+        # More Mediterranean Table reviews (was under-reviewed)
+        {"user": "marcus@example.com", "restaurant": "The Mediterranean Table", "rating": 3,
+         "comment": "Food was decent but service was a bit slow on a busy Saturday. The lamb kebabs were good but the pita bread came out cold.",
+         "helpful_votes": 4, "unhelpful_votes": 2},
+        {"user": "alice@example.com", "restaurant": "The Mediterranean Table", "rating": 4,
+         "comment": "Loved the falafel wrap and the tabbouleh was light and fresh. Good spot for a group — the mezze platter feeds four easily.",
+         "photo_url": "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=800",
+         "helpful_votes": 9, "unhelpful_votes": 0},
+
+        # More Spice Garden
+        {"user": "marcus@example.com", "restaurant": "Spice Garden", "rating": 3,
+         "comment": "The lunch buffet is a great value but I found most dishes overly oily. The gulab jamun dessert was excellent though.",
+         "helpful_votes": 3, "unhelpful_votes": 1},
+
+        # More Taco Loco
+        {"user": "alice@example.com", "restaurant": "Taco Loco", "rating": 3,
+         "comment": "Tacos are good but not exceptional. Wait time at lunch is brutal — 25 minutes for a burrito. The salsa bar saves it.",
+         "helpful_votes": 6, "unhelpful_votes": 1},
+
+        # Smoke Pit — non-meat eater perspective
+        {"user": "priya@example.com", "restaurant": "The Smoke Pit", "rating": 2,
+         "comment": "Very limited options if you don't eat meat. The coleslaw and cornbread were fine but that's basically it for vegetarians. Worth knowing before you go.",
+         "helpful_votes": 15, "unhelpful_votes": 3},
+
+        # Seoul Kitchen — new restaurant reviews
+        {"user": "alice@example.com", "restaurant": "Seoul Kitchen", "rating": 5,
+         "comment": "Best Korean BBQ in San Jose, no contest. The wagyu beef and the spicy pork belly are must-orders. The house kimchi is perfectly fermented.",
+         "photo_url": "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=800",
+         "helpful_votes": 14, "unhelpful_votes": 0,
+         "owner_reply": "Thank you Alice! Our kimchi is fermented for 3 weeks — we're so glad you could taste the difference. Come back for our weekend special: galbi jim!"},
+        {"user": "marcus@example.com", "restaurant": "Seoul Kitchen", "rating": 4,
+         "comment": "Super fun dinner experience. The tabletop grills work perfectly and the staff help you cook everything just right.",
+         "photo_url": "https://images.unsplash.com/photo-1567360425618-1594206637d2?w=800",
+         "helpful_votes": 10, "unhelpful_votes": 0},
+        {"user": "priya@example.com", "restaurant": "Seoul Kitchen", "rating": 3,
+         "comment": "Meat-heavy menu as expected but they do have some vegetarian options — the dubu jorim (spicy tofu) and japchae noodles were excellent. Gets smoky inside.",
+         "helpful_votes": 7, "unhelpful_votes": 0},
+
+        # Thai Orchid — new restaurant reviews
+        {"user": "marcus@example.com", "restaurant": "Thai Orchid", "rating": 5,
+         "comment": "The massaman curry here is the best I've ever had — rich, complex, with just the right amount of heat. Pad see ew was also fantastic.",
+         "photo_url": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=800",
+         "helpful_votes": 16, "unhelpful_votes": 0,
+         "owner_reply": "Thank you so much! The massaman curry is my grandmother's recipe — we slow-cook it for 4 hours. So happy it resonated with you!"},
+        {"user": "priya@example.com", "restaurant": "Thai Orchid", "rating": 5,
+         "comment": "Incredible vegetarian options — the green papaya salad and tofu green curry were perfectly balanced. Not too sweet, not too spicy. Authentic flavors.",
+         "photo_url": "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800",
+         "helpful_votes": 11, "unhelpful_votes": 0,
+         "owner_reply": "We're so glad you enjoyed the vegetarian dishes! We use fresh tofu delivered daily and our curries are all naturally vegan. Hope to see you again soon!"},
+        {"user": "alice@example.com", "restaurant": "Thai Orchid", "rating": 4,
+         "comment": "Really solid Thai food. The tom kha soup was coconutty and fragrant. Parking can be tricky in the plaza but totally worth the effort.",
+         "helpful_votes": 6, "unhelpful_votes": 0},
     ]
 
     created_reviews = {}
@@ -278,10 +354,12 @@ def seed():
     # ── FAVORITES ──────────────────────────────────
     favorites_data = [
         ("alice@example.com", "Sakura Sushi"), ("alice@example.com", "Bella Italia"),
-        ("alice@example.com", "Spice Garden"), ("marcus@example.com", "The Smoke Pit"),
-        ("marcus@example.com", "Taco Loco"), ("marcus@example.com", "Golden Chopsticks"),
+        ("alice@example.com", "Spice Garden"), ("alice@example.com", "Seoul Kitchen"),
+        ("alice@example.com", "Thai Orchid"),
+        ("marcus@example.com", "The Smoke Pit"), ("marcus@example.com", "Taco Loco"),
+        ("marcus@example.com", "Golden Chopsticks"), ("marcus@example.com", "Seoul Kitchen"),
         ("priya@example.com", "Spice Garden"), ("priya@example.com", "The Mediterranean Table"),
-        ("priya@example.com", "Morning Glory Café"),
+        ("priya@example.com", "Morning Glory Café"), ("priya@example.com", "Thai Orchid"),
     ]
 
     for user_email, rest_name in favorites_data:
@@ -299,15 +377,15 @@ def seed():
 
     print("\n" + "=" * 50)
     print(" Seed complete!")
-    print("  Users: 3 regular + 2 owners")
-    print("  Restaurants: 8 total")
-    print("  Reviews: up to 16 with photos, helpfulness votes, and owner replies")
-    print("  Owner replies: 4 (Golden Chopsticks x2, Bella Italia x2)")
-    print("  Favorites: 9")
+    print("  Users: 3 regular + 4 owners")
+    print("  Restaurants: 10 total (incl. Seoul Kitchen, Thai Orchid)")
+    print("  Reviews: up to 29 with photos, helpfulness votes, and owner replies")
+    print("  Owner replies: 6 (Golden Chopsticks x2, Bella Italia x2, Seoul Kitchen x1, Thai Orchid x2)")
+    print("  Favorites: 13")
     print("  Preferences: 3")
     print("\n  Login credentials (password: password123)")
     print("  alice@example.com / marcus@example.com / priya@example.com")
-    print("  james@test.com / owner.sofia@example.com")
+    print("  james@test.com / owner.sofia@example.com / owner.kevin@example.com / owner.anh@example.com")
 
 
 if __name__ == "__main__":

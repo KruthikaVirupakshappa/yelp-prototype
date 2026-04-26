@@ -53,8 +53,9 @@ export default function AIAssistant({ compact = false }) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [recs, setRecs] = useState([]);
-  const [source, setSource] = useState(null); // "llm" | "template" | null
+  const [source, setSource] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [conversationId, setConversationId] = useState(null);
   const bodyRef = useRef(null);
   const inputRef = useRef(null);
   const lastUserMsgRef = useRef(null);
@@ -77,13 +78,14 @@ export default function AIAssistant({ compact = false }) {
     setRecs([]);
 
     try {
-      const data = await chatWithAssistant(trimmed, history);
+      const data = await chatWithAssistant(trimmed, history, conversationId);
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: data?.reply || "No reply." },
       ]);
       setRecs(Array.isArray(data?.recommendations) ? data.recommendations : []);
       setSource(data?.source || "template");
+      if (data?.conversation_id) setConversationId(data.conversation_id);
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -117,7 +119,7 @@ export default function AIAssistant({ compact = false }) {
           <button
             className="ai-clear-btn"
             type="button"
-            onClick={() => { setMessages([]); setRecs([]); setInput(""); setSource(null); }}
+            onClick={() => { setMessages([]); setRecs([]); setInput(""); setSource(null); setConversationId(null); }}
           >
             New chat
           </button>
